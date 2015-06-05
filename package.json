@@ -19,6 +19,7 @@
   "homepage": "https://github.com/rickcid/light-rail",
   "dependencies": {
     "bcrypt": "^0.8.3",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.4",
     "dotenv": "^1.1.0",
     "express": "^4.12.4",

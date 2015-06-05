@@ -21,6 +21,10 @@ app.config(function($routeProvider){
       templateUrl: 'views/login/loginSubscriberTmpl.html',
       controller: 'LoginCtrl'
     })
+    .when('/myfavorites', {
+      templateUrl: 'views/myfavorites.html',
+      controller: 'myfavoritesCtrl'
+    })
      .otherwise({
       redirectTo: '/'
     });
