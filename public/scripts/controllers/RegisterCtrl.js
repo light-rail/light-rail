@@ -6,7 +6,6 @@ app.controller('RegisterCtrl', function($scope, $routeParams, $location, AuthSer
 
   //General User Registration
   $scope.registerGeneralUser = function(user) {
-    user['user_type'] = 'general_user';
     AuthService.registerUser(user).then(function(res) {
       toaster.pop('success', 'You have registered successfully.');
       $location.path('/');
@@ -19,9 +18,7 @@ app.controller('RegisterCtrl', function($scope, $routeParams, $location, AuthSer
 
   //Service Subscriber Registration (Apartment Subscriber)
   $scope.registerSubscriber = function(user) {
-    //adds type
-    user['user_type'] = 'subscriber';
-    AuthService.registerUser(user).then(function(res) {
+    AuthService.registerSubscriber(user).then(function(res) {
       toaster.pop('success', 'You have registered successfully.');
       $location.path('/');
     }, function(err) {
@@ -29,5 +26,5 @@ app.controller('RegisterCtrl', function($scope, $routeParams, $location, AuthSer
       if(err.status ===  11000) toaster.pop('error', 'This email is already registered.');
       else toaster.pop('error', 'Sorry, something went wrong!');
     });
-  };
+  }; 
 });
