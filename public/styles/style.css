@@ -1,0 +1,57 @@
+/*
+ * {
+  border: 1px dashed blue;
+}*/
+
+
+/*** GLOBAL STYLES ***/
+
+/* Background Color */
+body {
+  background: white;
+
+}
+
+/* Centers Titles */
+.title {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Centers Content */
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+
+/*** NAVBAR ***/
+
+.brand-style {
+  font-weight: 500;
+}
+
+.navbar.navbar {
+  background-color: #FF4019;
+}
+
+/*** MAIN ***/
+
+.logo-top-spacing {
+  padding-top: 50px;
+}
+
+/*** FORMS ***/
+
+.form-title-top-spacing {
+  padding-top: 40px;
+}
+
+.form-panel-top-spacing {
+  padding-top: 40px;
+}
+
+#form-input-underline {
+  border-bottom: 3px solid #ECECEC;
+}
+

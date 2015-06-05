@@ -1,0 +1,31 @@
+{
+  "name": "light-rail",
+  "version": "1.0.0",
+  "description": "LightRail Connect ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rickcid/light-rail.git"
+  },
+  "author": "Hispand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rickcid/light-rail/issues"
+  },
+  "homepage": "https://github.com/rickcid/light-rail",
+  "dependencies": {
+    "bcrypt": "^0.8.3",
+    "body-parser": "^1.12.4",
+    "dotenv": "^1.1.0",
+    "express": "^4.12.4",
+    "express-session": "^1.11.2",
+    "mongoose": "^4.0.4",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "q": "^1.4.1"
+  }
+}
