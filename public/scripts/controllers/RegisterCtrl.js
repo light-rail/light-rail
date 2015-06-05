@@ -6,7 +6,6 @@ app.controller('RegisterCtrl', function($scope, $routeParams, $location, AuthSer
 
   //General User Registration
   $scope.registerGeneralUser = function(user) {
-    user['user_type'] = 'general_user';
     AuthService.registerUser(user).then(function(res) {
       toaster.pop('success', 'You have registered successfully.');
       $location.path('/');
@@ -31,3 +30,12 @@ app.controller('RegisterCtrl', function($scope, $routeParams, $location, AuthSer
     });
   };
 });
+
+
+
+
+
+
+
+
+

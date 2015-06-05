@@ -12,7 +12,7 @@ app.service('AuthService', function($http, $q, $location) {
       data: {
         email: user.email,
         password: user.password,
-        user_type: user.user_type
+        name: user.name
       }
     }).then(function(res) {
       $http({
@@ -45,7 +45,6 @@ app.service('AuthService', function($http, $q, $location) {
         password: user.password
       }
     }).then(function(res) {
-      console.log('loginUser:', res)
       deferred.resolve(res.data);
     }).catch(function(res) {
       deferred.reject(res.data);
@@ -64,7 +63,7 @@ app.service('AuthService', function($http, $q, $location) {
       if(res.status === 200) {
         console.log('requireAuth2:', res.data);
         return deferred.resolve(res.data)
-      } else { 
+      } else {
         $location.path('/login');
       }
     }).catch(function(res) {
