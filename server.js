@@ -8,9 +8,11 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //*** CONTROLLERS ***//
 var UserCtrl = require('./controllers/UserCtrl.js');
+var SubscriberCtrl = require('./controllers/SubscriberCtrl.js');
 
 //*** MODELS ***//
-var User = require('./models/User.js')
+var User = require('./models/User.js');
+var Subscriber = require('./models/Subscriber.js');
 
 
 //*** EXPRESS ***//
@@ -34,19 +36,39 @@ passport.use(new LocalStrategy({
 }, function(email, password, done) {
   //define how to match user credentials to db values
   User.findOne({ email: email }, function(err, user) {
-    if (!user) {
-      done(new Error('This user does not exist'));
+    if (err) {
+      return done(new Error('This user does not exist'));
     }
-    user.verifyPassword(password).then(function(doesMatch) {
-      if (doesMatch) {
-        done(null, user);
+    if(user) {
+     if(!user.verifyPassword(password)) {
+        return done(null, false, {
+          message: 'Incorrect password.'
+        });
       }
-      else {
-        done(new Error("please verify your password"));
+      console.log("user found", user);
+      return done(null, user);
+    } else {
+        Subscriber.findOne({email: email}, function(err, subscriber) {
+          if(err) {
+            return done(err);
+          }
+          if(!subscriber) {
+            return done(null, false, {
+              message: 'Incorrect email.'
+            });
+          }
+          if(!subscriber.verifyPassword(password)) {
+            return done(null, false, {
+              message: 'Incorrect password.'
+            });
+          }
+          console.log("subscriber found", subscriber);
+          return done(null, subscriber);
+        });
       }
-    });
-  });
-}));
+    })
+  }
+));
 
 passport.serializeUser(function(user, done) {
   done(null, user._id);
@@ -67,6 +89,15 @@ app.post('/api/register/user', UserCtrl.createUser);
 app.post('/api/login/user', passport.authenticate('local', { failureRedirect: '/browse'}), UserCtrl.loginUser);
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 
+//** Subscriber ** // 
+
+app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
+app.post('/api/login/subscriber', passport.authenticate('local', { failureRedirect: '/browse'}), SubscriberCtrl.loginSubscriber);
+app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
+
+
+
+
 
 // Connections
 var port = 9001;
@@ -80,3 +111,8 @@ mongoose.connection.once('open', function() {
 app.listen(port, function() {
   console.log('Listening on port ', port);
 });
+
+
+
+
+

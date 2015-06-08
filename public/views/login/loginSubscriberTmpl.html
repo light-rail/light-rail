@@ -1,13 +1,13 @@
 
 <span class="center-content form-panel-top-spacing">
 
-  <form ng-submit="loginUser(user)" class="col-xs-12 col-md-8">
-    <h3 class="title">Login as general user</h3><br>
-    <div class="container panel panel-default col-sm-12 .col-md-12">
+  <form ng-submit="loginSubscriber(user)" class="col-xs-12 col-md-8">
+    <h3 class="title">Login</h3><br>
+    <div class="container panel panel-default col-sm-12 .col-md-12"> 
 
       <div class="panel-body form-panel-top-spacing">
         <div class="input-group col-xs-12">
-          <label for="email" class="sr-only"></label>
+          <label for="email" class="sr-only"></label>        
           <input type="email" ng-model="user.email" class="form-control floating-label" id="form-input-underline" placeholder="Email" required>
         </div><br>
 
@@ -17,7 +17,7 @@
         </div><br>
       </div>
 
-      <div class="center-content">
+      <div class="center-content">  
         <input type="submit" value="Login" class="btn btn-success">
       </div><br>
 
