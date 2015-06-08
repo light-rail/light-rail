@@ -5,6 +5,10 @@ app.config(function($routeProvider){
     .when('/', {
       templateUrl: 'views/main.html',
     })
+    .when('/map', {
+      templateUrl: 'views/map.html',
+      controller: 'MapCtrl'
+    })
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
       controller: 'RegisterCtrl'
