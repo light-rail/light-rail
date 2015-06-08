@@ -23,8 +23,8 @@ app.use(session({
   secret: 'lightRail devs are awesome',
   saveUninitialized: true,
   resave: true
-}))
-app.use(express.static(__dirname + '/public'))
+}));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
