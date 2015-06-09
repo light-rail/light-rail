@@ -6,7 +6,7 @@ app.config(function($routeProvider){
       templateUrl: 'views/main.html',
       controller: 'MainPageCtrl'
     })
-    .when('/apartments/:apartmentId', {
+    .when('/projects/:projectId', {
       templateUrl: 'views/main.html',
       controller: 'MainPageCtrl'
     })
