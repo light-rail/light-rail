@@ -4,6 +4,11 @@ app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
+    })
+    .when('/projects/:projectId', {
+      templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
     })
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
@@ -22,8 +27,8 @@ app.config(function($routeProvider){
       controller: 'LoginCtrl'
     })
     .when('/myfavorites', {
-      templateUrl: 'views/myfavorites.html',
-      controller: 'myfavoritesCtrl'
+      templateUrl: 'views/generalUserFavoritesTmpl.html',
+      controller: 'GeneralUserFavoritesCtrl'
     })
      .otherwise({
       redirectTo: '/'

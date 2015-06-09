@@ -1,15 +1,17 @@
-/*
- * {
-  border: 1px dashed blue;
-}*/
 
+/* * {
+  border: 1px dashed blue;
+}
+*/
 
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
-body {
+html, body {
   background: white;
-
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 /* Centers Titles */
@@ -35,10 +37,55 @@ body {
   background-color: #FF4019;
 }
 
-/*** MAIN ***/
+/*** MAIN PAGE ***/
 
-.logo-top-spacing {
-  padding-top: 50px;
+.top-spacing {
+  padding-top: 25px;
+}
+
+
+/* Listings Scrolling List */
+#scrollArea {
+  height: 800px;
+  overflow: auto;
+  padding: 0;
+}
+
+#hide-scroll ::-webkit-scrollbar { 
+  display: block; 
+}
+
+.list-styling:hover {
+  background-color: #FFAB91;
+  border: 2px solid #FFAB91;
+}
+
+.list-group-border {
+  border: 0;
+  border-bottom: 1px solid #FF4019;
+  padding-bottom: 0;
+  color: black;
+}
+
+.content-box-style {
+  background-color: white;
+  border-top: 1px solid white;
+}
+
+.thumb-sizing {
+  margin: 0;
+}
+
+.pic-container {
+  padding: 0;
+}
+
+.details-font-size {
+  font-size: 12px;
+}
+
+.price-text-size {
+  font-size: 16px;
 }
 
 /*** FORMS ***/
