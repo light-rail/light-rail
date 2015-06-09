@@ -4,6 +4,11 @@ app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
+    })
+    .when('/apartments/:apartmentId', {
+      templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
     })
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
@@ -16,6 +21,14 @@ app.config(function($routeProvider){
     .when('/login', {
       templateUrl: 'views/login/loginUserTmpl.html',
       controller: 'LoginCtrl'
+    })
+    .when('/login/subscriber', {
+      templateUrl: 'views/login/loginSubscriberTmpl.html',
+      controller: 'LoginCtrl'
+    })
+    .when('/myfavorites', {
+      templateUrl: 'views/generalUserFavoritesTmpl.html',
+      controller: 'GeneralUserFavoritesCtrl'
     })
      .otherwise({
       redirectTo: '/'

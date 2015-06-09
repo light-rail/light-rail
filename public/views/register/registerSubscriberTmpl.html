@@ -1,4 +1,3 @@
-
 <span class="center-content form-title-top-spacing">
   
 
@@ -7,29 +6,88 @@
     <div class="container panel panel-default col-sm-12 .col-md-12"> 
 
       <div class="panel-body form-panel-top-spacing">
+
+        <div class="input-group col-xs-12">
+          <label for="company_name" class="sr-only"></label>
+          <input type="text" ng-model="user.company_name" class="form-control floating-label" id="form-input-underline" placeholder="Company Name" required>
+        </div><br>
+      
+        <div class="input-group col-xs-12">
+          <label for="first_name" class="sr-only"></label>
+          <input type="text" ng-model="user.first_name" class="form-control floating-label" id="form-input-underline" placeholder="First Name" required>
+        </div><br>
+     
+
+        <div class="input-group col-xs-12">
+          <label for="last_name" class="sr-only"></label>
+          <input type="text" ng-model="user.last_name" class="form-control floating-label" id="form-input-underline" placeholder="Last Name" required>
+        </div><br>
+      
+
+        <div class="input-group col-xs-12">
+          <label for="phone_number" class="sr-only"></label>
+          <input type="text" ng-model="user.phone_number" class="form-control floating-label" id="form-input-underline" placeholder="Phone Number" required>
+        </div><br>
+    
+
         <div class="input-group col-xs-12">
           <label for="email" class="sr-only"></label>        
           <input type="email" ng-model="user.email" class="form-control floating-label" id="form-input-underline" placeholder="Email" required>
         </div><br>
 
+
         <div class="input-group col-xs-12">
           <label for="password" class="sr-only"></label>
           <input type="password" ng-model="user.password" class="form-control floating-label" id="form-input-underline" placeholder="Password" required>
         </div><br>
+    
+
+        <div class="input-group col-xs-12">
+          <label for="confirm_password" class="sr-only"></label>
+          <input type="password" class="form-control floating-label" id="form-input-underline" placeholder="Confirm Password" required>
+        </div><br>
+     
+        
+        <div class="input-group col-xs-12">
+             <p>ADDRESS</p>
+        </div><br>
+
+        <div class="input-group col-xs-12">
+          <label for="street_address" class="sr-only"></label>
+          <input type="text" ng-model="user.contact_address.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
+        </div><br>
+     
+
+        <div class="input-group col-xs-12">
+          <label for="city" class="sr-only"></label>
+          <input type="text" ng-model="user.contact_address.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
+        </div><br>
+      
+
+        <div class="input-group col-xs-12">
+          <label for="state" class="sr-only"></label>
+          <input type="text" ng-model="user.contact_address.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
+        </div><br>
+     
+
+        <div class="input-group col-xs-12">
+          <label for="zip_code" class="sr-only"></label>
+          <input type="text" ng-model="user.contact_address.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
+        </div><br>
+    
+
+        <div class="center-content">
+          <input type="submit" value="Register" class="btn btn-success">
+        </div><br>
+
       </div>
-
-      <div class="center-content">
-        <input type="submit" value="Register" class="btn btn-success">
-      </div><br>
-
     </div>
   </form>
 
 </span>
-
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     // This command is used to initialize some materialize elements and make them work properly
     $.material.init();
-  });
+});
 </script>
