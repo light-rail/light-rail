@@ -86,13 +86,13 @@ passport.deserializeUser(function(id, done) {
 
 //** User **//
 app.post('/api/register/user', UserCtrl.createUser);
-app.post('/api/login/user', passport.authenticate('local', { failureRedirect: '/browse'}), UserCtrl.loginUser);
+app.post('/api/login/user', passport.authenticate('local', { failureRedirect: '/login'}), UserCtrl.loginUser);
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 
 //** Subscriber ** // 
 
 app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
-app.post('/api/login/subscriber', passport.authenticate('local', { failureRedirect: '/browse'}), SubscriberCtrl.loginSubscriber);
+app.post('/api/login/subscriber', passport.authenticate('local', { failureRedirect: '/login/subscriber'}), SubscriberCtrl.loginSubscriber);
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 
 
