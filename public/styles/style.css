@@ -84,6 +84,10 @@ html, body {
   font-size: 12px;
 }
 
+.details-font-size {
+  font-size: 12px;
+}
+
 .price-text-size {
   font-size: 16px;
 }
@@ -100,3 +104,11 @@ html, body {
 
 
 
+/*** MAP ***/
+
+#map-canvas {
+  height: 100%;
+  width: 60%;
+  margin: 0;
+  padding: 0;
+}
