@@ -25,7 +25,20 @@ app.config(function($routeProvider){
       templateUrl: 'views/myfavorites.html',
       controller: 'myfavoritesCtrl'
     })
+    .when('/profile', {
+      templateUrl: 'views/profile.html',
+      controller: 'ProfileCtrl',
+      resolve: {
+        userData: function(GeneralUserService){
+          debugger
+          return GeneralUserService.getSubscriberInfo();
+        }
+      }
+    })
      .otherwise({
       redirectTo: '/'
     });
 });
+
+
+
