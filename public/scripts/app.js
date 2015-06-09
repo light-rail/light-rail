@@ -4,6 +4,15 @@ app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
+    })
+    .when('/apartments/:apartmentId', {
+      templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
+    })
+    .when('/map', {
+      templateUrl: 'views/map.html',
+      controller: 'MapCtrl'
     })
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
@@ -22,8 +31,8 @@ app.config(function($routeProvider){
       controller: 'LoginCtrl'
     })
     .when('/myfavorites', {
-      templateUrl: 'views/myfavorites.html',
-      controller: 'myfavoritesCtrl'
+      templateUrl: 'views/generalUserFavoritesTmpl.html',
+      controller: 'GeneralUserFavoritesCtrl'
     })
     .when('/profile', {
       templateUrl: 'views/profile.html',
