@@ -14,16 +14,32 @@ app.controller('MapCtrl', function($scope, trainStations) {
   // };
 
 
+
+  $scope.markerArray = [];
+
   // CREATES MAKER POINTS
   $scope.createMarker = function(map) {
     for (var i = 0; i < trainStations.length; i++) {
       var stop = trainStations[i]
-      new google.maps.Marker({
+
+      var marker = new google.maps.Marker({
         position: new google.maps.LatLng(stop.lat, stop.long),
         map: map,
         title: stop.name,
         animation: google.maps.Animation.DROP
+
       });
+
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          console.log("Click");
+          map.setZoom(15);
+          map.setCenter(marker.getPosition());
+        }
+      })(marker, i));
+
+      $scope.markerArray.push(marker);
     }
   }
 
@@ -50,12 +66,8 @@ app.controller('MapCtrl', function($scope, trainStations) {
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
     $scope.createMarker(map);
+    console.log($scope.markerArray);
 
-
-    //  google.maps.event.addListener(marker, 'click', function() {
-    //   map.setZoom(8);
-    //   map.setCenter(marker.getPosition());
-    // });
 
     var lightRailCoordinates = [];
 
@@ -70,9 +82,15 @@ app.controller('MapCtrl', function($scope, trainStations) {
     });
 
     lightRailPath.setMap(map);
+
+    google.maps.event.addListener(map, 'click', function() {
+      console.log("Map Click");
+    });
   }
 
 
   // INITIALIZE MAP ON PAGE LOAD
   google.maps.event.addDomListener(window, 'load', $scope.initialize());
+
+
 }); //ends controller
