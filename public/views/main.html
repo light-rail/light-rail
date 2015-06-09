@@ -12,7 +12,7 @@
 
     <!-- PROJECT DETAILS -->
     <div ng-show="!listMode" class="animated fadeInRight col-md-11 col-md-offset-1">
-      <h2 class="titles-styling">{{project.projectDescription.project_title}}</h2>
+      <h2 class="titles-styling">{{project.apartment_name}}</h2>
       <div class="row">
         <div class="col-md-6">
           <span>
@@ -23,15 +23,6 @@
             <strong>Posted:</strong> 
             <span am-time-ago="project.date_created"></span>
           </span></br>
-          <span>
-            <strong>Start Date:</strong>
-            <span>{{project.start_date}}</span>
-          </span></br>
-          <span>
-            <strong>Duration:</strong>
-            <span>{{project.project_length}}</span>
-          </span></br> 
-
         </div>
 
         <div class="col-md-6 title">
@@ -48,44 +39,25 @@
 
           <div class="panel panel-default panel-spacing">
             <div class="panel-heading" id="panel-heading-color">
-              <h3 class="panel-title">Project Description</h3>  
+              <h3 class="panel-title">Apartment Description</h3>  
             </div>
             <div class="panel-body">
-              {{project.projectDescription.overview}}
+              {{project.description}}
             </div> 
           </div>
 
           <div class="panel panel-default">
             <div class="panel-body">
 
-              <div class="col-md-12 char-left-alignment">
-                <p>
-                  <strong>Deliverable:</strong>
-                  <span>{{project.projectDescription.deliverable}}</span>
-                </p> 
-              </div><!-- End of 1st Row -->
-
-
-              <div class="col-md-12 char-left-alignment">  
-                <p>
-                  <strong>Weekly Required Hours:</strong>
-                  <span>{{project.weekly_hours}}</span>
-                </p>
-              </div><!-- End of 2nd Row 1st Column -->
-
-
               <div class="col-md-6 char-left-alignment">  
                 <p>
-                  <strong>Commute Requirement:</strong>
-                  <span>{{project.commute}}</span>
+                  <strong>Info Here:</strong>
                 </p>
               </div><!-- End of 3rd Row 1st Column -->
 
               <div class="col-md-6">
                 <p>
-                  <strong></strong>
-                  <span ng-show="rotationDays">{{project.rotational_days_on + " Days On, " + project.rotational_days_off + " Days Off"}}
-                  </span>
+                  <strong>Info Here</strong>
                 </p>
               </div><!-- End of 3rd Row 2nd Column -->
 
@@ -104,12 +76,7 @@
             </div>
             <div class="panel-body">
             <p>
-            <strong>Education:</strong>
-            <span>{{project.education}}</span>
-            </p> 
-            <p>
-              <strong>Experience:</strong>
-              <span>{{experience}}</span>
+              <strong>Info Here:</strong>
             </p> 
             </div> 
           </div>         
@@ -134,13 +101,13 @@
 
       <a ng-repeat="projects in projects" ng-href="#/projects/{{projects.projectId}}">
         <div class="col-md-12 list-group-border list-styling">
-          <h4 class="titles-styling">{{projects.projectDescription.project_title}}</h4>
+          <h4 class="titles-styling">{{projects.apartment_name}}</h4>
 
             <div class="row content-box-style">
 
               <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                 <span class="thumbnail thumb-sizing">
-                  <img src="images/{{projects.projectDescription.picture}}" alt="...">
+                  <img src="images/{{projects.picture}}" alt="...">
                 </span>
               </span>
 
