@@ -4,6 +4,11 @@ app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
+    })
+    .when('/projects/:projectId', {
+      templateUrl: 'views/main.html',
+      controller: 'MainPageCtrl'
     })
     .when('/map', {
       templateUrl: 'views/map.html',
@@ -26,8 +31,8 @@ app.config(function($routeProvider){
       controller: 'LoginCtrl'
     })
     .when('/myfavorites', {
-      templateUrl: 'views/myfavorites.html',
-      controller: 'myfavoritesCtrl'
+      templateUrl: 'views/generalUserFavoritesTmpl.html',
+      controller: 'GeneralUserFavoritesCtrl'
     })
      .otherwise({
       redirectTo: '/'
