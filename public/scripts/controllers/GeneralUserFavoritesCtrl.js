@@ -1,7 +1,8 @@
 
 var app = angular.module("lightRail")
 
-app.controller("myfavoritesCtrl", function($scope){
+app.controller("GeneralUserFavoritesCtrl", function($scope){
+
 
 
 });
