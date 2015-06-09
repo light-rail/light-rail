@@ -2,16 +2,6 @@ var app = angular.module('lightRail');
 
 app.controller('MapCtrl', function($scope, trainStations) {
 
-  // var boundryOptions = {
-  //   strokeColor: '#FF0000',
-  //   strokeOpacity: 0.8,
-  //   strokeWeight: 2,
-  //   fillColor: '#FF0000',
-  //   fillOpacity: 0.35,
-  //   map: map,
-  //   center: marker.position,
-  //   radius: 804.67200
-  // };
 
 
 
@@ -27,18 +17,26 @@ app.controller('MapCtrl', function($scope, trainStations) {
         map: map,
         title: stop.name,
         animation: google.maps.Animation.DROP
-
       });
 
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          console.log("Click");
-          map.setZoom(15);
+          map.setZoom(14);
           map.setCenter(marker.getPosition());
+          var boundryOptions = {
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.1,
+            map: map,
+            center: marker.getPosition(),
+            radius: 804.67200
+          };
+          var circleBounds = new google.maps.Circle(boundryOptions);
         }
       })(marker, i));
-
       $scope.markerArray.push(marker);
     }
   }
