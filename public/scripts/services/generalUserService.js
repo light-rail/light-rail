@@ -18,9 +18,9 @@ app.service('GeneralUserService', function($http, $q) {
   //*** SEED DATA FOR MAIN PAGE ***//
 
 
-  this.projectData = [
+  this.apartmentData = [
     {
-      projectId: 0,
+      apartmentId: 0,
       apartment_name: 'Glenwood Apartments',
       picture: "apartment1.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
@@ -37,7 +37,7 @@ app.service('GeneralUserService', function($http, $q) {
       date_created: '2015-04-01T16:06:58.970Z'
     },
     {
-      projectId: 1,
+      apartmentId: 1,
       apartment_name: 'Bellaggio Apartments',
       picture: "apartment2.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
@@ -54,7 +54,7 @@ app.service('GeneralUserService', function($http, $q) {
       date_created: '2015-02-01T16:06:58.970Z'
     },
       {
-      projectId: 2,
+      apartmentId: 2,
       apartment_name: 'Camelback Apartments',
       picture: "apartment3.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
@@ -71,7 +71,7 @@ app.service('GeneralUserService', function($http, $q) {
       date_created: '2015-04-01T16:06:58.970Z'
     },
       {
-      projectId: 3,
+      apartmentId: 3,
       apartment_name: 'Sienna Luxury Apartments',
       picture: "apartment4.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
@@ -88,7 +88,7 @@ app.service('GeneralUserService', function($http, $q) {
       date_created: '2015-03-01T16:06:58.970Z'
     },
       {
-      projectId: 4,
+      apartmentId: 4,
       apartment_name: 'RiverWalk Apartments',
       picture: "apartment5.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
@@ -105,7 +105,7 @@ app.service('GeneralUserService', function($http, $q) {
       date_created: '2015-02-01T16:06:58.970Z'
     },
     {
-      projectId: 5,
+      apartmentId: 5,
       apartment_name: 'Valley View Apartments',
       picture: "apartment6.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
@@ -122,7 +122,7 @@ app.service('GeneralUserService', function($http, $q) {
       date_created: '2015-04-01T16:06:58.970Z'
     },
       {
-      projectId: 6,
+      apartmentId: 6,
       apartment_name: 'Mesa Vista Apartments',
       picture: "apartment1.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
@@ -139,7 +139,7 @@ app.service('GeneralUserService', function($http, $q) {
       date_created: '2015-02-01T16:06:58.970Z'
     },
     {
-      projectId: 7,
+      apartmentId: 7,
       apartment_name: 'Desert Club Apartments',
       picture: "apartment2.jpg",
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
