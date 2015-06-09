@@ -40,8 +40,6 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
   if ($routeParams.projectId) {
     $scope.listMode = false;
-    $scope.experience = GeneralUserService.displayAll(selectedProjectData.desired_candidate.experience);
-    $scope.rotationDays = GeneralUserService.rotationalDays(selectedProjectData.rotational_days_on); 
   }
 
 });
