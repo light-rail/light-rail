@@ -6,12 +6,22 @@ app.service('GeneralUserService', function($http, $q) {
   //I recommend being more descriptive w/ this funct name, example: "getGeneralUserFavorites"
   this.getGeneralUser = function() {
     var url = '/api/generalUser/myfavorites'
-    return http ({
+    return $http({
       method: 'GET',
       url: url
     }).then(function(response){
       return response.data;
     })
+  };
+
+  this.getSubscriberInfo = function(){
+    var url = '/api/subscriber/isLoggedIn';
+    return $http({
+      method: 'GET',
+      url: url
+    }).then(function(data){
+      return data;
+    });
   };
 
 
@@ -154,7 +164,7 @@ app.service('GeneralUserService', function($http, $q) {
         max: '1,400'
       },
       date_created: '2015-05-01T16:06:58.970Z'
-    }   
+    }
   ];
-  
+
 }); //end
