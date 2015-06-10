@@ -1,9 +1,9 @@
-
-/* * {
+/*
+ * {
   border: 1px dashed blue;
 }
-*/
 
+*/
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
@@ -40,9 +40,20 @@ html, body {
 /*** MAIN PAGE ***/
 
 .top-spacing {
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
+/* Map */
+#map-canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map-position {
+  padding: 0px;
+}
 
 /* Listings Scrolling List */
 #scrollArea {
@@ -102,13 +113,3 @@ html, body {
   padding-top: 40px;
 }
 
-
-
-/*** MAP ***/
-
-#map-canvas {
-  height: 100%;
-  width: 60%;
-  margin: 0;
-  padding: 0;
-}
