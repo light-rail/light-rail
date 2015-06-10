@@ -15,4 +15,5 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
     $scope.listMode = false;
   }
 
+
 });
