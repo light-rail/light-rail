@@ -90,7 +90,6 @@ app.controller('MapCtrl', function($scope, trainStations) {
   }
 
 
-// CCFCCC - color for parks
 
   // CREATES MAP 
   $scope.initialize = function() {
@@ -156,7 +155,7 @@ app.controller('MapCtrl', function($scope, trainStations) {
         "featureType": "poi.park",
         "elementType": "geometry",
         "stylers": [{
-          "color": "#dedede"
+          "color": "#AFDEAF"
         }, {
           "lightness": 21
         }]
