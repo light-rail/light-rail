@@ -24,7 +24,7 @@ html, body {
 .center-content {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 /*** NAVBAR ***/
@@ -102,6 +102,13 @@ html, body {
 .price-text-size {
   font-size: 16px;
 }
+/*** Profile Page ***/
+.user-info ul{
+  list-style-type: none;
+}
+
+
+
 
 /*** FORMS ***/
 
