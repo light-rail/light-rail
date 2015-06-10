@@ -6,7 +6,7 @@
 *.pid
 *.gz
 *.env
-
+.DS_Store
 pids
 logs
 results
