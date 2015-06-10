@@ -18,12 +18,20 @@ app.config(function($routeProvider){
       templateUrl: 'views/register/registerSubscriberTmpl.html',
       controller: 'RegisterCtrl'
     })
+    .when('/register/admin', {
+      templateUrl: 'views/register/registerAdminTmpl.html',
+      controller: 'RegisterCtrl'
+    })
     .when('/login', {
       templateUrl: 'views/login/loginUserTmpl.html',
       controller: 'LoginCtrl'
     })
     .when('/login/subscriber', {
       templateUrl: 'views/login/loginSubscriberTmpl.html',
+      controller: 'LoginCtrl'
+    })
+    .when('/login/admin', {
+      templateUrl: 'views/login/loginAdminTmpl.html',
       controller: 'LoginCtrl'
     })
     .when('/myfavorites', {

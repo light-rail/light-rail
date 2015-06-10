@@ -15,9 +15,7 @@ module.exports = {
   },
 
   loginSubscriber: function(req, res) {
-    return res.json({
-      loggedIn: true
-    });
+    return res.json({loggedIn:true});
   },
 
   isLoggedIn: function(req, res) {
