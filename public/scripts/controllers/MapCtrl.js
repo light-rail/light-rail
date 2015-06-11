@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.controller('MapCtrl', function($scope, trainStations) {
+app.controller('MapCtrl', function($scope, trainStations, $location) {
 
 
 
@@ -194,7 +194,7 @@ app.controller('MapCtrl', function($scope, trainStations) {
         "featureType": "administrative",
         "elementType": "geometry.fill",
         "stylers": [{
-          "color": "#fefefe"
+          "color": "#BFE3BF"
         }, {
           "lightness": 20
         }]
@@ -230,7 +230,6 @@ app.controller('MapCtrl', function($scope, trainStations) {
 
 
     $scope.createMarker(map);
-    console.log($scope.markerArray);
 
 
     var lightRailCoordinates = [];
@@ -252,9 +251,16 @@ app.controller('MapCtrl', function($scope, trainStations) {
     });
   }
 
+// For the reset button - 
+  // google.maps.event.clearListeners(marker, 'click');
+
 
   // INITIALIZE MAP ON PAGE LOAD
-  google.maps.event.addDomListener(window, 'load', $scope.initialize());
 
+
+  google.maps.event.addDomListener(window, 'load', $scope.initialize());
+ 
+
+  // google.maps.event.addListener()
 
 }); //ends controller
