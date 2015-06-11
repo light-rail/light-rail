@@ -126,6 +126,13 @@ passport.deserializeUser(function(id, done){
   })
 });
 
+var isAuthed = function(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return res.status(403).end();
+  }
+    return next();
+}
+
 
 //*** ENDPOINTS ****//
 
@@ -146,6 +153,7 @@ app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 app.post('/api/register/admin', AdminCtrl.createAdmin);
 app.post('/api/login/admin', passport.authenticate('admin-local', { failureRedirect: '/login/admin'}), AdminCtrl.loginAdmin);
 app.get('/api/admin/isLoggedIn', AdminCtrl.isLoggedIn);
+
 
 
 

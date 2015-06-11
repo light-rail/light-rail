@@ -125,6 +125,7 @@ app.service('AuthService', function($http, $q, $location) {
       console.log('loginSubscriber:', res)
       deferred.resolve(res.data);
     }).catch(function(res) {
+      console.log('loginSubscriber catch', res)
       deferred.reject(res.data);
     });
     return deferred.promise;
