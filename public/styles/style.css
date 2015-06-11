@@ -111,6 +111,13 @@ html, body {
 .price-text-size {
   font-size: 16px;
 }
+/*** Profile Page ***/
+.user-info ul{
+  list-style-type: none;
+}
+
+
+
 
 /*** Profile Page ***/
 .user-info ul{
