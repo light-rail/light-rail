@@ -9,7 +9,7 @@ var LocalStrategy = require('passport-local').Strategy;
 //*** CONTROLLERS ***//
 var UserCtrl = require('./controllers/UserCtrl.js');
 var SubscriberCtrl = require('./controllers/SubscriberCtrl.js');
-var AdminCtrl = require('./controllers/AdminCtrl.js')
+var AdminCtrl = require('./controllers/AdminCtrl.js');
 
 //*** MODELS ***//
 var User = require('./models/User.js');
@@ -26,7 +26,7 @@ app.use(session({
   saveUninitialized: true,
   resave: true
 }));
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -129,17 +129,19 @@ passport.deserializeUser(function(id, done){
 
 //*** ENDPOINTS ****//
 
-//** User **//
+//** General User **//
 app.post('/api/register/user', UserCtrl.createUser);
 app.post('/api/login/user', passport.authenticate('user-local', { failureRedirect: '/login/user'}), UserCtrl.loginUser);
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 
-//** Subscriber ** // 
+
 
 app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
 app.post('/api/login/subscriber', passport.authenticate('subscriber-local', { failureRedirect: '/login/subscriber'}), SubscriberCtrl.loginSubscriber);
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 
+
+//** Admin ** //
 
 app.post('/api/register/admin', AdminCtrl.createAdmin);
 app.post('/api/login/admin', passport.authenticate('admin-local', { failureRedirect: '/login/admin'}), AdminCtrl.loginAdmin);

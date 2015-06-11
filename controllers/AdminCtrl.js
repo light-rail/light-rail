@@ -6,7 +6,7 @@ module.exports = {
     var newAdmin = new Admin(req.body);
     newAdmin.save(function(err, result) {
       console.log('err: ', err);
-      if (err) {0
+      if (err) {
         if (err.code === 500) {
           return res.status(500).json(err);
             }

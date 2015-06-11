@@ -1,9 +1,9 @@
-
-/* * {
+/*
+ * {
   border: 1px dashed blue;
 }
-*/
 
+*/
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
@@ -24,7 +24,7 @@ html, body {
 .center-content {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 /*** NAVBAR ***/
@@ -40,9 +40,20 @@ html, body {
 /*** MAIN PAGE ***/
 
 .top-spacing {
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
+/* Map */
+#map-canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map-position {
+  padding: 0px;
+}
 
 /* Listings Scrolling List */
 #scrollArea {
@@ -84,9 +95,20 @@ html, body {
   font-size: 12px;
 }
 
+.details-font-size {
+  font-size: 12px;
+}
+
 .price-text-size {
   font-size: 16px;
 }
+/*** Profile Page ***/
+.user-info ul{
+  list-style-type: none;
+}
+
+
+
 
 /*** FORMS ***/
 
@@ -97,6 +119,4 @@ html, body {
 .form-panel-top-spacing {
   padding-top: 40px;
 }
-
-
 
