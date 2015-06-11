@@ -39,7 +39,9 @@ app.config(function($routeProvider){
       controller: 'ProfileCtrl',
       resolve: {
         userData: function(GeneralUserService){
-          return GeneralUserService.getSubscriberInfo();
+          GeneralUserService.getSubscriberInfo().then(function(response){
+            console.log(response);
+          });
         }
       }
     })

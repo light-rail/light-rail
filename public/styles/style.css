@@ -27,6 +27,11 @@ html, body {
   justify-content: center;
 }
 
+/* Panels Header Background Color */
+#panel-heading-color {
+  background-color: #CFD8DC;
+}
+
 /*** NAVBAR ***/
 
 .brand-style {
@@ -66,9 +71,13 @@ html, body {
   display: block; 
 }
 
+.list-styling {
+  background-color: #CFD8DC;
+}
+
 .list-styling:hover {
-  background-color: #FFAB91;
-  border: 2px solid #FFAB91;
+  background-color: #FFCCBC;#FFAB91;
+  border: 2px solid #FFCCBC;#FFAB91;
 }
 
 .list-group-border {
@@ -102,12 +111,22 @@ html, body {
 .price-text-size {
   font-size: 16px;
 }
+
 /*** Profile Page ***/
 .user-info ul{
   list-style-type: none;
 }
 
+/*** APARTMENT DETAILS ***/
 
+.rent-range-box {
+  font-size: 30px;
+  font-weight: 300;  
+  margin-top: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: #CFD8DC;#FFCCBC;
+}
 
 
 /*** FORMS ***/
