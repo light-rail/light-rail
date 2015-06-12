@@ -32,6 +32,19 @@ app.controller('RegisterCtrl', function($scope, $routeParams, $location, AuthSer
 
   }; // ends registerSubscriber
 
+    $scope.registerAdmin= function(user) {
+
+    AuthService.registerAdmin(user).then(function(res) {
+      toaster.pop('success', 'You have registered successfully.');
+      $location.path('/');
+    }, function(err) {
+      console.log('controller', err)
+      if(err.status ===  11000) toaster.pop('error', 'This email is already registered.');
+      else toaster.pop('error', 'Sorry, something went wrong!');
+    });
+
+  }; // ends registerSubscriber
+
 
 
 }); //end controller 
