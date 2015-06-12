@@ -9,7 +9,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
   $scope.todayDate = new Date();
   $scope.apartments = allApartmentsData;
-  $scope.apartment = selectedApartmentData;
+  $scope.selectedApartment = selectedApartmentData;
 
   if ($routeParams.apartmentId) {
     $scope.listMode = false;
