@@ -33,6 +33,7 @@ app.service('GeneralUserService', function($http, $q) {
   this.apartmentData = [
     {
       apartmentId: 0,
+
       apartment_name: 'Monroe Street Abbey',
       picture: "apartment1.jpg",
       webpage: 'theabbeyapartments.com',

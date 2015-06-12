@@ -1,0 +1,124 @@
+  <!-- MODAL -->
+<div class="modal animated bounceInDown apartment-modal-lg" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body center-content">
+
+            <!-- LEFT PANEL APARTMENT DETAILS -->
+            <div class="col-md-10">  
+
+              <!-- APARTMENT DETAILS -->
+              <div  class="col-md-12">
+                <h2 class="titles-styling bottom-border">{{modal_apartment.apartment_name}}</h2>
+                <div class="row">
+                  <div class="col-md-6">
+                    <span>
+                      <strong>Location:</strong> 
+                      <span> {{modal_apartment.location.city + ', ' + modal_apartment.location.state}}</span>
+                    </span></br>
+                    <span>
+                      <strong>Posted:</strong> 
+                      <span am-time-ago="modal_apartment.date_created"></span>
+                    </span></br>
+                  </div>
+
+                  <div class="col-md-6 title">
+                    <div class="panel panel-default rent-range-box">
+                      <span> ${{modal_apartment.rent_range.min}} to ${{modal_apartment.rent_range.max}} </span>
+                    </div></br>       
+                  </div>
+
+                </div><!-- End of Row -->
+
+                <!-- APARTMENT DISCRIPTION -->
+                <div class="row">
+                  <div class="col-md-12">
+                  
+                    <div class="panel panel-default panel-spacing">
+                      <div class="panel-heading" id="panel-heading-color">
+                        <h3 class="panel-title">Apartment Description</h3>  
+                      </div>
+                      <div class="panel-body">
+                        {{modal_apartment.description}}
+                      </div> 
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+
+                        <div class="col-md-6 char-left-alignment">  
+                          <p>
+                            <strong>Info Here:</strong>
+                          </p>
+                        </div><!-- End of 3rd Row 1st Column -->
+
+                        <div class="col-md-6">
+                          <p>
+                            <strong>Info Here</strong>
+                          </p>
+                        </div><!-- End of 3rd Row 2nd Column -->
+
+                      </div><!-- End of panel-body -->
+                    </div>
+                  
+                  </div>
+                </div><!-- End of Apartment Discription Row -->
+
+                <!-- APARTMENT INFO  -->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="panel panel-default panel-spacing">
+                      <div class="panel-heading" id="panel-heading-color">
+                        <h3 class="panel-title">Apartment Information</h3>  
+                      </div>
+                      <div class="panel-body">
+                      <p>
+                        <strong>Info Here:</strong>
+                      </p> 
+                      </div> 
+                    </div>         
+                  </div>
+                </div>
+
+                <!-- APARTMENT INFO  -->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="panel panel-default panel-spacing">
+                      <div class="panel-heading" id="panel-heading-color">
+                        <h3 class="panel-title">Apartment Information</h3>  
+                      </div>
+                      <div class="panel-body">
+                      <p>
+                        <strong>Info Here:</strong>
+                      </p> 
+                      </div> 
+                    </div>         
+                  </div>
+                </div>
+
+                <!-- APARTMENT INFO  -->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="panel panel-default panel-spacing">
+                      <div class="panel-heading" id="panel-heading-color">
+                        <h3 class="panel-title">Apartment Information</h3>  
+                      </div>
+                      <div class="panel-body">
+                      <p>
+                        <strong>Info Here:</strong>
+                      </p> 
+                      </div> 
+                    </div>         
+                  </div>
+                </div>
+
+              </div><!-- end of Apartment Details --> 
+            </div><!-- END OF LEFT PANEL -->
+   
+          </div>
+      </div>
+  </div>
+</div>

@@ -3,11 +3,11 @@ var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment']);
 app.config(function($routeProvider){
   $routeProvider
     .when('/', {
-      templateUrl: 'views/main.html',
-      controller: 'MainPageCtrl', 
+      templateUrl: 'views/mainTmpl.html',
+      controller: 'MainPageCtrl'
     })
     .when('/apartments/:apartmentId', {
-      templateUrl: 'views/main.html',
+      templateUrl: 'views/mainTmpl.html',
       controller: 'MainPageCtrl'
     })
     .when('/map', {
@@ -22,6 +22,10 @@ app.config(function($routeProvider){
       templateUrl: 'views/register/registerSubscriberTmpl.html',
       controller: 'RegisterCtrl'
     })
+    .when('/register/admin', {
+      templateUrl: 'views/register/registerAdminTmpl.html',
+      controller: 'RegisterCtrl'
+    })
     .when('/login', {
       templateUrl: 'views/login/loginUserTmpl.html',
       controller: 'LoginCtrl'
@@ -30,12 +34,16 @@ app.config(function($routeProvider){
       templateUrl: 'views/login/loginSubscriberTmpl.html',
       controller: 'LoginCtrl'
     })
+    .when('/login/admin', {
+      templateUrl: 'views/login/loginAdminTmpl.html',
+      controller: 'LoginCtrl'
+    })
     .when('/myfavorites', {
-      templateUrl: 'views/generalUserFavoritesTmpl.html',
+      templateUrl: 'views/generalUser/generalUserFavoritesTmpl.html',
       controller: 'GeneralUserFavoritesCtrl'
     })
-    .when('/profile', {
-      templateUrl: 'views/profile.html',
+    .when('/general_user/profile', {
+      templateUrl: 'views/generalUser/generalUserProfileTmpl.html',
       controller: 'ProfileCtrl',
       resolve: {
         userData: function(GeneralUserService){
