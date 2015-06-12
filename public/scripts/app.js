@@ -4,7 +4,7 @@ app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/main.html',
-      controller: 'MainPageCtrl'
+      controller: 'MainPageCtrl', 
     })
     .when('/apartments/:apartmentId', {
       templateUrl: 'views/main.html',

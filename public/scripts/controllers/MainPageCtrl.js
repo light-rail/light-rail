@@ -14,6 +14,5 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
   if ($routeParams.apartmentId) {
     $scope.listMode = false;
   } 
-  
 
 });
