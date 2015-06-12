@@ -20,6 +20,12 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* Titles Text Weight & Border */
+.titles-styling {
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+
 /* Centers Content */
 .center-content {
   display: flex;
@@ -111,13 +117,20 @@ html, body {
 .price-text-size {
   font-size: 16px;
 }
+/*** Profile Page ***/
+.user-info ul{
+  list-style-type: none;
+}
+
+
+
 
 /*** Profile Page ***/
 .user-info ul{
   list-style-type: none;
 }
 
-/*** APARTMENT DETAILS ***/
+/*** APARTMENT DETAILS MODAL ***/
 
 .rent-range-box {
   font-size: 30px;
@@ -128,6 +141,9 @@ html, body {
   background-color: #CFD8DC;#FFCCBC;
 }
 
+.bottom-border {
+  border-bottom:  2px solid #CFD8DC;
+}
 
 /*** FORMS ***/
 

@@ -1,9 +1,9 @@
 <div class="container col-md-12" id="hide-scroll">
   <div class="row top-spacing">
 
-    <!-- LEFT PANEL MAP -->
+    <!-- LEFT PANEL -->
     <div ng-show="listMode" class="col-md-8 animated fadeInLeftBig map-position" Erase-style="border: 2px dashed green;">
-      <div ng-controller="MapCtrl" id="map-canvas" style="width:100%; height:800px; "></div>
+      <div>Something Here</div>
     </div>
 
     <!-- LEFT PANEL APARTMENT DETAILS -->
@@ -25,8 +25,8 @@
           </div>
 
           <div class="col-md-6 title">
-            <div class="panel panel-default rent-range-box">
-              <span> ${{apartment.rent_range.min}} to ${{apartment.rent_range.max}} </span>
+            <div class="panel panel-default budget-box">
+              <span> ${{apartment.rent_range.min}} to {{apartment.rent_range.max}} </span>
             </div></br>       
           </div>
 
@@ -35,7 +35,7 @@
         <!-- APARTMENT DISCRIPTION -->
         <div class="row">
           <div class="col-md-12">
-
+        
             <div class="panel panel-default panel-spacing">
               <div class="panel-heading" id="panel-heading-color">
                 <h3 class="panel-title">Apartment Description</h3>  
@@ -131,3 +131,11 @@
     </div><!-- END OF RIGHT PANEL -->
   </div><!-- End Of Row -->
 </div>
+
+
+
+
+
+
+
+

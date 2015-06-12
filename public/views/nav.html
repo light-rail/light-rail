@@ -11,7 +11,7 @@
     <div class="navbar-collapse collapse navbar-warning-collapse">
       <ul class="nav navbar-nav">
         <li><a href="#/myfavorites">My Favorites </a></li>
-        <li><a href="#/register/general_user">Register</a></li>
+
 <!--    <li class="dropdown">
           <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -29,15 +29,24 @@
           <input type="text" class="form-control col-lg-8" placeholder="Search">
         </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/register/subscriber">List An Apartment</a></li>
+
+        <li class="dropdown">
+          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/register/general_user">Register GenUser</a></li>
+            <li><a href="#/register/subscriber">Register to List An Apartment</a></li>
+            <li><a href="#/register/admin">RegisterAdmin</a></li> <!-- temoprary -->
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#/login">Login</a></li>
             <li><a href="#/map">Map</a></li>
-            <li><a href="#/profile">profile</a></li>
+            <li><a href="#/general_user/profile">profile</a></li>
             <li class="divider"></li>
+            <li><a href="#/login">General User Login</a></li>
             <li><a href="#/login/subscriber">Subscriber Login</a></li>
+            <li><a href="#/login/admin">Login Admin</a></li> <!-- temoprary -->
           </ul>
         </li>
       </ul>
