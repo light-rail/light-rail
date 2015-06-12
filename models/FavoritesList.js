@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var listingSchema = new Schema ({
+var favoritesListSchema = new Schema ({
   apartments: [{
     type: Schema.Types.ObjectId,
     ref: 'GeneralUser'
@@ -24,8 +24,8 @@ var listingSchema = new Schema ({
   }]
 });
 
-mongoose.model('listing', listingSchema);
-module.exports = listingSchema;
+mongoose.model('favoritesList', favoritesListSchema);
+module.exports = favoritesListSchema;
 
 
 

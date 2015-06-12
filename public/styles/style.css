@@ -1,9 +1,9 @@
-
-/* * {
+/*
+ * {
   border: 1px dashed blue;
 }
-*/
 
+*/
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
@@ -24,7 +24,12 @@ html, body {
 .center-content {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
+}
+
+/* Panels Header Background Color */
+#panel-heading-color {
+  background-color: #CFD8DC;
 }
 
 /*** NAVBAR ***/
@@ -40,9 +45,20 @@ html, body {
 /*** MAIN PAGE ***/
 
 .top-spacing {
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
+/* Map */
+#map-canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map-position {
+  padding: 0px;
+}
 
 /* Listings Scrolling List */
 #scrollArea {
@@ -55,9 +71,13 @@ html, body {
   display: block; 
 }
 
+.list-styling {
+  background-color: #CFD8DC;
+}
+
 .list-styling:hover {
-  background-color: #FFAB91;
-  border: 2px solid #FFAB91;
+  background-color: #FFCCBC;#FFAB91;
+  border: 2px solid #FFCCBC;#FFAB91;
 }
 
 .list-group-border {
@@ -92,6 +112,23 @@ html, body {
   font-size: 16px;
 }
 
+/*** Profile Page ***/
+.user-info ul{
+  list-style-type: none;
+}
+
+/*** APARTMENT DETAILS ***/
+
+.rent-range-box {
+  font-size: 30px;
+  font-weight: 300;  
+  margin-top: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: #CFD8DC;#FFCCBC;
+}
+
+
 /*** FORMS ***/
 
 .form-title-top-spacing {
@@ -102,13 +139,3 @@ html, body {
   padding-top: 40px;
 }
 
-
-
-/*** MAP ***/
-
-#map-canvas {
-  height: 100%;
-  width: 60%;
-  margin: 0;
-  padding: 0;
-}

@@ -4,9 +4,9 @@ app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/main.html',
-      controller: 'MainPageCtrl'
+      controller: 'MainPageCtrl', 
     })
-    .when('/projects/:projectId', {
+    .when('/apartments/:apartmentId', {
       templateUrl: 'views/main.html',
       controller: 'MainPageCtrl'
     })
@@ -34,7 +34,21 @@ app.config(function($routeProvider){
       templateUrl: 'views/generalUserFavoritesTmpl.html',
       controller: 'GeneralUserFavoritesCtrl'
     })
+    .when('/profile', {
+      templateUrl: 'views/profile.html',
+      controller: 'ProfileCtrl',
+      resolve: {
+        userData: function(GeneralUserService){
+          GeneralUserService.getSubscriberInfo().then(function(response){
+            console.log(response);
+          });
+        }
+      }
+    })
      .otherwise({
       redirectTo: '/'
     });
 });
+
+
+
