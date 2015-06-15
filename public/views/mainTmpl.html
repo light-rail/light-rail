@@ -10,8 +10,7 @@
     <!-- RIGHT PANEL APARTMENTS -->
     <div class="col-md-4">
       <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
-<!--         <a data-target=".apartment-modal-lg" data-toggle="modal" ng-repeat="apartment in apartments" ng-href="#/apartments/{{apartment.apartmentId}}"> -->
-<a data-target=".apartment-modal-lg" data-toggle="modal" ng-repeat="apartment in apartments">
+        <a data-target=".apartment-modal-lg" data-toggle="modal" ng-repeat="apartment in apartments">
 
           <div class="col-md-12 list-group-border list-styling" ng-click="getApartment(apartment)">
             <h4 class="titles-styling">{{apartment.apartment_name}}</h4>
@@ -20,7 +19,7 @@
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="images/{{apartment.picture}}" alt="...">
+                    <img src="images/{{apartment.pictures.default_1}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 

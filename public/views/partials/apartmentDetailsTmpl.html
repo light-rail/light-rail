@@ -2,21 +2,20 @@
 <div class="modal animated bounceInDown apartment-modal-lg" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
       <div class="modal-content">
-          <div class="modal-header">
+          <div class="row modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body center-content">
 
-            <!-- LEFT PANEL APARTMENT DETAILS -->
-            <div class="col-md-10">  
-
               <!-- APARTMENT DETAILS -->
-              <div  class="col-md-12">
+              <div  class="col-xs-12 col-md-10">
                 <h2 class="titles-styling bottom-border">{{modal_apartment.apartment_name}}</h2>
+
                 <div class="row">
                   <div class="col-md-6">
                     <span>
                       <strong>Location:</strong> 
+                      <span>{{apartment.location.street_address}}</span><br>
                       <span> {{modal_apartment.location.city + ', ' + modal_apartment.location.state}}</span>
                     </span></br>
                     <span>
@@ -24,14 +23,26 @@
                       <span am-time-ago="modal_apartment.date_created"></span>
                     </span></br>
                   </div>
-
+                  
                   <div class="col-md-6 title">
                     <div class="panel panel-default rent-range-box">
                       <span> ${{modal_apartment.rent_range.min}} to ${{modal_apartment.rent_range.max}} </span>
                     </div></br>       
                   </div>
-
                 </div><!-- End of Row -->
+
+
+                <!-- PICTURE AREA //Need to add an ng-repeat for pics//-->
+                <div class="show-scroll">
+                  <div class=" panel panel-default picture-scroll">
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{modal_apartment.pictures.default_1}}"/>
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{modal_apartment.pictures.pic_2}}"/>
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{modal_apartment.pictures.pic_3}}"/>
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{modal_apartment.pictures.pic_2}}"/>
+                  </div> <!-- End of picture area -->
+                </div>
+                
+
 
                 <!-- APARTMENT DISCRIPTION -->
                 <div class="row">
@@ -115,8 +126,7 @@
                   </div>
                 </div>
 
-              </div><!-- end of Apartment Details --> 
-            </div><!-- END OF LEFT PANEL -->
+              </div><!-- end of Apartment Details -->
    
           </div>
       </div>
