@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 var q = require('q');
-var listing = require('./listing');
+var favoritesList = require('./FavoritesList');
 
 var GeneralUserSchema = new Schema({
   name: {type: String},
@@ -10,7 +10,7 @@ var GeneralUserSchema = new Schema({
   password: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   favorites: {
-    myFavorites: [listing]
+    myFavorites: [favoritesList]
   }
 });
 

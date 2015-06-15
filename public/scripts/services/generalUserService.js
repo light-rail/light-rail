@@ -25,6 +25,7 @@ app.service('GeneralUserService', function($http, $q) {
     });
   };
 
+  
 
   //*** SEED DATA FOR MAIN PAGE ***//
 
