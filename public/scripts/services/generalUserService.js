@@ -225,4 +225,16 @@ app.service('GeneralUserService', function($http, $q) {
     }
   ];
 
+  this.userData = [
+    {
+      name: 'jordyn',
+      email: 'jordynm4@gmail.com'
+    },
+    {
+      name: 'jessica',
+      email: 'jessica@gmail.com'
+    }
+  ]
+
 }); //end
+
