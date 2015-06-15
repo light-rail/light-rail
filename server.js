@@ -89,7 +89,7 @@ app.post('/api/register/user', UserCtrl.createUser);
 app.post('/api/login/user', passport.authenticate('local', { failureRedirect: '/login'}), UserCtrl.loginUser);
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 
-//** Subscriber ** // 
+//** Subscriber ** //
 
 app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
 app.post('/api/login/subscriber', passport.authenticate('local', { failureRedirect: '/login/subscriber'}), SubscriberCtrl.loginSubscriber);

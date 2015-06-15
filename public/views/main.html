@@ -1,14 +1,13 @@
-
 <div class="container col-md-12" id="hide-scroll">
 <div class='row top-spacing'>
 
   <!-- LEFT PANEL -->
-  <div class="col-md-8" Erase-style="border: 2px dashed green;">  
+  <div class="col-md-8" Erase-style="border: 2px dashed green;">
 
       <!-- DEFAULT IMG -->
     <div ng-show="listMode" class="animated fadeInLeftBig">
       <img src="images/mapImage.png" class="img-responsive">
-    </div><!-- End of IMG -->  
+    </div><!-- End of IMG -->
 
     <!-- APARTMENT DETAILS -->
     <div ng-show="!listMode" class="animated fadeInRight col-md-11 col-md-offset-1">
@@ -16,11 +15,11 @@
       <div class="row">
         <div class="col-md-6">
           <span>
-            <strong>Location:</strong> 
+            <strong>Location:</strong>
             <span> {{apartment.location.city + ', ' + apartment.location.state + ', ' + apartment.location.country}}</span>
           </span></br>
           <span>
-            <strong>Posted:</strong> 
+            <strong>Posted:</strong>
             <span am-time-ago="apartment.date_created"></span>
           </span></br>
         </div>
@@ -28,7 +27,7 @@
         <div class="col-md-6 title">
           <div class="panel panel-default budget-box">
             <span> ${{apartment.rent_range.min}} to {{apartment.rent_range.max}} </span>
-          </div></br>       
+          </div></br>
         </div>
 
       </div><!-- End of Row -->
@@ -39,17 +38,17 @@
 
           <div class="panel panel-default panel-spacing">
             <div class="panel-heading" id="panel-heading-color">
-              <h3 class="panel-title">Apartment Description</h3>  
+              <h3 class="panel-title">Apartment Description</h3>
             </div>
             <div class="panel-body">
               {{apartment.description}}
-            </div> 
+            </div>
           </div>
 
           <div class="panel panel-default">
             <div class="panel-body">
 
-              <div class="col-md-6 char-left-alignment">  
+              <div class="col-md-6 char-left-alignment">
                 <p>
                   <strong>Info Here:</strong>
                 </p>
@@ -63,7 +62,7 @@
 
             </div><!-- End of panel-body -->
           </div>
-        
+
         </div>
       </div><!-- End of Apartment Discription Row -->
 
@@ -72,17 +71,17 @@
         <div class="col-md-12">
           <div class="panel panel-default panel-spacing">
             <div class="panel-heading" id="panel-heading-color">
-              <h3 class="panel-title">Apartment Information</h3>  
+              <h3 class="panel-title">Apartment Information</h3>
             </div>
             <div class="panel-body">
             <p>
               <strong>Info Here:</strong>
-            </p> 
-            </div> 
-          </div>         
+            </p>
+            </div>
+          </div>
         </div>
       </div>
-      
+
 
 
     <div>
@@ -90,11 +89,10 @@
     </div>
 
     </div><!-- end of ng-show -->
- 
+
   </div><!-- END OF LEFT PANEL -->
 
 
- 
   <!-- RIGHT PANEL -->
   <div class="col-md-4">
     <div class="well" id="scrollArea"><!--Scroll-->
@@ -115,19 +113,19 @@
                 <p><br>
                   <span>{{apartments.location.street_address}}</span><br>
                   <span> {{apartments.location.city + ', ' + apartments.location.state}}</span>
-                </p> 
+                </p>
                 <p>
                   <span class="price-text-size">${{apartments.rent_range.min}} to {{apartments.rent_range.max}}</span>
                 </p>
 
               </div>
-              
+
             </div>
 
-          <div class="list-group-separator"></div>        
+          <div class="list-group-separator"></div>
         </div>
       </a>
-      
+
     </div><!-- End Of Scroll -->
   </div><!-- END OF RIGHT PANEL -->
 </div><!-- End Of Row -->

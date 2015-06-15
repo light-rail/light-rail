@@ -1,0 +1,67 @@
+<div class="container col-md-12" id="hide-scroll">
+<div class='row top-spacing'>
+
+  <!-- LEFT PANEL -->
+  <div class="col-md-8">
+
+      <!-- DEFAULT IMG -->
+    <div class="animated fadeInLeftBig">
+    </div><!-- End of IMG -->
+
+    <!-- APARTMENT DETAILS -->
+    <div class="animated fadeInRight col-md-11 col-md-offset-1">
+      <h2 class="titles-styling"> {{user.user_name}}
+      </h2>
+      <div class="row">
+        <div class="col-md-6 title">
+        </div>
+
+      </div><!-- End of Row -->
+
+      <!-- APARTMENT INFO  -->
+
+       <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default panel-spacing">
+            <div class="panel-heading" id="panel-heading-color">
+              <h3 class="panel-title">User Information</h3>
+            </div>
+            <div class="panel-body">
+              <strong>
+                <p> Name: {{user.name}} </p>
+                <p> Email: {{user.email}} </p>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <div>
+      <a href="#/" class="btn btn-flat btn-primary"> < Return to HomePage</a>
+    </div>
+
+    </div> <!-- end of ng-show -->
+
+ </div> <!-- END OF LEFT PANEL
+<!-- "#/apartments/{{apartments.apartmentId}}"-->
+
+
+  <!-- RIGHT PANEL -->
+ <div class="col-md-4">
+    <div class="well" id="scrollArea"><!--Scroll-->
+
+<!-- hg-href is the link when you click it, it display info-->
+  <a ng-repeat="user in users" ng-href='#/adminUser/{{user.name}}' >
+        <div class="col-md-12 list-group-border list-styling">
+          <h4 class="titles-styling"> {{user.user_name}}</h4>
+            <div class="row content-box-style">
+            </div>
+        </div>
+      </a>
+
+    </div><!-- End Of Scroll -->
+ </div><!-- END OF RIGHT PANEL -->
+</div><!-- End Of Row -->
+</div>
