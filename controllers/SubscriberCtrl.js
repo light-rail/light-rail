@@ -15,12 +15,12 @@ module.exports = {
   },
 
   loginSubscriber: function(req, res) {
-    return res.json({
-      loggedIn: true
-    });
+    return res.json({loggedIn:true});
   },
 
   isLoggedIn: function(req, res) {
+    console.log("LoggedIn", req)
+    console.log('loggedIn req.user', req.user)
     if (req.isAuthenticated()) {
       return res.status(200).json(req.user);
     } else {

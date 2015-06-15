@@ -1,9 +1,9 @@
-
-/* * {
+/*
+ * {
   border: 1px dashed blue;
 }
-*/
 
+*/
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
@@ -20,11 +20,22 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* Titles Text Weight & Border */
+.titles-styling {
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+
 /* Centers Content */
 .center-content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Panels Header Background Color */
+#panel-heading-color {
+  background-color: #CFD8DC;
 }
 
 /*** NAVBAR ***/
@@ -40,9 +51,20 @@ html, body {
 /*** MAIN PAGE ***/
 
 .top-spacing {
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
+/* Map */
+#map-canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map-position {
+  padding: 0px;
+}
 
 /* Listings Scrolling List */
 #scrollArea {
@@ -51,13 +73,22 @@ html, body {
   padding: 0;
 }
 
+.picture-container {
+  width: 800px;
+}
+
+
 #hide-scroll ::-webkit-scrollbar { 
   display: block; 
 }
 
+.list-styling {
+  background-color: #CFD8DC;
+}
+
 .list-styling:hover {
-  background-color: #FFAB91;
-  border: 2px solid #FFAB91;
+  background-color: #FFCCBC;
+  border: 2px solid #FFCCBC;
 }
 
 .list-group-border {
@@ -84,19 +115,57 @@ html, body {
   font-size: 12px;
 }
 
-.details-font-size {
-  font-size: 12px;
-}
-
 .price-text-size {
   font-size: 16px;
 }
-/*** Profile Page ***/
+
+
+/*** USER PROFILE PAGE ***/
+
 .user-info ul{
   list-style-type: none;
 }
 
 
+/*** APARTMENT DETAILS MODAL ***/
+
+.rent-range-box {
+  font-size: 30px;
+  font-weight: 300;  
+  margin-top: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: #CFD8DC;
+}
+
+.bottom-border {
+  border-bottom:  2px solid #FF4019;
+}
+
+.picture-scroll { 
+  overflow-x: scroll;
+  height: 220px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+
+} 
+
+.img-size {
+  max-height: 200px;
+}
+
+/* Pic Container Scrollbar */
+
+.show-scroll ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+.show-scroll ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #787878;
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
 
 
 /*** FORMS ***/
@@ -109,13 +178,3 @@ html, body {
   padding-top: 40px;
 }
 
-
-
-/*** MAP ***/
-
-#map-canvas {
-  height: 100%;
-  width: 60%;
-  margin: 0;
-  padding: 0;
-}
