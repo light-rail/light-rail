@@ -1,0 +1,25 @@
+<div class="modal animated bounceInDown profile-edit-modal-md" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-body center-content">
+          <div  class="col-xs-12 col-md-10">
+            <h2 class="titles-styling bottom-border">Profile</h2>
+            <div class='form-group'>
+              <label for='editCompanyName'>Company Name</label>
+              <input ng-model='subscriber.company_name' class='form-control input-lg' type='text' placeholder='Company Name' />
+            </div>
+            <div class='form-group'>
+              <label for='editAddress'>Address</label>
+              <input ng-model='subscriber.contact_address.street_address' class='form-control' type='text' placeholder='Street' />
+              <input ng-model='subscriber.contact_address.city' class='form-control' type='text' placeholder='City' />
+              <select ng-model='subscriber.contact_address.state' ng-options='state.name for state in states' class='form-control'>
+                <option value=''>-- Select State --</option>
+              </select>
+              <input ng-model='subscriber.contact_address.zip_code' class='form-control' type='text' placeholder='Zipcode'/>
+            </div>
+            <button ng-click='saveProfile()' class='btn btn-success close' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
