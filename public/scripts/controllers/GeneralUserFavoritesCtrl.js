@@ -1,8 +1,30 @@
+var app = angular.module('lightRail');
 
-var app = angular.module("lightRail")
+app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, GeneralUserService) {
+  
+  var allApartmentsData = GeneralUserService.apartmentData;
+  var selectedApartmentData = GeneralUserService.apartmentData[$routeParams.apartmentId];
 
-app.controller("GeneralUserFavoritesCtrl", function($scope){
 
+
+  $scope.listMode = true;
+
+  $scope.todayDate = new Date();
+  $scope.apartments = allApartmentsData;
+  // $scope.selectedApartment = selectedApartmentData;
+
+  //** Modal Initiation**//
+  $scope.getApartment = function(apartment) {
+    var modal_apartment = '';
+
+    return $scope.modal_apartment = apartment;
+  }
+
+
+
+  if ($routeParams.apartmentId) {
+    $scope.listMode = false;
+  } 
 
 
 });

@@ -5,10 +5,22 @@ app.service('GeneralUserService', function($http, $q) {
 
   //I recommend being more descriptive w/ this funct name, example: "getGeneralUserFavorites"
   this.getGeneralUser = function() {
-    var url = '/api/generalUser/myfavorites'
+    var url = '/api/user/getFavorites'
     return $http({
       method: 'GET',
       url: url
+    }).then(function(response){
+      return response.data;
+    })
+  };
+
+  this.addToFavoritesList = function(locationId) {
+    var url = '/api/user/addToFavorites'
+    return $http({
+      method: 'POST',
+      url: url,
+      data: locationId
+
     }).then(function(response){
       return response.data;
     })
@@ -24,6 +36,7 @@ app.service('GeneralUserService', function($http, $q) {
       return data;
     });
   };
+
 
   
 

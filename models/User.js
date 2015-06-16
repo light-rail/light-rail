@@ -10,8 +10,24 @@ var GeneralUserSchema = new Schema({
   password: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   favorites: {
-    myFavorites: [favoritesList]
+    apartments: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Apartment'
+    }]
+  // hotels: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }],
+  // realEstate: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }],
+  // entertainment: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }]
   }
+
 });
 
 

@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 var q = require('q');
+var SubscriberListing = require('./SubscriberListings');
 
 var SubscriberSchema = new Schema({
   company_name: {type: String, required: true },
@@ -16,7 +17,8 @@ var SubscriberSchema = new Schema({
      state: { type: String },
      zip_code: { type: Number }
   },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  listings:  [SubscriberListing]
 });
 
 
