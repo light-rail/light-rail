@@ -69,6 +69,7 @@ app.config(function($routeProvider){
           return GeneralUserService.getSubscriberInfo();
         }
       }
+    })
     .when('/adminSubPage', {
       templateUrl: 'views/adminSubPage.html',
       controller: 'adminSubPageCtrl'
