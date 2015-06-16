@@ -33,6 +33,10 @@ html, body {
   justify-content: center;
 }
 
+.char-left-alignment {
+  padding-left: 0;
+}
+
 /* Panels Header Background Color */
 #panel-heading-color {
   background-color: #CFD8DC;
@@ -131,7 +135,7 @@ html, body {
 
 .rent-range-box {
   font-size: 30px;
-  font-weight: 300;  
+  font-weight: 300;
   margin-top: 10px;
   margin-bottom: 0px;
   text-align: center;
@@ -154,20 +158,30 @@ html, body {
   max-height: 200px;
 }
 
+.titles-bottom-border {
+  border-bottom:  1px solid #CFD8DC;
+}
+
 /* Pic Container Scrollbar */
 
 .show-scroll ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
+  -webkit-appearance: none;
+  width: 7px;
 }
 
 .show-scroll ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #787878;
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  border-radius: 8px;
+  background-color: #787878;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
+.amenity-content-spacing {
+  padding: 15px 0px;
+}
 
+.border-top-spacing {
+  margin: 40px 0px;
+}
 /*** FORMS ***/
 
 .form-title-top-spacing {
