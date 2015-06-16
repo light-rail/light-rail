@@ -144,8 +144,7 @@ app.post('/api/login/user', passport.authenticate('user-local', { failureRedirec
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 app.get('/api/user/getFavorites', UserCtrl.getFavorites);
 
-
-// ** Subscriber ** //
+//** Subscriber ** //
 app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
 app.post('/api/login/subscriber', passport.authenticate('subscriber-local', { failureRedirect: '/login/subscriber'}), SubscriberCtrl.loginSubscriber);
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);

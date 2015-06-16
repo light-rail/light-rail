@@ -7,6 +7,7 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
 
 
 
+
   $scope.listMode = true;
 
   $scope.todayDate = new Date();
@@ -25,6 +26,7 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
   if ($routeParams.apartmentId) {
     $scope.listMode = false;
   } 
+
 
 
 });
