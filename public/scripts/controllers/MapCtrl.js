@@ -1,59 +1,58 @@
 var app = angular.module('lightRail');
 
-app.controller('MapCtrl', function($scope, trainStations, $location, GeneralUserService, $timeout) {
+app.controller('MapCtrl', function($scope, trainStations, GeneralUserService, $timeout) {
 
-  // $scope.localMarkersArray = [];
-  // var addressString;
-  // var addressLatLng;
-  // var locationMarker;
-
-
-  // $scope.createLocalMarker = function(map, markerPosition, radius) {
-
-  //   var geocoder = new google.maps.Geocoder();
-  //   var locations = GeneralUserService.apartmentData;
-
-  //   for (var i = 0; i < locations.length; i++) {
-  //     var location = locations[i].location;
-  //     var locationName = locations[i].apartment_name;
-  //     addressString = location.street_address + " " + location.city + " " + location.state + " " + location.country + " " + location.zip_code;
-
-  //        geocoder.geocode({'address': addressString}, function(results, status) {
-
-  //       if (status == google.maps.GeocoderStatus.OK) {
-  //         addressLatLng = (results[0].geometry.location);
-  //         locationMarker = new google.maps.Marker({
-  //           position: addressLatLng,
-  //           map: map,
-  //           title: locationName,
-  //           animation: google.maps.Animation.DROP,
-  //           icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-  //         })
-  //       } else {
-  //         alert("Geocode was not successful for the following reason: " + status);
-  //       }
-  //       $scope.localMarkersArray.push(locationMarker);
-  //       console.log($scope.localMarkersArray);
-  //       })
-  //   }
-  //   $timeout(function() {
-  //     for (var i = 0; i < $scope.localMarkersArray.length; i++) {
-  //       var theMarker = $scope.localMarkersArray[i];
-  //       var localLatLng = theMarker.getPosition();
-  //       console.log(localLatLng);
-  //       console.log(markerPosition);
-  //       var dist = google.maps.geometry.spherical.computeDistanceBetween(markerPosition, localLatLng);
-  //       if(dist < radius) {
-  //         console.log(theMarker);
-  //       }
-  //     }
-  //   }, 3000);
-  // }
+  $scope.localMarkersArray = [];
+  var addressString;
+  var addressLatLng;
+  var locationMarker;
 
 
-    var infowindow;
+  $scope.createLocalMarker = function(map, markerPosition, radius) {
+    console.log("creating Location");
+    var geocoder = new google.maps.Geocoder();
+    var locations = GeneralUserService.apartmentData;
 
-  $scope.places = function() {
+    for (var i = 0; i < locations.length; i++) {
+      var location = locations[i].location;
+      var locationName = locations[i].apartment_name;
+      addressString = location.street_address + " " + location.city + " " + location.state + " " + location.country + " " + location.zip_code;
+
+      geocoder.geocode({
+        'address': addressString
+      }, function(results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+          addressLatLng = (results[0].geometry.location);
+          locationMarker = new google.maps.Marker({
+            position: addressLatLng,
+            map: map,
+            title: locationName,
+            animation: google.maps.Animation.DROP,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+          })
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+        $scope.localMarkersArray.push(locationMarker);
+      })
+    }
+    $timeout(function() {
+      for (var i = 0; i < $scope.localMarkersArray.length; i++) {
+        var theMarker = $scope.localMarkersArray[i];
+        var localLatLng = theMarker.getPosition();
+        var dist = google.maps.geometry.spherical.computeDistanceBetween(markerPosition, localLatLng);
+        if (dist < radius) {
+          console.log(theMarker);
+        }
+      }
+    }, 1000);
+  }
+
+
+  var infowindow;
+  $scope.placesArray = [];
+  $scope.places = function(map, markerPosition) {
     var request = {
       location: markerPosition,
       radius: 804.67200,
@@ -64,29 +63,40 @@ app.controller('MapCtrl', function($scope, trainStations, $location, GeneralUser
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           var place = results[i];
-          console.log(place);
           placeMarker = new google.maps.Marker({
             position: place.geometry.location,
             map: map,
             title: place.name,
             animation: google.maps.Animation.DROP,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
           })
 
-           google.maps.event.addListener(placeMarker, 'mouseover', (function(marker, i) {
-      return function() {
-        infowindow = new google.maps.InfoWindow({
-          content: placeMarker.title,
-        });
-        infowindow.open(map, placeMarker);
-      }
-    })(marker, i));
+          google.maps.event.addListener(placeMarker, 'mouseover', (function(placeMarker, i) {
+            return function() {
+              infowindow = new google.maps.InfoWindow({
+                content: placeMarker.title,
+              });
+              infowindow.open(map, placeMarker);
+            }
+          })(placeMarker, i));
+
+           google.maps.event.addListener(placeMarker, 'mouseout', (function(placeMarker, i) {
+            return function() {
+              infowindow.close();
+            }
+          })(placeMarker, i));
+
+           $scope.placesArray.push(placeMarker);
         }
       }
     });
   };
 
-
+var clearMarkers = function(array) {
+  for (var i = 0; i < array.length; i++) {
+    array[i].setMap(null);
+  };
+}
 
 
 
@@ -127,17 +137,17 @@ app.controller('MapCtrl', function($scope, trainStations, $location, GeneralUser
             map.setZoom(15);
             map.setCenter(marker.getPosition());
             circleBounds = new google.maps.Circle(boundryOptions);
-
-            // Adding Places
-            $scope.places(map, markerPosition)
+            $scope.places(map, markerPosition);
             // $scope.createLocalMarker(map, markerPosition, radius);
-            showLocations = true
+            showLocations = true;
+            console.log(showLocations);
 
           } else {
-            console.log("MADE IT");
             map.setZoom(13)
             circleBounds.setMap(null);
+            clearMarkers($scope.placesArray);
             showLocations = false;
+            console.log(showLocations);
           }
         }
       })(marker, i));
@@ -310,7 +320,7 @@ app.controller('MapCtrl', function($scope, trainStations, $location, GeneralUser
     var mapOptions = {
       zoom: 12,
       scrollwheel: true,
-      center: new google.maps.LatLng(33.439231, -111.992788)
+      center: new google.maps.LatLng(33.439266, -111.971015)
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -345,17 +355,20 @@ app.controller('MapCtrl', function($scope, trainStations, $location, GeneralUser
 
     lightRailPath.setMap(map);
 
+
+
     google.maps.event.addListener(map, 'click', function() {
       console.log("Map Click");
     });
   }
 
 
-
+  
 
   // INITIALIZE MAP ON PAGE LOAD
-
-  google.maps.event.addDomListener(window, 'load', $scope.initialize());
+$scope.initialize();
+  // google.maps.event.addDomListener(window, 'load', $scope.initialize());
+ 
 
 
 

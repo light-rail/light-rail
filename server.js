@@ -10,11 +10,13 @@ var LocalStrategy = require('passport-local').Strategy;
 var UserCtrl = require('./controllers/UserCtrl.js');
 var SubscriberCtrl = require('./controllers/SubscriberCtrl.js');
 var AdminCtrl = require('./controllers/AdminCtrl.js');
+var TrainStationCtrl = require('./controllers/TrainStationCtrl.js');
 
 //*** MODELS ***//
 var User = require('./models/User.js');
 var Subscriber = require('./models/Subscriber.js');
 var Admin = require('./models/Admin.js');
+var TrainStation = require('./models/TrainStation.js');
 
 
 //*** EXPRESS ***//
@@ -140,20 +142,21 @@ var isAuthed = function(req, res, next) {
 app.post('/api/register/user', UserCtrl.createUser);
 app.post('/api/login/user', passport.authenticate('user-local', { failureRedirect: '/login/user'}), UserCtrl.loginUser);
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
+app.get('/api/user/getFavorites', UserCtrl.getFavorites);
 
 //** Subscriber ** //
-
 app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
 app.post('/api/login/subscriber', passport.authenticate('subscriber-local', { failureRedirect: '/login/subscriber'}), SubscriberCtrl.loginSubscriber);
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 
 
 //** Admin ** //
-
 app.post('/api/register/admin', AdminCtrl.createAdmin);
 app.post('/api/login/admin', passport.authenticate('admin-local', { failureRedirect: '/login/admin'}), AdminCtrl.loginAdmin);
 app.get('/api/admin/isLoggedIn', AdminCtrl.isLoggedIn);
 
+//** Train Stations **//
+app.post('/api/trainStation', TrainStationCtrl.createLocation);
 
 
 
@@ -169,6 +172,7 @@ mongoose.connection.once('open', function() {
 app.listen(port, function() {
   console.log('Listening on port ', port);
 });
+
 
 
 
