@@ -15,13 +15,12 @@ app.service('GeneralUserService', function($http, $q) {
   };
 
   this.getSubscriberInfo = function(){
-    var url = '/api/subscriber/profile';
+    var url = '/api/subscriber/isLoggedIn';
     return $http({
       method: 'GET',
       url: url
     }).then(function(data){
-      console.log("getSubscriberInfo", data)
-      return data;
+      return data.data;
     });
   };
 
