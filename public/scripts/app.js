@@ -42,6 +42,14 @@ app.config(function($routeProvider){
       templateUrl: 'views/generalUser/generalUserFavoritesTmpl.html',
       controller: 'GeneralUserFavoritesCtrl'
     })
+    .when('/adminSubPage/:apartmentId', {
+      templateUrl:'views/adminSubPage.html',
+      controller: 'adminSubPageCtrl'
+    })
+    .when('/adminUser/:apartmentId', {
+      templateUrl: 'views/adminGenUser.html',
+      controller: 'adminUserCtrl'
+    })
     .when('/general_user/profile', {
       templateUrl: 'views/generalUser/generalUserProfileTmpl.html',
       controller: 'ProfileCtrl',
@@ -52,6 +60,18 @@ app.config(function($routeProvider){
           });
         }
       }
+    })
+    .when('/adminSubPage', {
+      templateUrl: 'views/adminSubPage.html',
+      controller: 'adminSubPageCtrl'
+    })
+    .when('/adminUser', {
+      templateUrl: 'views/adminGenUser.html',
+      controller: 'adminUserCtrl'
+    })
+    .when('/adminStats',{
+      templateUrl: 'views/adminStats.html',
+      controller: 'adminStatsCtrl'
     })
      .otherwise({
       redirectTo: '/'
