@@ -24,7 +24,9 @@ var apartmentSchema = new Schema({
   gym: {type:Boolean, required: true},
   washer_dryer: {type:Boolean, required: true},
   property_details: {type:String},
-  nearest_stop: [{type: Schema.Types.ObjectId, ref:'TrainStation'}]
+  nearest_stop: [{type: Schema.Types.ObjectId, ref:'TrainStation'}],
+  lat: {type:String},
+  long: {type:String}
  
 });
 

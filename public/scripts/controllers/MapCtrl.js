@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.controller('MapCtrl', function($scope, trainStations, $location, GeneralUserService, $timeout) {
+app.controller('MapCtrl', function($scope, trainStations, GeneralUserService, $timeout) {
 
   $scope.localMarkersArray = [];
   var addressString;
@@ -355,17 +355,20 @@ var clearMarkers = function(array) {
 
     lightRailPath.setMap(map);
 
+
+
     google.maps.event.addListener(map, 'click', function() {
       console.log("Map Click");
     });
   }
 
 
-
+  
 
   // INITIALIZE MAP ON PAGE LOAD
-
-  google.maps.event.addDomListener(window, 'load', $scope.initialize());
+$scope.initialize();
+  // google.maps.event.addDomListener(window, 'load', $scope.initialize());
+ 
 
 
 
