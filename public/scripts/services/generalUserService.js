@@ -44,10 +44,8 @@ app.service('GeneralUserService', function($http, $q) {
       apartmentId: 0,
 
       apartment_name: 'Monroe Street Abbey',
-      pictures: {
-        default_1:'apt_abbey1.jpg',
-        pic_2:'apt_abbey2.jpg',
-        pic_3:'apt_abbey3.jpg'
+      cover_picture: {
+        src:'images/apt_abbey1.jpg'
       },
       picturesArray: [{
         name:'apt_abbey1.jpg',
@@ -84,11 +82,8 @@ app.service('GeneralUserService', function($http, $q) {
     {
       apartmentId: 1,
       apartment_name: 'West 6th Tempe Apartments',
-      pictures: {
-        default_1:'apt_west1.jpg',
-        pic_2:'apt_west2.jpg',
-        pic_3:'apt_west3.jpg',
-        pic_4:'apt.west4.jpg'
+      cover_picture: {
+        src: 'images/apt_west1.jpg'
       },
       picturesArray: [{
         name:'apt_west1.jpg',
@@ -125,11 +120,8 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 2,
       apartment_name: 'Bella Solano Apartments',
-      pictures: {
-        default_1:'apt_bella1.jpg',
-        pic_2:'apt_bella2.jpg',
-        pic_3:'apt_bella3.jpg',
-        pic_4:'apt.bella4.jpg'
+      cover_picture: {
+        src: 'images/apt_bella1.jpg'
       },
       picturesArray: [{
         name:'apt_bella1.jpg',
@@ -166,11 +158,8 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 3,
       apartment_name: 'Pavilions On Central',
-      pictures: {
-        default_1:'apt_pavillions1.jpg',
-        pic_2:'apt_pavillions2.jpg',
-        pic_3:'apt_pavillions3.jpg',
-        pic_4:'apt.pavillions4.jpg'
+      cover_picture: {
+        src: 'images/apt_pavillions1.jpg'
       },
       picturesArray: [{
         name:'apt_pavillions1.jpg',
@@ -212,11 +201,8 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 4,
       apartment_name: 'The Met Apartments',
-      pictures: {
-        default_1:'apt_met1.jpg',
-        pic_2:'apt_met2.jpg',
-        pic_3:'apt_met3.jpg',
-        pic_4:'apt.met4.jpg'
+      cover_picture: {
+        src: 'images/apt_met1.jpg'
       },
       picturesArray: [{
         name:'apt_met1.jpg',
@@ -258,11 +244,8 @@ app.service('GeneralUserService', function($http, $q) {
     {
       apartmentId: 5,
       apartment_name: 'Midtown on Main Apartments',
-      pictures: {
-        default_1:'apt_midtown1.jpg',
-        pic_2:'apt_midtown2.jpg',
-        pic_3:'apt_midtown3.jpg',
-        pic_4:'apt.midtown4.jpg'
+      cover_picture: {
+        src: 'images/apt_midtown1.jpg'
       },
       picturesArray: [{
         name:'apt_midtown1.jpg',
@@ -304,12 +287,8 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 6,
       apartment_name: 'Tempe Metro Apartments',
-      pictures: {
-        default_1:'apt_tempe_metro1.jpg',
-        pic_2:'apt_tempe_metro2.jpg',
-        pic_3:'apt_tempe_metro3.jpg',
-        pic_4:'apt.tempe_metro4.jpg',
-        pic_4:'apt.tempe_metro5.jpg'
+      cover_picture: {
+        src: 'images/apt_tempe_metro1.jpg'
       },
       picturesArray: [{
         name:'apt_tempe_metro1.jpg',
@@ -356,30 +335,27 @@ app.service('GeneralUserService', function($http, $q) {
     {
       apartmentId: 7,
       apartment_name: 'Villas On Apache',
-      pictures: {
-        default_1:'apt_apache1.jpg',
-        pic_2:'apt_apache2.jpg',
-        pic_3:'apt_apache3.jpg',
-        pic_4:'apt.apache4.jpg'
+      cover_picture: {
+        src: 'images/apt_apache1.jpg'
       },
       picturesArray: [{
-        name:'apt_apt_apache1.jpg',
-        src: 'images/apt_apt_apache1.jpg',
+        name:'apt_apache1.jpg',
+        src: 'images/apt_apache1.jpg',
         profile_pic: true
         },
         {
-        name:'apt_apt_apache2.jpg',
-        src: 'images/apt_apt_apache2.jpg',
+        name:'apt_apache2.jpg',
+        src: 'images/apt_apache2.jpg',
         profile_pic: false
         },
         {
-        name:'apt_apt_apache3.jpg',
-        src: 'images/apt_apt_apache3.jpg',
+        name:'apt_apache3.jpg',
+        src: 'images/apt_apache3.jpg',
         profile_pic: false
         },
         {
-        name:'apt_apt_apache4.jpg',
-        src: 'images/apt_apt_apache4.jpg',
+        name:'apt_apache4.jpg',
+        src: 'images/apt_apache4.jpg',
         profile_pic: false
         }
       ],
