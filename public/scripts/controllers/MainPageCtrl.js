@@ -10,11 +10,12 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
   $scope.apartments = allApartmentsData;
 
 
-  //** Modal Initiation**//
+  //** Modal Initiation **//
   $scope.getApartment = function(apartment) {
     var modal_apartment = '';
 
-    return $scope.modal_apartment = apartment;
+    $scope.modal_apartment = apartment;
+
   }
 
 
