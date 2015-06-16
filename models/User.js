@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 var q = require('q');
-var favoritesList = require('./FavoritesList');
 
 var GeneralUserSchema = new Schema({
   name: {type: String},
@@ -10,8 +9,24 @@ var GeneralUserSchema = new Schema({
   password: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   favorites: {
-    myFavorites: [favoritesList]
+    apartments: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Apartment'
+    }]
+  // hotels: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }],
+  // realEstate: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }],
+  // entertainment: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }]
   }
+
 });
 
 
@@ -20,7 +35,7 @@ GeneralUserSchema.pre('save', function(next) {
   var user = this;
   //passw encryption
   bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(user.password, salt, function(err, hash) {
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
       //console.log(hash)
       user.password = hash;
       next();

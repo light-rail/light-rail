@@ -33,6 +33,10 @@ html, body {
   justify-content: center;
 }
 
+.char-left-alignment {
+  padding-left: 0;
+}
+
 /* Panels Header Background Color */
 #panel-heading-color {
   background-color: #CFD8DC;
@@ -73,6 +77,11 @@ html, body {
   padding: 0;
 }
 
+.picture-container {
+  width: 800px;
+}
+
+
 #hide-scroll ::-webkit-scrollbar { 
   display: block; 
 }
@@ -82,8 +91,8 @@ html, body {
 }
 
 .list-styling:hover {
-  background-color: #FFCCBC;#FFAB91;
-  border: 2px solid #FFCCBC;#FFAB91;
+  background-color: #FFCCBC;
+  border: 2px solid #FFCCBC;
 }
 
 .list-group-border {
@@ -110,41 +119,69 @@ html, body {
   font-size: 12px;
 }
 
-.details-font-size {
-  font-size: 12px;
-}
-
 .price-text-size {
   font-size: 16px;
 }
-/*** Profile Page ***/
+
+
+/*** USER PROFILE PAGE ***/
+
 .user-info ul{
   list-style-type: none;
 }
 
-
-
-
-/*** Profile Page ***/
-.user-info ul{
-  list-style-type: none;
-}
 
 /*** APARTMENT DETAILS MODAL ***/
 
 .rent-range-box {
   font-size: 30px;
-  font-weight: 300;  
+  font-weight: 300;
   margin-top: 10px;
   margin-bottom: 0px;
   text-align: center;
-  background-color: #CFD8DC;#FFCCBC;
+  background-color: #CFD8DC;
 }
 
 .bottom-border {
-  border-bottom:  2px solid #CFD8DC;
+  border-bottom:  2px solid #FF4019;
 }
 
+.picture-scroll { 
+  overflow-x: scroll;
+  height: 220px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+
+} 
+
+.img-size {
+  max-height: 200px;
+}
+
+.titles-bottom-border {
+  border-bottom:  1px solid #CFD8DC;
+}
+
+/* Pic Container Scrollbar */
+
+.show-scroll ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.show-scroll ::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #787878;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.amenity-content-spacing {
+  padding: 15px 0px;
+}
+
+.border-top-spacing {
+  margin: 40px 0px;
+}
 /*** FORMS ***/
 
 .form-title-top-spacing {
