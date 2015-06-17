@@ -1,0 +1,151 @@
+<div class="center-content">
+  <form class="col-xs-12 col-md-10">
+    <div class="col-md-12">
+      <h2 class="titles-styling top-spacing bottom-border listing-title-spacing">Add A Listing</h2>
+    </div>
+    
+
+      <!-- APARTMENT ADRESS -->
+      <div class="col-md-5">
+        <div class="panel panel-default panel-spacing">
+          <div class="panel-heading" id="panel-heading-color">
+            <h3 class="panel-title">Apartment Address</h3>  
+          </div>
+          <div class="panel-body">
+
+            <div class="input-group col-xs-12">
+              <label for="street_address" class="sr-only"></label>
+              <input type="text" ng-model="user.contact_address.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
+            </div><br>
+
+            <div class="input-group col-xs-12">
+              <label for="city" class="sr-only"></label>
+              <input type="text" ng-model="user.contact_address.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
+            </div><br>
+          
+            <div class="input-group col-xs-12">
+              <label for="state" class="sr-only"></label>
+              <input type="text" ng-model="user.contact_address.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
+            </div><br>
+         
+            <div class="input-group col-xs-12">
+              <label for="zip_code" class="sr-only"></label>
+              <input type="text" ng-model="user.contact_address.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
+            </div><br>
+
+            <div class="input-group col-xs-12">
+              <label for="state" class="sr-only"></label>
+              <input type="text" ng-model="user.phone_number" class="form-control floating-label" id="form-input-underline" placeholder="Phone Number" required>
+            </div><br>
+
+            <div class="input-group col-xs-12">
+              <label for="zip_code" class="sr-only"></label>
+              <input type="text" ng-model="user.webpage" class="form-control floating-label" id="form-input-underline" placeholder="Web Page" required>
+            </div><br>
+
+          </div> 
+        </div>
+      </div>
+
+
+      <!-- APARTMENT DESCRIPTION -->
+      <div class="col-md-7">
+        <div class="panel panel-default panel-spacing">
+          <div class="panel-heading" id="panel-heading-color">
+            <h3 class="panel-title">Apartment Description</h3>  
+          </div>
+          <div class="panel-body">
+            <textarea type="text" class="form-control floting-label" ng-model="listing.description" rows="8" maxlength="1000" id="form-input-underline"></textarea>
+          </div> 
+        </div>
+      </div>
+
+      
+      <!-- PICTURE AREA -->
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body" id="panel-heading-color">
+            <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+              <div class="col-xs-3 col-md-3 char-left-alignment"><button class="btn btn-success">Upload Photos</button></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End of Picture Title -->
+
+      <!-- PICTURE AREA -->
+      <div class="col-md-12">
+        <div class="show-scroll">
+          <div class=" panel panel-default picture-scroll">
+            <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in modal_apartment.picturesArray" src="{{pic.src}}"/>
+          </div> 
+        </div>
+      </div><!-- End of picture area -->
+
+
+      <!-- APARTMENT BEDROOM DETAILS //Need an ng-repeat-->
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+              <span class="col-xs-3 col-md-3 char-left-alignment">Bedrooms</span>
+              <span class="col-xs-3 col-md-3">Bath</span>
+              <span class="col-xs-3 col-md-3">Sqrft</span>
+              <span class="col-xs-3 col-md-3">Monthly</span>
+            </div>
+
+            <div class="col-xs-12 col-md-12 char-left-alignment">
+              <span class="col-xs-3 col-md-3 char-left-alignment">1</span>
+              <span class="col-xs-3 col-md-3 ">1</span>
+              <span class="col-xs-3 col-md-3 ">800</span>
+              <span class="col-xs-3 col-md-3 ">$600</span>
+            </div>
+            <div class="col-xs-12 col-md-12 char-left-alignment">
+              <span class="col-xs-3 col-md-3 char-left-alignment">2</span>
+              <span class="col-xs-3 col-md-3 ">2</span>
+              <span class="col-xs-3 col-md-3 ">1000</span>
+              <span class="col-xs-3 col-md-3 ">$1,200</span>
+            </div>
+            <div class="col-xs-12 col-md-12 char-left-alignment">
+              <span class="col-xs-3 col-md-3 char-left-alignment">3</span>
+              <span class="col-xs-3 col-md-3 ">2</span>
+              <span class="col-xs-3 col-md-3 ">1,800</span>
+              <span class="col-xs-3 col-md-3 ">$1,600</span>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- End of Bedroom Details -->
+
+      <!-- AMENITY DETAILS -->
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+              <div class="col-xs-3 col-md-3 char-left-alignment">Amenities</div>
+            </div>
+
+            <div class="col-xs-12 col-md-12 char-left-alignment amenity-content-spacing">
+              <p><span class="col-xs-12 col-md-12 char-left-alignment">Pet Friendly, Garage, Pool, Gym, Washer & Dryer</span></p>
+              <span>Other: Granite Counter tops, other, other, etc.</span>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- End of Amenity Details -->
+      
+      <div class="col-md-12">
+        <div class="bottom-border border-top-spacing"></div>
+      </div>
+      
+  </form>
+</div>
+
+<script>
+$(document).ready(function() {
+    // This command is used to initialize some materialize elements and make them work properly
+    $.material.init();
+});
+</script>
+ 
