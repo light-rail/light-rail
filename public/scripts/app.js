@@ -61,6 +61,15 @@ app.config(function($routeProvider){
         }
       }
     })
+    .when('/subscriber/dashboard/:id', {
+      templateUrl: 'views/subscriber/apartmentListingDashboard.html',
+      controller: 'SubscriberDashboardCtrl',
+      resolve: {
+        subData: function(GeneralUserService) {
+          return GeneralUserService.getSubscriberInfo();
+        }
+      }
+    })
     .when('/adminSubPage', {
       templateUrl: 'views/adminSubPage.html',
       controller: 'adminSubPageCtrl'

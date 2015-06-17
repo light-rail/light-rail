@@ -23,7 +23,7 @@ app.controller('RegisterCtrl', function($scope, $routeParams, $location, AuthSer
 
     AuthService.registerSubscriber(user).then(function(res) {
       toaster.pop('success', 'You have registered successfully.');
-      $location.path('/');
+      $location.path('/subscriber/dashboard/' + res._id);
     }, function(err) {
       console.log('controller', err)
       if(err.status ===  11000) toaster.pop('error', 'This email is already registered.');
