@@ -192,3 +192,8 @@ html, body {
   padding-top: 40px;
 }
 
+/*** LISTING PAGE ***/
+.listing-title-spacing {
+  margin-bottom: 10px;
+}
+
