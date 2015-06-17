@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 var q = require('q');
-var favoritesList = require('./FavoritesList');
 
 var GeneralUserSchema = new Schema({
   name: {type: String},
@@ -10,8 +9,24 @@ var GeneralUserSchema = new Schema({
   password: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   favorites: {
-    myFavorites: [favoritesList]
+    apartments: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Apartment'
+    }]
+  // hotels: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }],
+  // realEstate: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }],
+  // entertainment: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'GeneralUser'
+  // }]
   }
+
 });
 
 

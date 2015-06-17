@@ -40,6 +40,15 @@ app.config(function($routeProvider){
       templateUrl: 'views/subscriber/newApartmentListingTmpl.html',
       controller: 'SubscriberCtrl'
     })
+    .when('/subscriber/dashboard/:id', {
+      templateUrl: 'views/subscriber/apartmentListingDashboard.html',
+      controller: 'SubscriberDashboardCtrl',
+      resolve: {
+        subData: function(GeneralUserService) {
+          return GeneralUserService.getSubscriberInfo();
+        }
+      }
+    })
     //Admin Routes
     .when('/register/admin', {
       templateUrl: 'views/register/registerAdminTmpl.html',

@@ -5,7 +5,7 @@ app.service('GeneralUserService', function($http, $q) {
 
   //I recommend being more descriptive w/ this funct name, example: "getGeneralUserFavorites"
   this.getGeneralUser = function() {
-    var url = '/api/generalUser/myfavorites'
+    var url = '/api/user/getFavorites'
     return $http({
       method: 'GET',
       url: url
@@ -14,16 +14,28 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
+  this.addToFavoritesList = function(locationId) {
+    var url = '/api/user/addToFavorites'
+    return $http({
+      method: 'POST',
+      url: url,
+      data: locationId
+
+    }).then(function(response){
+      return response.data;
+    })
+  };
+
   this.getSubscriberInfo = function(){
-    var url = '/api/subscriber/profile';
+    var url = '/api/subscriber/isLoggedIn';
     return $http({
       method: 'GET',
       url: url
     }).then(function(data){
-      console.log("getSubscriberInfo", data)
-      return data;
+      return data.data;
     });
   };
+
 
 
   this.displayAll = function(obj) {
@@ -33,6 +45,7 @@ app.service('GeneralUserService', function($http, $q) {
     }
     return allItems.replace(',', ' ');
   };
+
 
   
 
