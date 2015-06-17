@@ -14,52 +14,31 @@ app.config(function($routeProvider){
       templateUrl: 'views/map.html',
       controller: 'MapCtrl'
     })
+    //General User Routes
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
-      controller: 'RegisterCtrl'
-    })
-    .when('/register/subscriber', {
-      templateUrl: 'views/register/registerSubscriberTmpl.html',
-      controller: 'RegisterCtrl'
-    })
-    .when('/register/admin', {
-      templateUrl: 'views/register/registerAdminTmpl.html',
       controller: 'RegisterCtrl'
     })
     .when('/login', {
       templateUrl: 'views/login/loginUserTmpl.html',
       controller: 'LoginCtrl'
     })
-    .when('/login/subscriber', {
-      templateUrl: 'views/login/loginSubscriberTmpl.html',
-      controller: 'LoginCtrl'
-    })
-    .when('/login/admin', {
-      templateUrl: 'views/login/loginAdminTmpl.html',
-      controller: 'LoginCtrl'
-    })
     .when('/myfavorites', {
       templateUrl: 'views/generalUser/generalUserFavoritesTmpl.html',
       controller: 'GeneralUserFavoritesCtrl'
     })
-    .when('/adminSubPage/:apartmentId', {
-      templateUrl:'views/adminSubPage.html',
-      controller: 'adminSubPageCtrl'
+    //Subscriber Routes
+    .when('/register/subscriber', {
+      templateUrl: 'views/register/registerSubscriberTmpl.html',
+      controller: 'RegisterCtrl'
     })
-    .when('/adminUser/:apartmentId', {
-      templateUrl: 'views/adminGenUser.html',
-      controller: 'adminUserCtrl'
+    .when('/login/subscriber', {
+      templateUrl: 'views/login/loginSubscriberTmpl.html',
+      controller: 'LoginCtrl'
     })
-    .when('/general_user/profile', {
-      templateUrl: 'views/generalUser/generalUserProfileTmpl.html',
-      controller: 'ProfileCtrl',
-      resolve: {
-        userData: function(GeneralUserService){
-          GeneralUserService.getSubscriberInfo().then(function(response){
-            console.log(response);
-          });
-        }
-      }
+    .when('/subscriber/new_listing', {
+      templateUrl: 'views/subscriber/newApartmentListingTmpl.html',
+      controller: 'SubscriberCtrl'
     })
     .when('/subscriber/dashboard/:id', {
       templateUrl: 'views/subscriber/apartmentListingDashboard.html',
@@ -70,16 +49,29 @@ app.config(function($routeProvider){
         }
       }
     })
+    //Admin Routes
+    .when('/register/admin', {
+      templateUrl: 'views/register/registerAdminTmpl.html',
+      controller: 'RegisterCtrl'
+    })
+    .when('/login/admin', {
+      templateUrl: 'views/login/loginAdminTmpl.html',
+      controller: 'LoginCtrl'
+    })
+    .when('/adminUser/:apartmentId', {
+      templateUrl: 'views/admin/adminGenUser.html',
+      controller: 'adminUserCtrl'
+    })
     .when('/adminSubPage', {
-      templateUrl: 'views/adminSubPage.html',
+      templateUrl: 'views/admin/adminSubPage.html',
       controller: 'adminSubPageCtrl'
     })
     .when('/adminUser', {
-      templateUrl: 'views/adminGenUser.html',
+      templateUrl: 'views/admin/adminGenUser.html',
       controller: 'adminUserCtrl'
     })
     .when('/adminStats',{
-      templateUrl: 'views/adminStats.html',
+      templateUrl: 'views/admin/adminStats.html',
       controller: 'adminStatsCtrl'
     })
      .otherwise({
