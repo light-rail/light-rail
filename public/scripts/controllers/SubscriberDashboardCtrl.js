@@ -9,7 +9,9 @@ app.controller('SubscriberDashboardCtrl', function($scope, subData, GeneralUserS
 		companyName: $scope.subscriber.company_name,
 		streetAddress: $scope.subscriber.contact_address.street_address,
 		city: $scope.subscriber.contact_address.city,
-		state: $scope.subscriber.contact_address.state,
+		state: {
+			name: $scope.subscriber.contact_address.state
+		},
 		zip: $scope.subscriber.contact_address.zip_code
 	};
 
@@ -28,11 +30,11 @@ app.controller('SubscriberDashboardCtrl', function($scope, subData, GeneralUserS
 	};
 
 	$scope.saveProfile = function(companyName, streetAddress, city, state, zip) {
-		console.log('saving');
+		console.log(state);
 		$scope.subscriber.company_name = companyName;
 		$scope.subscriber.contact_address.street_address = streetAddress;
 		$scope.subscriber.contact_address.city = city;
-		$scope.subscriber.contact_address.state = state;
+		$scope.subscriber.contact_address.state = state.name;
 		$scope.subscriber.contact_address.zip_code = zip;
 
 		return $scope.subscriber;
