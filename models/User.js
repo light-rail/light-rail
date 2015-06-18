@@ -2,16 +2,44 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 var q = require('q');
-var listing = require('./listing');
 
 var GeneralUserSchema = new Schema({
-  name: {type: String},
-  email: { type: String, unique: true, lowercase: true, required: true },
-  password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  name: {
+    type: String
+  },
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
   favorites: {
-    myFavorites: [listing]
+    apartments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Apartment'
+      }]
+      // hotels: [{
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'GeneralUser'
+      // }],
+      // realEstate: [{
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'GeneralUser'
+      // }],
+      // entertainment: [{
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'GeneralUser'
+      // }]
   }
+
 });
 
 //Pre('save') runs before every user is created
@@ -21,13 +49,8 @@ GeneralUserSchema.pre('save', function(next) {
     return next();
   }
   bcrypt.genSalt(10, function(err, salt) {
-    if (err) {
-      return next(err);
-    }
     bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) {
-        return next(err);
-      }
+      //console.log(hash)
       user.password = hash;
       next();
     });

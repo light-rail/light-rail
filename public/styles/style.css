@@ -1,15 +1,17 @@
 /*
  * {
   border: 1px dashed blue;
-}*/
+}
 
-
+*/
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
-body {
+html, body {
   background: white;
-
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 /* Centers Titles */
@@ -18,11 +20,26 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* Titles Text Weight & Border */
+.titles-styling {
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+
 /* Centers Content */
 .center-content {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
+}
+
+.char-left-alignment {
+  padding-left: 0;
+}
+
+/* Panels Header Background Color */
+#panel-heading-color {
+  background-color: #CFD8DC;
 }
 
 /*** NAVBAR ***/
@@ -35,10 +52,135 @@ body {
   background-color: #FF4019;
 }
 
-/*** MAIN ***/
+/*** MAIN PAGE ***/
 
-.logo-top-spacing {
-  padding-top: 50px;
+.top-spacing {
+  padding-top: 10px;
+}
+
+/* Map */
+#map-canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.map-position {
+  padding: 0px;
+}
+
+/* Listings Scrolling List */
+#scrollArea {
+  height: 800px;
+  overflow: auto;
+  padding: 0;
+}
+
+.picture-container {
+  width: 800px;
+}
+
+
+#hide-scroll ::-webkit-scrollbar { 
+  display: block; 
+}
+
+.list-styling {
+  background-color: #CFD8DC;
+}
+
+.list-styling:hover {
+  background-color: #FFCCBC;
+  border: 2px solid #FFCCBC;
+}
+
+.list-group-border {
+  border: 0;
+  border-bottom: 1px solid #FF4019;
+  padding-bottom: 0;
+  color: black;
+}
+
+.content-box-style {
+  background-color: white;
+  border-top: 1px solid white;
+}
+
+.thumb-sizing {
+  margin: 0;
+}
+
+.pic-container {
+  padding: 0;
+}
+
+.details-font-size {
+  font-size: 12px;
+}
+
+.price-text-size {
+  font-size: 16px;
+}
+
+
+/*** USER PROFILE PAGE ***/
+
+.user-info ul{
+  list-style-type: none;
+}
+
+
+/*** APARTMENT DETAILS MODAL ***/
+
+.rent-range-box {
+  font-size: 30px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  background-color: #CFD8DC;
+}
+
+.bottom-border {
+  border-bottom:  2px solid #FF4019;
+}
+
+.picture-scroll { 
+  overflow-x: scroll;
+  height: 220px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+
+} 
+
+.img-size {
+  max-height: 200px;
+}
+
+.titles-bottom-border {
+  border-bottom:  1px solid #CFD8DC;
+}
+
+/* Pic Container Scrollbar */
+
+.show-scroll ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.show-scroll ::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #787878;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.amenity-content-spacing {
+  padding: 15px 0px;
+}
+
+.border-top-spacing {
+  margin: 40px 0px;
 }
 
 /*** FORMS ***/
@@ -51,5 +193,20 @@ body {
   padding-top: 40px;
 }
 
+/*** LISTING PAGE ***/
+.listing-bottom-spacing {
+  margin-bottom: 20px;
+}
 
+#button-color {
+  background-color: #CFD8DC;
+}
+
+.photo-bottom-spacing {
+  margin-bottom: 10px;
+}
+
+#unit-button-spacing {
+  margin-top: 20px;
+}
 

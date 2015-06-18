@@ -35,4 +35,22 @@ module.exports = {
     }
   }
 
+  getFavorites: function(req, res) {
+    User.find({_id: req.user._id}, 'favorites', function(err, data) {
+      if (err) return res.status(500).send(err);
+      res.json(data);    
+    })
+  },
+
+  addToFavorites: function(req, res) {
+    
+    User.findByIdAndUpdate(req.user._id, {$push:{'favorites.apartments': req.body}},
+      function(err, data) {
+        if (err) return res.status(500).send(err);
+         res.json(data); 
+    })
+  }
+
+
+
 };

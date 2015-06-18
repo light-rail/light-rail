@@ -16,16 +16,28 @@ app.controller('LoginCtrl', function($scope, $routeParams, $location, AuthServic
   };
 
   $scope.loginSubscriber = function(user) {
-
-    AuthService.loginSubscriber(user).then(function() {
+    AuthService.loginSubscriber(user).then(function(res) {
       toaster.pop('success', 'You have logged in successfully.');
-      $location.path('/');
+      console.log('Changing path to sub dash')
+      $location.path('/subscriber/dashboard/' + res._id);
     }, function(err) {
       console.log('loginController', err)
       toaster.pop('error', 'Sorry, something went wrong!');
       //console.log("Error...");
     });
   };
+
+  $scope.loginAdmin = function(user) {
+    AuthService.loginAdmin(user).then(function() {
+      toaster.pop('success', 'You have logged in successfully.');
+      $location.path('/profile');
+    }, function(err) {
+      console.log('loginController', err)
+      toaster.pop('error', 'Sorry, something went wrong!');
+      //console.log("Error...");
+    });
+  };
+
 
 
 

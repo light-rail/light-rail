@@ -1,0 +1,197 @@
+<div class="container col-md-12" id="hide-scroll">
+  <div class="row top-spacing">
+
+    <!-- LEFT PANEL APARTMENT DETAILS -->
+    <div class="col-md-8 animated fadeInRight" Erase-style="border: 2px dashed green;">  
+
+      <!-- APARTMENT DETAILS -->
+      <div  class="col-md-11 col-md-offset-1">
+
+        <!-- Subscriber Info -->
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="panel panel-default panel-spacing">
+              <div class="panel-heading" id="panel-heading-color">
+                <a href='' data-target='.profile-edit-modal-md' data-toggle='modal' class="pull-right">Edit</a> 
+                <h5 class="panel-title">Profile</h3>
+              </div>
+              <div class="panel-body">
+                <h4>Company Name:  <strong>{{subscriber.company_name}}</strong> </h4>
+                <h4>Address:</h4>
+                <ul class="list-group">
+                  <li class="list-group-item"><strong>Street: </strong> {{subscriber.contact_address.street_address}}</li>
+                  <li class="list-group-item"><strong>City: </strong> {{subscriber.contact_address.city}}</li>
+                  <li class="list-group-item"><strong> State: </strong> {{subscriber.contact_address.state.name}}</li>
+                  <li class="list-group-item"><strong>Zip: </strong> {{subscriber.contact_address.zip_code}} </li>
+                </ul>
+              </div> 
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="panel panel-default panel-spacing">
+              <div class="panel-heading" id="panel-heading-color">
+                <h3 class="panel-title">Billing</h3>  
+              </div>
+              <div class="panel-body">
+                
+              </div> 
+            </div>
+          </div>
+
+        </div><!-- End of Apartment Discription Row -->
+
+        <!-- APARTMENT INFO  -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default panel-spacing">
+              <div class="panel-heading" id="panel-heading-color">
+                <a href='' class="pull-right">Edit</a>
+                <h3 class="panel-title">Listing Details</h3>
+              </div>
+              <div class="panel-body">
+                <span class='pull-right'>
+                  <strong>Posted: </strong> 
+                  <span am-time-ago="listing.date_created"></span>
+                </span>
+                <h2 class="titles-styling bottom-border">{{listing.apartment_name}}</h2>
+
+                <div class='row'>
+                  <div class='col-md-6'>
+                    <span>
+                      <span>{{listing.location.street_address}}</span><br>
+                      <span> {{listing.location.city + ', ' + listing.location.state + ' ' + listing.location.zip_code}}</span></br>
+                      <span>{{listing.phone}}</span><br>
+                      <span><a href="http://{{modal_apartment.webpage}}" target="_blank">{{listing.webpage}}</a></span>
+                      </span></br>
+                  </div>
+
+                  <div class="col-md-6 title">
+                    <div class="panel panel-default rent-range-box">
+                      <span> ${{listing.rent_range.min}} to ${{listing.rent_range.max}} </span>
+                    </div></br>       
+                  </div>
+                </div> <!-- end of row -->
+
+                <div class="show-scroll">
+                  <div class=" panel panel-default picture-scroll">
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.default_1}}"/>
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_2}}"/>
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_3}}"/>
+                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_2}}"/>
+                  </div> 
+                </div> <!-- End of picture area -->
+
+                <div class='row'>
+                  <div class='col-md-12'>
+                    <div class="panel panel-default panel-spacing">
+                      <div class="panel-heading" id="panel-heading-color">
+                        <h3 class="panel-title">Apartment Description</h3>  
+                      </div>
+                      <div class="panel-body">
+                        {{listing.description}}
+                      </div> 
+                    </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">Bedrooms</span>
+                      <span class="col-xs-3 col-md-3">Bath</span>
+                      <span class="col-xs-3 col-md-3">Sqrft</span>
+                      <span class="col-xs-3 col-md-3">Monthly</span>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">1</span>
+                      <span class="col-xs-3 col-md-3 ">1</span>
+                      <span class="col-xs-3 col-md-3 ">800</span>
+                      <span class="col-xs-3 col-md-3 ">$600</span>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">2</span>
+                      <span class="col-xs-3 col-md-3 ">2</span>
+                      <span class="col-xs-3 col-md-3 ">1000</span>
+                      <span class="col-xs-3 col-md-3 ">$1,200</span>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">3</span>
+                      <span class="col-xs-3 col-md-3 ">2</span>
+                      <span class="col-xs-3 col-md-3 ">1,800</span>
+                      <span class="col-xs-3 col-md-3 ">$1,600</span>
+                    </div>
+
+                  </div>
+                </div><!-- End of Bedroom Details -->
+
+                <!-- AMENITY DETAILS -->
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+                      <div class="col-xs-3 col-md-3 char-left-alignment">Amenities</div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment amenity-content-spacing">
+                      <p><span class="col-xs-12 col-md-12 char-left-alignment">Pet Friendly, Garage, Pool, Gym, Washer & Dryer</span></p>
+                      <span>Other: Granite Counter tops, other, other, etc.</span>
+                    </div>
+
+                  </div>
+                </div><!-- End of Amenity Details -->
+
+                  </div>
+                </div>
+
+              </div> 
+            </div>         
+          </div>
+        </div>
+
+      </div><!-- end of ng-show -->
+   
+    </div><!-- END OF LEFT PANEL -->
+   
+
+    <!-- RIGHT PANEL APARTMENTS -->
+    <div class="col-md-4">
+      <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
+        <a ng-repeat="apartment in apartments" ng-click='selectListing(apartment)'>
+
+          <div  class="col-md-12 list-group-border list-styling" ng-click="getApartment(apartment)">
+            <h4 class="titles-styling">{{apartment.apartment_name}}</h4>
+
+              <div class="row content-box-style">
+
+                <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
+                  <span class="thumbnail thumb-sizing">
+                    <img src="images/{{apartment.pictures.default_1}}" alt="images/no_image_placeholder.jpg">
+                  </span>
+                </span>
+
+                <div class="col-xm-12 col-sm-6 col-md-6 details-font-size">
+                  <p><br>
+                    <span>{{apartment.location.street_address}}</span><br>
+                    <span> {{apartment.location.city + ', ' + apartment.location.state}}</span>
+                  </p> 
+                  <p>
+                    <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span>
+                  </p>
+                </div>
+
+              </div>
+
+            <div class="list-group-separator"></div>        
+          </div>
+        </a>
+        
+      </div><!-- End Of Scroll -->
+    </div><!-- END OF RIGHT PANEL -->
+  </div><!-- End Of Row -->
+</div>
+
+<div ng-include="'views/partials/subscriberProfileEditTmpl.html'"></div>

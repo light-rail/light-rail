@@ -1,0 +1,111 @@
+<!-- MODAL -->
+<div class="modal animated bounceInDown apartment-modal-lg" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="row modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body center-content">
+
+          <!-- APARTMENT DETAILS -->
+          <div  class="col-xs-12 col-md-10">
+            <h2 class="titles-styling bottom-border">{{modal_apartment.apartment_name}}</h2>
+
+            <div class="row">
+              <div class="col-md-6">
+              <span>
+                <span>{{modal_apartment.location.street_address}}</span><br>
+                <span> {{modal_apartment.location.city + ', ' + modal_apartment.location.state + ' ' + modal_apartment.location.zip_code}}</span></br>
+                <span>{{modal_apartment.phone}}</span><br>
+                <span><a href="http://{{modal_apartment.webpage}}" target="_blank">{{modal_apartment.webpage}}</a></span>
+              </span></br>
+              </div>
+              
+              <div class="col-md-6 title">
+                <div class="panel panel-default rent-range-box">
+                  <span> ${{modal_apartment.rent_range.min}} to ${{modal_apartment.rent_range.max}} </span>
+                </div>      
+              </div>
+            </div><br><!-- End of Row -->
+            
+             <!-- PICTURE AREA -->
+            <div class="show-scroll">
+              <div class=" panel panel-default picture-scroll">
+                <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in modal_apartment.picturesArray" src="{{pic.src}}"/>
+
+              </div> <!-- End of picture area -->
+            </div>
+
+
+            <!-- APARTMENT DISCRIPTION -->
+            <div class="row">
+              <div class="col-md-12">
+              
+                <div class="panel panel-default panel-spacing">
+                  <div class="panel-heading" id="panel-heading-color">
+                    <h3 class="panel-title">Apartment Description</h3>  
+                  </div>
+                  <div class="panel-body">
+                    {{modal_apartment.description}}
+                  </div> 
+                </div>
+
+                <!-- APARTMENT BEDROOM DETAILS //Need an ng-repeat-->
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">Bedrooms</span>
+                      <span class="col-xs-3 col-md-3">Bath</span>
+                      <span class="col-xs-3 col-md-3">Sqrft</span>
+                      <span class="col-xs-3 col-md-3">Monthly</span>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">1</span>
+                      <span class="col-xs-3 col-md-3 ">1</span>
+                      <span class="col-xs-3 col-md-3 ">800</span>
+                      <span class="col-xs-3 col-md-3 ">$600</span>
+                    </div>
+                    <div class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">2</span>
+                      <span class="col-xs-3 col-md-3 ">2</span>
+                      <span class="col-xs-3 col-md-3 ">1000</span>
+                      <span class="col-xs-3 col-md-3 ">$1,200</span>
+                    </div>
+                    <div class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">3</span>
+                      <span class="col-xs-3 col-md-3 ">2</span>
+                      <span class="col-xs-3 col-md-3 ">1,800</span>
+                      <span class="col-xs-3 col-md-3 ">$1,600</span>
+                    </div>
+
+                  </div>
+                </div><!-- End of Bedroom Details -->
+
+                <!-- AMENITY DETAILS -->
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+                      <div class="col-xs-3 col-md-3 char-left-alignment">Amenities</div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 char-left-alignment amenity-content-spacing">
+                      <p><span class="col-xs-12 col-md-12 char-left-alignment">Pet Friendly, Garage, Pool, Gym, Washer & Dryer</span></p>
+                      <span>Other: Granite Counter tops, other, other, etc.</span>
+                    </div>
+
+                  </div>
+                </div><!-- End of Amenity Details -->
+                <div class="bottom-border border-top-spacing"></div>
+
+              </div>
+            </div><!-- End of Apartment Discription Row -->
+
+          </div><!-- end of Apartment Details -->
+ 
+        </div>
+      </div>
+  </div>
+</div>
