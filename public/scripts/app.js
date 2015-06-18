@@ -44,8 +44,11 @@ app.config(function($routeProvider){
       templateUrl: 'views/subscriber/apartmentListingDashboard.html',
       controller: 'SubscriberDashboardCtrl',
       resolve: {
-        subData: function(GeneralUserService) {
-          return GeneralUserService.getSubscriberInfo();
+        subProfile: function(SubscriberDashboardService) {
+          return SubscriberDashboardService.getSubscriberInfo();
+        },
+        subListings: function(SubscriberDashboardService, $route) {
+          return SubscriberDashboardService.getListings($route.current.params.id);
         }
       }
     })
