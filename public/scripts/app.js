@@ -1,4 +1,4 @@
-var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment']);
+var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'tc.chartjs']);
 
 app.config(function($routeProvider){
   $routeProvider

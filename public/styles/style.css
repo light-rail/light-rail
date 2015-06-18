@@ -78,8 +78,8 @@ html, body {
 }
 
 
-#hide-scroll ::-webkit-scrollbar { 
-  display: block; 
+#hide-scroll ::-webkit-scrollbar {
+  display: block;
 }
 
 .list-styling {
@@ -131,7 +131,7 @@ html, body {
 
 .rent-range-box {
   font-size: 30px;
-  font-weight: 300;  
+  font-weight: 300;
   margin-top: 10px;
   margin-bottom: 0px;
   text-align: center;
@@ -142,13 +142,13 @@ html, body {
   border-bottom:  2px solid #FF4019;
 }
 
-.picture-scroll { 
+.picture-scroll {
   overflow-x: scroll;
   height: 220px;
   white-space: nowrap;
   margin-bottom: 20px;
 
-} 
+}
 
 .img-size {
   max-height: 200px;
@@ -178,3 +178,56 @@ html, body {
   padding-top: 40px;
 }
 
+/** Admin Stats Page **/
+.adminListingsChart {
+height: 300px;
+width: 400px;
+margin-left: 15%;
+text-align: center;
+font-size: 25px;
+float: left;
+margin-top: 155px;
+}
+.otherAdminListingsChart {
+height: 300px;
+width: 400px;
+margin-left: 15%;
+text-align: center;
+font-size: 25px;
+float: left;
+
+}
+/** Admin Stats Page **/
+
+.adminTopContainer {
+  height: 600px;
+  width: 400px;
+  margin-left: 10px;
+  background-color:;
+  color: #ff4019;
+  float: left;
+  text-align: center;
+  border-color: #ff4019;
+  border-style: solid;
+  border-width: 5px;
+}
+
+.adminTopHeaders {
+  font-size: 25px;
+  text-align: center;
+  background-color: #ff4019;
+  color: white;
+
+}
+.adminMainContainer{
+  margin: 0 auto;
+  width: 90%
+}
+.adminBottomContainer{
+  background-color: ;
+  height: 45px;
+  color: #ff4019;
+  margin-top: 510px;
+  font-size: 15px;
+
+}
