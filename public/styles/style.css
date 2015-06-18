@@ -66,6 +66,8 @@ html, body {
   padding: 0;
 }
 
+.angular-google-map-container { height: 800px; }
+
 .map-position {
   padding: 0px;
 }

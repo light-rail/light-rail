@@ -7,6 +7,7 @@ var apartmentSchema = new Schema({
   phone_number: {type:String, required: true},
   email: {type:String, unique: true, lowercase: true, required: true},
   website: {type:String, required: true},
+  
 
   apt_options: [
     {

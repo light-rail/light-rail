@@ -1,6 +1,7 @@
-var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment']);
+var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps']);
 
 app.config(function($routeProvider){
+
   $routeProvider
     .when('/', {
       templateUrl: 'views/mainTmpl.html',
@@ -40,7 +41,7 @@ app.config(function($routeProvider){
     })
     .when('/myfavorites', {
       templateUrl: 'views/generalUser/generalUserFavoritesTmpl.html',
-      controller: 'GeneralUserFavoritesCtrl'
+      controller: 'GeneralUserFavoritesCtrl',
     })
     .when('/adminSubPage/:apartmentId', {
       templateUrl:'views/adminSubPage.html',
@@ -76,6 +77,8 @@ app.config(function($routeProvider){
      .otherwise({
       redirectTo: '/'
     });
+
+
 });
 
 
