@@ -182,6 +182,7 @@ html, body {
 .border-top-spacing {
   margin: 40px 0px;
 }
+
 /*** FORMS ***/
 
 .form-title-top-spacing {
@@ -193,7 +194,19 @@ html, body {
 }
 
 /*** LISTING PAGE ***/
-.listing-title-spacing {
+.listing-bottom-spacing {
+  margin-bottom: 20px;
+}
+
+#button-color {
+  background-color: #CFD8DC;
+}
+
+.photo-bottom-spacing {
   margin-bottom: 10px;
+}
+
+#unit-button-spacing {
+  margin-top: 20px;
 }
 
