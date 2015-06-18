@@ -189,10 +189,17 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
     }
   }]
 
-  var locationClicked = true;
+
   $scope.clickStation = function(marker) {
+    var locationClicked = true;
     id = marker.id;
-    if (locationClicked === true) {
+    for (var i = 0; i < $scope.circles.length; i++) {
+      if ($scope.circles[i].id === id) {
+        console.log("found")
+      }
+    };
+    if (locationClicked === true){
+       
       var circle = {
         id: marker.id,
         center: {
@@ -213,11 +220,20 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
       $scope.$apply(function() {
         $scope.circles.push(circle);
       })
+      console.log(id);
+      console.log(circle);
+      console.log("onclick", $scope.circles)
       locationClicked = false;
-      console.log(locationClicked);
     } else {
       locationClicked = true;
-      $scope.circles = [];
+       $scope.$apply(function() {
+        for (var i = 0; i < $scope.circles.length; i++) {
+          if($scope.circles[i].id === id) {
+            $scope.circles.splice(i, 1);
+          }
+        };
+       console.log($scope.circles);
+      })
     }
   }
 
