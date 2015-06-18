@@ -6,18 +6,18 @@
             <h2 class="titles-styling bottom-border">Profile</h2>
             <div class='form-group'>
               <label for='editCompanyName'>Company Name</label>
-              <input ng-model='subscriber.company_name' class='form-control input-lg' type='text' placeholder='Company Name' />
+              <input ng-model='editSubscriber.companyName' class='form-control input-lg' type='text' placeholder='Company Name' />
             </div>
             <div class='form-group'>
               <label for='editAddress'>Address</label>
-              <input ng-model='subscriber.contact_address.street_address' class='form-control' type='text' placeholder='Street' />
-              <input ng-model='subscriber.contact_address.city' class='form-control' type='text' placeholder='City' />
-              <select ng-model='subscriber.contact_address.state' ng-options='state.name for state in states' class='form-control'>
-                <option value=''>-- Select State --</option>
+              <input ng-model='editSubscriber.streetAddress' class='form-control' type='text' placeholder='Street' />
+              <input ng-model='editSubscriber.city' class='form-control' type='text' placeholder='City' />
+              <select ng-model='editSubscriber.state.name' ng-options='state.name for state in states' class='form-control'>
+                <option value=''>{{editSubscriber.state.name}}</option>
               </select>
-              <input ng-model='subscriber.contact_address.zip_code' class='form-control' type='text' placeholder='Zipcode'/>
+              <input ng-model='editSubscriber.zip' class='form-control' type='text' placeholder='Zipcode'/>
             </div>
-            <button ng-click='saveProfile()' class='btn btn-success close' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
+            <button ng-click='saveProfile(editSubscriber.companyName, editSubscriber.streetAddress, editSubscriber.city, editSubscriber.state.name, editSubscriber.zip)' class='btn btn-success' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
           </div>
         </div>
     </div>

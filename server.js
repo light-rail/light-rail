@@ -148,6 +148,8 @@ app.get('/api/user/getFavorites', UserCtrl.getFavorites);
 app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
 app.post('/api/login/subscriber', passport.authenticate('subscriber-local', { failureRedirect: '/login/subscriber'}), SubscriberCtrl.loginSubscriber);
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
+app.get('/api/subscriber/listings', SubscriberCtrl.getListings);
+app.post('/api/subscriber/addListing', SubscriberCtrl.addListing);
 
 
 //** Admin ** //
