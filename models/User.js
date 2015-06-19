@@ -38,8 +38,13 @@ var GeneralUserSchema = new Schema({
       //   type: Schema.Types.ObjectId,
       //   ref: 'GeneralUser'
       // }]
+  },
+  facebookId: {
+    type: String
+  },
+  provider: {
+    type: String
   }
-
 });
 
 //Pre('save') runs before every user is created

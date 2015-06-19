@@ -6,6 +6,7 @@ var passport = require('passport');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var env = require('dotenv').load();
 var FACEBOOK_ID = process.env.FACEBOOK_ID;
 var FACEBOOK_SECRET = process.env.FACEBOOK_SECRET;
 
@@ -113,19 +114,19 @@ passport.use('admin-local', new LocalStrategy({
 }));
 
 
-passport.use('user-facebook', new FacebookStrategy({
+passport.use(new FacebookStrategy({
   clientID: FACEBOOK_ID,
   clientSecret: FACEBOOK_SECRET,
-  callbackURL: 'https://127.0.0.1:' + port + '/facebook-token'
+  callbackURL: 'http://localhost:9001/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
   User.findOrCreate({
-    facebook.id: profile.id
+    facebookId: profile.id
   }, function(err, user) {
     if (err) {
       return done(err);
     }
     user = newUser({
-      email: profile.email
+      email: profile.email,
       provider: "facebook"
     });
     user.save(function(err, user) {
@@ -208,10 +209,10 @@ app.post('/api/trainStation', TrainStationCtrl.createLocation);
 
 /* facebook endpoints*/
 
-app.get('/auth/facebook', passport.authenticate('user-facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('user-facebook', {
+  passport.authenticate('facebook', {
     failureRedirect: '/#/login'
   }),
   function(req, res) {
@@ -228,7 +229,7 @@ app.get('/logout', function(req, res) {
 });
 
 
-app.get('/api/users/userId', requireAuth, function(req, res) {
+app.get('/api/users/userId', isAuthed, function(req, res) {
   User.findOne({
     facebookId: req.user.id
   }, function(err, user) {

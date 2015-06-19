@@ -1,4 +1,5 @@
-var stripe = require('stripe')
+var stripe = require('stripe');
+var env = require('dotenv').load();
 var PLATFORM_SECRET_KEY = process.env.PLATFORM_SECRET_KEY;
 var PLATFORM_PUBLISHABLE_KEY = process.env.PLATFORM_PUBLISHABLE_KEY;
 //var stripeToken = req.body.stripeToken;
