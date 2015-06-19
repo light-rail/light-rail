@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService, trainStations) {
+app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService) {
 
   var allApartmentsData = GeneralUserService.apartmentData;
 
@@ -147,68 +147,75 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
 
   $scope.pathArray = [];
-  $scope.circles = [];
   $scope.stationMarkers = [];
   $scope.selectedStation = [];
+  $scope.trainStations;
   var points;
 
+
+
+
   $scope.createPolyline = function() {
-    for (var i = 0; i < trainStations.length; i++) {
-      points = trainStations[i]
-      $scope.pathArray.push({
-        id: i,
-        latitude: points.lat,
-        longitude: points.long
-
-      })
-
-      $scope.stationMarkers.push({
-        id: i,
-        coords: {
+    GeneralUserService.getStations().then(function(data) {
+      $scope.trainStations = data;
+      for (var i = 0; i < $scope.trainStations.length; i++) {
+        points = $scope.trainStations[i]
+        $scope.pathArray.push({
+          id: i,
           latitude: points.lat,
-          longitude: points.long
-        },
-        message: points.name,
-      })
+          longitude: points.lng
 
+        })
 
-    }
+        $scope.stationMarkers.push({
+          id: i,
+          latitude: points.lat,
+          longitude: points.lng,
+          title: points.name,
+          clicked: false,
+          events: {
+            mouseover: function(marker, mouseover, stationMarkers) {
+              stationMarkers.show = true;
+            },
+            mouseout: function(marker, mouseout, stationMarkers) {
+              stationMarkers.show = false;
+            }
+          }
+        })
+      }
+    })
   }
+
   $scope.createPolyline();
 
   $scope.polylines = [{
     path: $scope.pathArray,
     geodesic: true,
     stroke: {
-      color: '#FF0000',
+      color: '#e68f03',
       weight: 3,
       opacity: 1.0
     }
   }]
 
-
+  $scope.circles = [];
   $scope.clickStation = function(marker) {
-    var locationClicked = true;
-    id = marker.id;
-    for (var i = 0; i < $scope.circles.length; i++) {
-      if ($scope.circles[i].id === id) {
-        console.log("found")
-      }
-    };
-    if (locationClicked === true){
-       
+    console.log(marker);
+    var id = marker.model.id;
+    if (marker.model.clicked === false) {
+
       var circle = {
-        id: marker.id,
+        id: id,
         center: {
-          latitude: marker.coords.latitude,
-          longitude: marker.coords.longitude
+          latitude: marker.model.latitude,
+          longitude: marker.model.longitude
         },
         radius: 804.67200,
         stroke: {
           weight: 0
         },
         fill: {
-          color: '#FF0000',
+          color: '#e68f03',
           opacity: 0.1
         },
         clickable: false,
@@ -216,20 +223,19 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
       }
       $scope.$apply(function() {
         $scope.circles.push(circle);
+        $scope.map.zoom = 15;
+        $scope.map.center = circle.center;
       })
-      console.log(id);
-      console.log(circle);
-      console.log("onclick", $scope.circles)
-      locationClicked = false;
+      marker.model.clicked = true;
     } else {
-      locationClicked = true;
-       $scope.$apply(function() {
+      marker.model.clicked = false;
+      $scope.$apply(function() {
         for (var i = 0; i < $scope.circles.length; i++) {
-          if($scope.circles[i].id === id) {
+          if ($scope.circles[i].id === id) {
             $scope.circles.splice(i, 1);
           }
         };
-       console.log($scope.circles);
+        $scope.map.zoom = 13;
       })
     }
   }
@@ -237,9 +243,33 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
 
 
+  // $scope.aptMarkers = [];
+  // $scope.aptMarkers = function() {
+  //   GeneralUserService.getAptData().then(function(data) {
+  //     console.log(data);
+  //     $scope.aptMarkers.push({
+  //       id: 
+  //       latitude: 
+  //       longitude: 
+  //       title:
+  //        events: {
+  //         mouseover: function(marker, mouseover, aptMarkers) {
+  //           aptMarkers.show = true;
+  //         },
+  //         mouseout: function(marker, mouseout, aptMarkers) {
+  //           aptMarkers.show = false;
+  //         }
+  //       }
+
+  //     })
+  //   })
+  // }
 
 
+// GeneralUserService.getNearestStops().then(function(data) {
 
+
+// });
 
 
 

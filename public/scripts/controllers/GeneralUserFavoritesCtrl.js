@@ -139,22 +139,7 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
     }];
 
 
- var pathArray = []
-  $scope.createPolyline = function() {
-    for (var i = 0; i < trainStations.length; i++) {
-      var points = trainStations[i]
-      pathArray.push({
-        latitude: points.lat,
-        longitude: points.long
-      })
-    }
-  }
-
-$scope.createPolyline();
-
-
-
-  $scope.map = {
+ $scope.map = {
     center: {
       latitude: 33.439266,
       longitude: -111.971015
@@ -166,294 +151,102 @@ $scope.createPolyline();
     styles: mapStyles
   };
 
+  $scope.pathArray = [];
+  $scope.stationMarkers = [];
+  $scope.selectedStation = [];
+  var points;
+
+  $scope.createPolyline = function() {
+    for (var i = 0; i < trainStations.length; i++) {
+      points = trainStations[i]
+      $scope.pathArray.push({
+        id: i,
+        latitude: points.lat,
+        longitude: points.long
+
+      })
+
+      $scope.stationMarkers.push({
+        id: i,
+        latitude: points.lat,
+        longitude: points.long,
+        title: points.name,
+        clicked: false,
+        events: {
+          mouseover: function(marker, mouseover, stationMarkers) {
+            stationMarkers.show = true;
+          },
+          mouseout: function(marker, mouseout, stationMarkers) {
+            stationMarkers.show = false;
+          }
+        }
+      })
+    }
+  }
+
+  $scope.createPolyline();
+
   $scope.polylines = [{
-    path: pathArray,
+    path: $scope.pathArray,
     geodesic: true,
     stroke: {
       color: '#4059FF',
-      weight: 2,
+      weight: 3,
       opacity: 1.0
     }
-    // icons: [{
-    //     icon: {
-    //         path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW
-    //     },
-    //     offset: '25px',
-    //     repeat: '50px'
-    // }]
-
   }]
 
 
+   $scope.circles = [];
+  $scope.clickStation = function(marker) {
+    var id = marker.model.id;
+    if (marker.model.clicked === false) {
+
+      var circle = {
+        id: id,
+        center: {
+          latitude: marker.model.latitude,
+          longitude: marker.model.longitude
+        },
+        radius: 804.67200,
+        stroke: {
+          weight: 0
+        },
+        fill: {
+          color: '#4059FF',
+          opacity: 0.1
+        },
+        clickable: false,
+        visible: true
+      }
+      $scope.$apply(function() {
+        $scope.circles.push(circle);
+        $scope.map.zoom = 15;
+        $scope.map.center = circle.center;
+      })
+      marker.model.clicked = true;
+    } else {
+      marker.model.clicked = false;
+      $scope.$apply(function() {
+        for (var i = 0; i < $scope.circles.length; i++) {
+          if ($scope.circles[i].id === id) {
+            $scope.circles.splice(i, 1);
+          }
+        };
+        $scope.map.zoom = 13;
+      })
+    }
+  }
 
 
 
 
-  //** Map **//
-
-  // $scope.favAptArray = [];
-  // var favAptMarker;
-
-
-  // $scope.createFavAptMarker = function(map) {
-  //   console.log("creating FavApt");
-  //   var favorites = GeneralUserService.apartmentData;
-
-  //   for (var i = 0; i < favorites.length; i++) {
-  //     var favorite = favorites[i].location;
-  //     favAptMarker = new google.maps.Marker({
-  //       position: new google.maps.LatLng(favorite.lat, favorite.long),
-  //       map: map,
-  //       title: favorite.apartment_name,
-  //       animation: google.maps.Animation.DROP,
-  //       icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
-  //     })
-
-  //     google.maps.event.addListener(favAptMarker, 'mouseover', (function(favAptMarker, i) {
-  //       return function() {
-  //         infowindow = new google.maps.InfoWindow({
-  //           content: {
-  //             title: favAptMarker.title,
-  //             website: favorite.website
-  //           }
-  //         });
-  //         infowindow.open(map, favAptMarker);
-  //       }
-  //     })(favAptMarker, i));
 
 
 
-  //     google.maps.event.addListener(favAptMarker, 'mouseout', (function(favAptMarker, i) {
-  //       return function() {
-  //         infowindow.close();
-  //       }
-  //     })(favAptMarker, i));
-
-  //     $scope.favAptArray.push(favAptMarker);
-  //   }
-  // }
-
-  // $scope.markerArray = [];
-
-  // // CREATES MAKER POINTS
-  // $scope.createMarker = function(map) {
-
-  //   for (var i = 0; i < trainStations.length; i++) {
-  //     var stop = trainStations[i];
-
-  //     var marker = new google.maps.Marker({
-  //       position: new google.maps.LatLng(stop.lat, stop.long),
-  //       map: map,
-  //       title: stop.name,
-  //       icon: {
-  //         path: google.maps.SymbolPath.CIRCLE,
-  //         scale: 6,
-  //         strokeWeight: 4,
-  //         strokeColor: 'blue'
-  //       },
-  //       animation: google.maps.Animation.DROP
-  //     });
-
-
-  //     google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-  //       return function() {
-  //         infowindow = new google.maps.InfoWindow({
-  //           content: marker.title,
-  //         });
-  //         infowindow.open(map, marker);
-  //       }
-  //     })(marker, i));
 
 
 
-  //     google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
-  //       return function() {
-  //         infowindow.close();
-  //       }
-  //     })(marker, i));
-
-
-
-  //     $scope.markerArray.push(marker);
-  //   }
-  // }
-
-
-
-  // // CREATES LINE POINTS
-  // $scope.createLine = function(arr) {
-  //   for (var i = 0; i < trainStations.length; i++) {
-  //     var points = trainStations[i]
-  //     arr.push(new google.maps.LatLng(points.lat, points.long));
-  //   };
-  // }
-  // var map;
-
-  // // CREATES MAP 
-  // $scope.initialize = function() {
-  //   console.log("Hit function");
-    // var mapStyles = [{
-    //   "featureType": "water",
-    //   "elementType": "geometry",
-    //   "stylers": [{
-    //     "color": "#CCE4FC"
-    //   }, {
-    //     "lightness": 17
-    //   }]
-    // }, {
-    //   "featureType": "landscape",
-    //   "elementType": "geometry",
-    //   "stylers": [{
-    //     "color": "#f5f5f5"
-    //   }, {
-    //     "lightness": 20
-    //   }]
-    // }, {
-    //   "featureType": "road.highway",
-    //   "elementType": "geometry.fill",
-    //   "stylers": [{
-    //     "color": "#ffffff"
-    //   }, {
-    //     "lightness": 17
-    //   }]
-    // }, {
-    //   "featureType": "road.highway",
-    //   "elementType": "geometry.stroke",
-    //   "stylers": [{
-    //     "color": "#ffffff"
-    //   }, {
-    //     "lightness": 29
-    //   }, {
-    //     "weight": 0.2
-    //   }]
-    // }, {
-    //   "featureType": "road.arterial",
-    //   "elementType": "geometry",
-    //   "stylers": [{
-    //     "color": "#ffffff"
-    //   }, {
-    //     "lightness": 18
-    //   }]
-    // }, {
-    //   "featureType": "road.local",
-    //   "elementType": "geometry",
-    //   "stylers": [{
-    //     "color": "#ffffff"
-    //   }, {
-    //     "lightness": 18
-    //   }]
-    // }, {
-    //   "featureType": "poi",
-    //   "elementType": "geometry",
-    //   "stylers": [{
-    //     "color": "#f5f5f5"
-    //   }, {
-    //     "lightness": 21
-    //   }]
-    // }, {
-    //   "featureType": "poi.park",
-    //   "elementType": "geometry",
-    //   "stylers": [{
-    //     "color": "#AFDEAF"
-    //   }, {
-    //     "lightness": 21
-    //   }]
-    // }, {
-    //   "elementType": "labels.text.stroke",
-    //   "stylers": [{
-    //     "visibility": "on"
-    //   }, {
-    //     "color": "#ffffff"
-    //   }, {
-    //     "lightness": 16
-    //   }]
-    // }, {
-    //   "elementType": "labels.text.fill",
-    //   "stylers": [{
-    //     "saturation": 36
-    //   }, {
-    //     "color": "#333333"
-    //   }, {
-    //     "lightness": 40
-    //   }]
-    // }, {
-    //   "elementType": "labels.icon",
-    //   "stylers": [{
-    //     "visibility": "on"
-    //   }]
-    // }, {
-    //   "featureType": "transit",
-    //   "elementType": "geometry",
-    //   "stylers": [{
-    //     "color": "#f2f2f2"
-    //   }, {
-    //     "lightness": 19
-    //   }]
-    // }, {
-    //   "featureType": "administrative",
-    //   "elementType": "geometry.fill",
-    //   "stylers": [{
-    //     "color": "#BFE3BF"
-    //   }, {
-    //     "lightness": 20
-    //   }]
-    // }, {
-    //   "featureType": "administrative",
-    //   "elementType": "geometry.stroke",
-    //   "stylers": [{
-    //     "color": "#fefefe"
-    //   }, {
-    //     "lightness": 17
-    //   }, {
-    //     "weight": 1.2
-    //   }]
-    // }];
-
-  //   var mapOptions = {
-  //     zoom: 12,
-  //     scrollwheel: true,
-  //     center: new google.maps.LatLng(33.439266, -111.971015)
-  //   };
-  //   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-  //   var styledMapOptions = {
-  //     name: 'Search Map'
-  //   };
-
-  //   var styledSearchMap = new google.maps.StyledMapType(mapStyles, styledMapOptions);
-
-  //   map.mapTypes.set('searchmap', styledSearchMap);
-  //   map.setMapTypeId('searchmap');
-
-  //   $scope.createMarker(map);
-  //   $scope.createFavAptMarker(map);
-
-  //   var lightRailCoordinates = [];
-
-  //   $scope.createLine(lightRailCoordinates);
-
-  //   var lightRailPath = new google.maps.Polyline({
-  //     path: lightRailCoordinates,
-  //     geodesic: true,
-  //     strokeColor: '#4760FF',
-  //     strokeOpacity: 1.0,
-  //     strokeWeight: 2
-  //   });
-
-  //   lightRailPath.setMap(map);
-
-
-
-  //   google.maps.event.addListener(map, 'click', function() {
-  //     console.log("Map Click");
-  //   });
-
-  // }
-
-
-  // if($('#map-canvas').length && !$('#map-canvas div').length){$scope.initialize();}
-  // $scope.initialize();
-  // google.maps.event.addDomListener(window, 'load', $scope.initialize());
 
 
 });

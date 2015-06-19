@@ -11,6 +11,7 @@ var UserCtrl = require('./controllers/UserCtrl.js');
 var SubscriberCtrl = require('./controllers/SubscriberCtrl.js');
 var AdminCtrl = require('./controllers/AdminCtrl.js');
 var TrainStationCtrl = require('./controllers/TrainStationCtrl.js');
+var ApartmentCtrl = require('./controllers/ApartmentCtrl.js')
 
 //*** MODELS ***//
 var User = require('./models/User.js');
@@ -144,6 +145,8 @@ app.post('/api/login/user', passport.authenticate('user-local', { failureRedirec
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 app.get('/api/user/getFavorites', UserCtrl.getFavorites);
 
+
+
 //** Subscriber ** //
 app.post('/api/register/subscriber', SubscriberCtrl.createSubscriber);
 app.post('/api/login/subscriber', passport.authenticate('subscriber-local', { failureRedirect: '/login/subscriber'}), SubscriberCtrl.loginSubscriber);
@@ -157,8 +160,11 @@ app.get('/api/admin/isLoggedIn', AdminCtrl.isLoggedIn);
 
 //** Train Stations **//
 app.post('/api/trainStation', TrainStationCtrl.createLocation);
+app.get('/api/stations/getStations', TrainStationCtrl.getStations);
 
-
+//** Apartments **//
+app.get('/api/apartment/getAptData', ApartmentCtrl.getAptData);
+app.get('/api/apartment/getNearestStops', ApartmentCtrl.getNearestStops);
 
 // Connections
 var port = 9001;
