@@ -1,0 +1,48 @@
+<div class="modal animated bounceInDown listing-edit-modal-lg" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body center-content">
+          <div  class="col-xs-12 col-md-10">
+            <h2 class="titles-styling bottom-border">Listing</h2>
+            <div class='form-group'>
+              <label for='editListingName'>Listing Name</label>
+              <input ng-model='editListing.listingName' class='form-control input-lg' type='text' placeholder='Listing Name' />
+            </div>
+            <div class='form-group'>
+              <label for='editLocation'>Location</label>
+              <input ng-model='editListing.location.street' class='form-control' type='text' placeholder='Street' />
+              <input ng-model='editListing.location.city' class='form-control' type='text' placeholder='City' />
+              <select ng-model='editListing.location.state.name' ng-options='state.name for state in states' class='form-control'>
+                <option value=''>{{editListing.location.state.name}}</option>
+              </select>
+              <input ng-model='editListing.location.zip' class='form-control' type='text' placeholder='Zipcode'/>
+            </div>
+            <div class='form-group'>
+              <label for='editLocation'>Contact</label>
+              <input ng-model='editListing.phone' class='form-control' type='text' placeholder='Phone' />
+              <input ng-model='editListing.webpage' class='form-control' type='text' placeholder='Webpage' />
+            </div>
+            <div class='form-group'>
+              <label for='editPricing'>Pricing $</label>
+              <input ng-model='editListing.rentRange.min' class='form-control' type='text' placeholder='Minimum' />
+              <input ng-model='editListing.rentRange.max' class='form-control' type='text' placeholder='Maximum' />
+            </div>
+            <div class='form-group'>
+              <label for='editPictures'>Pictures</label>
+              <div class="show-scroll">
+                <div class=" panel panel-default picture-scroll">
+                  <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in editListing.picturesArray" src="{{pic.src}}"/>
+
+                </div>
+              </div>
+            </div>
+            <div class='form-group'>
+              <label>Description</label>
+              <textarea ng-model='editListing.description' class="form-control" rows="5"></textarea>
+            </div>
+            <button ng-click='saveListing(editListing.listingName, editListing.location, editListing.phone, editListing.webpage, editListing.rentRange, editListing.picturesArray, editListing.description)' class='btn btn-success close' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div> 

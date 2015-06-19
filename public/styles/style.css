@@ -66,6 +66,8 @@ html, body {
   padding: 0;
 }
 
+.angular-google-map-container { height: 800px; }
+
 .map-position {
   padding: 0px;
 }
@@ -182,6 +184,7 @@ html, body {
 .border-top-spacing {
   margin: 40px 0px;
 }
+
 /*** FORMS ***/
 
 .form-title-top-spacing {
@@ -190,5 +193,22 @@ html, body {
 
 .form-panel-top-spacing {
   padding-top: 40px;
+}
+
+/*** LISTING PAGE ***/
+.listing-bottom-spacing {
+  margin-bottom: 20px;
+}
+
+#button-color {
+  background-color: #CFD8DC;
+}
+
+.photo-bottom-spacing {
+  margin-bottom: 10px;
+}
+
+#unit-button-spacing {
+  margin-top: 20px;
 }
 
