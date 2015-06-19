@@ -364,10 +364,9 @@ var clearMarkers = function(array) {
 
 
   
-
-  // INITIALIZE MAP ON PAGE LOAD
-$scope.initialize();
-  // google.maps.event.addDomListener(window, 'load', $scope.initialize());
+// if($('#map-canvas').length && !$('#map-canvas div').length){$scope.initialize();}
+// $scope.initialize();
+  google.maps.event.addDomListener(window, 'load', $scope.initialize());
  
 
 
