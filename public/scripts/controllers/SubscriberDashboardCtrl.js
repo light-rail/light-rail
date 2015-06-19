@@ -1,9 +1,9 @@
 var app = angular.module('lightRail');
 
-app.controller('SubscriberDashboardCtrl', function($scope, subData, GeneralUserService) {
+app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListings, GeneralUserService) {
 
 	//Subscriber
-	$scope.subscriber = subData;
+	$scope.subscriber = subProfile;
 	console.log($scope.subscriber);
 
 	$scope.editSubscriber = {
@@ -17,28 +17,27 @@ app.controller('SubscriberDashboardCtrl', function($scope, subData, GeneralUserS
 	};
 
 	//listings
-	$scope.listing = GeneralUserService.apartmentData[0];
-	console.log($scope.listing);
+	$scope.listings = subListings;
+	console.log('Listings:', $scope.listings);
+	$scope.listing = subListings[0];
 
 	$scope.editListing = {
-		listingName: $scope.listing.apartment_name,
-		location: {
-			street: $scope.listing.location.street_address,
-			city: $scope.listing.location.city,
-			state: {
-				name: $scope.listing.location.state
-			},
-			zip: $scope.listing.location.zip_code
+		apartment_name: $scope.listing.apartment_name,
+		address: {
+			street: $scope.listing.address.street,
+			city: $scope.listing.address.city,
+			state: $scope.listing.address.state,
+			zip: $scope.listing.address.zip_code
 		},
-		phone: $scope.listing.phone,
-		webpage: $scope.listing.webpage,
-		rentRange: {
-			max: $scope.listing.rent_range.max,
-			min: $scope.listing.rent_range.min
-		},
+		phone_number: $scope.listing.phone_number,
+		website: $scope.listing.website,
 		coverPicture: $scope.listing.cover_picture,
 		picturesArray: $scope.listing.picturesArray,
-		description: $scope.listing.description
+		description: $scope.listing.description,
+		price_range: {
+			min: $scope.listing.price_range.min,
+			max: $scope.listing.price_range.max
+		}
 	};
 
 	$scope.states = [
@@ -130,6 +129,5 @@ app.controller('SubscriberDashboardCtrl', function($scope, subData, GeneralUserS
 	};
 
 	//seed data for development only
-	$scope.apartments = GeneralUserService.apartmentData;
 
 });
