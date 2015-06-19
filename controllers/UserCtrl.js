@@ -33,7 +33,7 @@ module.exports = {
         return res.status(200).json({isSubscriber: true});
       }
     }
-  }
+  },
 
   getFavorites: function(req, res) {
     User.find({_id: req.user._id}, 'favorites', function(err, data) {
