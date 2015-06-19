@@ -10,6 +10,12 @@ module.exports = {
       }
       return res.json(station);
     })
+  },
+
+   getStations: function(req, res) {
+    TrainStation.find({}, function(error, data) {
+       return res.json(data);
+    })
   }
 
 };
