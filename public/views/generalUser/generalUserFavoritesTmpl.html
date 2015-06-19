@@ -3,7 +3,22 @@
 
     <!-- LEFT PANEL MAP -->
     <div class="col-md-8 animated slideInLeft map-position" Erase-style="border: 2px dashed green;">
-      <div id="map-canvas" style="width:100%; height:800px; "></div>
+      <div id="map-canvas" style="width:100%; height:800px;">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' options='options'>
+
+        <ui-gmap-polyline ng-repeat='p in polylines' path='p.path' stroke='p.stroke' geodesic='p.geodesic' ></ui-gmap-polyline>
+
+          <ui-gmap-markers models="stationMarkers" coords="'self'" click="clickStation" events="stationMarkers.events" icon='{url: "images/pin2.png"}'>
+                 <ui-gmap-windows show="show">
+                    <div ng-non-bindable>{{title}}</div>
+                 </ui-gmap-windows>
+        </ui-gmap-markers>
+
+        
+        <ui-gmap-circle ng-repeat="c in circles" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" clickable="c.clickable" visible="c.visible"></ui-gmap-circle>
+
+        </ui-gmap-google-map>
+      </div>
     </div>
    
 

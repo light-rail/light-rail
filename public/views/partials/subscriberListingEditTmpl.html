@@ -6,26 +6,26 @@
             <h2 class="titles-styling bottom-border">Listing</h2>
             <div class='form-group'>
               <label for='editListingName'>Listing Name</label>
-              <input ng-model='editListing.listingName' class='form-control input-lg' type='text' placeholder='Listing Name' />
+              <input ng-model='editListing.apartment_name' class='form-control input-lg' type='text' placeholder='Listing Name' />
             </div>
             <div class='form-group'>
               <label for='editLocation'>Location</label>
-              <input ng-model='editListing.location.street' class='form-control' type='text' placeholder='Street' />
-              <input ng-model='editListing.location.city' class='form-control' type='text' placeholder='City' />
-              <select ng-model='editListing.location.state.name' ng-options='state.name for state in states' class='form-control'>
-                <option value=''>{{editListing.location.state.name}}</option>
+              <input ng-model='editListing.address.street' class='form-control' type='text' placeholder='Street' />
+              <input ng-model='editListing.address.city' class='form-control' type='text' placeholder='City' />
+              <select ng-model='editListing.address.state' ng-options='state.name for state in states' class='form-control'>
+                <option value=''>{{editListing.address.state}}</option>
               </select>
-              <input ng-model='editListing.location.zip' class='form-control' type='text' placeholder='Zipcode'/>
+              <input ng-model='editListing.address.zip' class='form-control' type='text' placeholder='Zipcode'/>
             </div>
             <div class='form-group'>
               <label for='editLocation'>Contact</label>
-              <input ng-model='editListing.phone' class='form-control' type='text' placeholder='Phone' />
-              <input ng-model='editListing.webpage' class='form-control' type='text' placeholder='Webpage' />
+              <input ng-model='editListing.phone_number' class='form-control' type='text' placeholder='Phone' />
+              <input ng-model='editListing.website' class='form-control' type='text' placeholder='Webpage' />
             </div>
             <div class='form-group'>
               <label for='editPricing'>Pricing $</label>
-              <input ng-model='editListing.rentRange.min' class='form-control' type='text' placeholder='Minimum' />
-              <input ng-model='editListing.rentRange.max' class='form-control' type='text' placeholder='Maximum' />
+              <input ng-model='editListing.price_range.min' class='form-control' type='text' placeholder='Minimum' />
+              <input ng-model='editListing.price_range.max' class='form-control' type='text' placeholder='Maximum' />
             </div>
             <div class='form-group'>
               <label for='editPictures'>Pictures</label>
