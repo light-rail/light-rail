@@ -26,6 +26,7 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
+
   this.getSubscriberInfo = function(){
     var url = '/api/subscriber/isLoggedIn';
     return $http({
@@ -35,7 +36,6 @@ app.service('GeneralUserService', function($http, $q) {
       return data.data;
     });
   };
-
 
   this.displayAll = function(obj) {
     var allItems = '';

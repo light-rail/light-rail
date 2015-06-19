@@ -22,7 +22,7 @@
                 <ul class="list-group">
                   <li class="list-group-item"><strong>Street: </strong> {{subscriber.contact_address.street_address}}</li>
                   <li class="list-group-item"><strong>City: </strong> {{subscriber.contact_address.city}}</li>
-                  <li class="list-group-item"><strong> State: </strong> {{subscriber.contact_address.state.name}}</li>
+                  <li class="list-group-item"><strong> State: </strong> {{subscriber.contact_address.state}}</li>
                   <li class="list-group-item"><strong>Zip: </strong> {{subscriber.contact_address.zip_code}} </li>
                 </ul>
               </div> 
@@ -32,10 +32,13 @@
           <div class="col-md-6">
             <div class="panel panel-default panel-spacing">
               <div class="panel-heading" id="panel-heading-color">
-                <h3 class="panel-title">Billing</h3>  
+                <h3 class="panel-title">Account</h3>  
               </div>
               <div class="panel-body">
-                
+                <div ng-hide='subscriber.subscribed'>
+                  <button class='btn btn-success pull-right'>Setup</button>
+                  <h4> Setup Subscription: </h4>
+                </div>
               </div> 
             </div>
           </div>
@@ -47,21 +50,21 @@
           <div class="col-md-12">
             <div class="panel panel-default panel-spacing">
               <div class="panel-heading" id="panel-heading-color">
-                <a href='' class="pull-right">Edit</a>
+                <a href='' data-target='.listing-edit-modal-lg' data-toggle='modal' class="pull-right">Edit</a> 
                 <h3 class="panel-title">Listing Details</h3>
               </div>
               <div class="panel-body">
                 <span class='pull-right'>
                   <strong>Posted: </strong> 
-                  <span am-time-ago="listing.date_created"></span>
+                  <span am-time-ago="listing.created_at"></span>
                 </span>
                 <h2 class="titles-styling bottom-border">{{listing.apartment_name}}</h2>
 
                 <div class='row'>
                   <div class='col-md-6'>
                     <span>
-                      <span>{{listing.location.street_address}}</span><br>
-                      <span> {{listing.location.city + ', ' + listing.location.state + ' ' + listing.location.zip_code}}</span></br>
+                      <span>{{listing.address.street}}</span><br>
+                      <span> {{listing.address.city + ', ' + listing.address.state.name + ' ' + listing.address.zip_code}}</span></br>
                       <span>{{listing.phone}}</span><br>
                       <span><a href="http://{{modal_apartment.webpage}}" target="_blank">{{listing.webpage}}</a></span>
                       </span></br>
@@ -69,17 +72,14 @@
 
                   <div class="col-md-6 title">
                     <div class="panel panel-default rent-range-box">
-                      <span> ${{listing.rent_range.min}} to ${{listing.rent_range.max}} </span>
+                      <span> ${{listing.price_range.min}} to ${{listing.price_range.max}} </span>
                     </div></br>       
                   </div>
                 </div> <!-- end of row -->
 
                 <div class="show-scroll">
                   <div class=" panel panel-default picture-scroll">
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.default_1}}"/>
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_2}}"/>
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_3}}"/>
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_2}}"/>
+                    <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in listing.pictures_array" src="{{pic.src}}"/>
                   </div> 
                 </div> <!-- End of picture area -->
 
@@ -104,27 +104,12 @@
                       <span class="col-xs-3 col-md-3">Monthly</span>
                     </div>
 
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">1</span>
-                      <span class="col-xs-3 col-md-3 ">1</span>
-                      <span class="col-xs-3 col-md-3 ">800</span>
-                      <span class="col-xs-3 col-md-3 ">$600</span>
+                    <div ng-repeat='opt in listing.apt_options'  class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">{{opt.bedrooms}}</span>
+                      <span class="col-xs-3 col-md-3 ">{{opt.bathrooms}}</span>
+                      <span class="col-xs-3 col-md-3 ">{{opt.square_feet}}</span>
+                      <span class="col-xs-3 col-md-3 ">$ {{opt.price}}</span>
                     </div>
-
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">2</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1000</span>
-                      <span class="col-xs-3 col-md-3 ">$1,200</span>
-                    </div>
-
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">3</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1,800</span>
-                      <span class="col-xs-3 col-md-3 ">$1,600</span>
-                    </div>
-
                   </div>
                 </div><!-- End of Bedroom Details -->
 
@@ -144,6 +129,8 @@
                   </div>
                 </div><!-- End of Amenity Details -->
 
+                <a href='/#/subscriber/new_listing' class='col-xs-12 col-md-12 btn btn-primary btn-raised btn-sm'><i class='fa fa-plus edit-text-color'></i><span class='edit-text-color'> Add A Listing</span></a>
+
                   </div>
                 </div>
 
@@ -152,7 +139,7 @@
           </div>
         </div>
 
-      </div><!-- end of ng-show -->
+      </div><!-- end of ng-show --> 
    
     </div><!-- END OF LEFT PANEL -->
    
@@ -160,26 +147,26 @@
     <!-- RIGHT PANEL APARTMENTS -->
     <div class="col-md-4">
       <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
-        <a ng-repeat="apartment in apartments" ng-click='selectListing(apartment)'>
+        <a ng-repeat="apartment in listings" ng-click='selectListing(apartment)'>
 
-          <div  class="col-md-12 list-group-border list-styling" ng-click="getApartment(apartment)">
+          <div  class="col-md-12 list-group-border list-styling">
             <h4 class="titles-styling">{{apartment.apartment_name}}</h4>
 
               <div class="row content-box-style">
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="images/{{apartment.pictures.default_1}}" alt="images/no_image_placeholder.jpg">
+                    <img src="{{apartment.cover_picture}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 
                 <div class="col-xm-12 col-sm-6 col-md-6 details-font-size">
                   <p><br>
-                    <span>{{apartment.location.street_address}}</span><br>
-                    <span> {{apartment.location.city + ', ' + apartment.location.state}}</span>
+                    <span>{{apartment.address.street}}</span><br>
+                    <span> {{apartment.address.city + ', ' + apartment.address.state}}</span>
                   </p> 
                   <p>
-                    <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span>
+                    <!-- <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span> -->
                   </p>
                 </div>
 
@@ -195,3 +182,5 @@
 </div>
 
 <div ng-include="'views/partials/subscriberProfileEditTmpl.html'"></div>
+<div ng-include="'views/partials/subscriberListingEditTmpl.html'"></div>
+<!-- <div ng-include="'views/partials/subscriberSetupTmpl.html'"></div> -->
