@@ -52,6 +52,14 @@ var SubscriberSchema = new Schema({
   stripeId: {
     type: String
   },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  subscribed: {
+    type: Boolean,
+    default: false
+  },
   listings: [SubscriberListing]
 });
 

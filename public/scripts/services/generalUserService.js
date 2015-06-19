@@ -26,18 +26,6 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
-  this.getSubscriberInfo = function(){
-    var url = '/api/subscriber/isLoggedIn';
-    return $http({
-      method: 'GET',
-      url: url
-    }).then(function(data){
-      return data.data;
-    });
-  };
-
-
-
   this.displayAll = function(obj) {
     var allItems = '';
     for (var prop in obj) {
