@@ -18,6 +18,7 @@ var SubscriberSchema = new Schema({
      zip_code: { type: Number }
   },
   createdAt: { type: Date, default: Date.now },
+  subscribed: {type: Boolean, default: false},
   listings:  [SubscriberListing]
 });
 

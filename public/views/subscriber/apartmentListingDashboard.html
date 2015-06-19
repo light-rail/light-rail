@@ -32,10 +32,13 @@
           <div class="col-md-6">
             <div class="panel panel-default panel-spacing">
               <div class="panel-heading" id="panel-heading-color">
-                <h3 class="panel-title">Billing</h3>  
+                <h3 class="panel-title">Account</h3>  
               </div>
               <div class="panel-body">
-                
+                <div ng-hide='subscriber.subscribed'>
+                  <button class='btn btn-success pull-right'>Setup</button>
+                  <h4> Setup Subscription: </h4>
+                </div>
               </div> 
             </div>
           </div>
@@ -47,7 +50,7 @@
           <div class="col-md-12">
             <div class="panel panel-default panel-spacing">
               <div class="panel-heading" id="panel-heading-color">
-                <a href='' class="pull-right">Edit</a>
+                <a href='' data-target='.listing-edit-modal-lg' data-toggle='modal' class="pull-right">Edit</a> 
                 <h3 class="panel-title">Listing Details</h3>
               </div>
               <div class="panel-body">
@@ -61,7 +64,7 @@
                   <div class='col-md-6'>
                     <span>
                       <span>{{listing.location.street_address}}</span><br>
-                      <span> {{listing.location.city + ', ' + listing.location.state + ' ' + listing.location.zip_code}}</span></br>
+                      <span> {{listing.location.city + ', ' + listing.location.state.name + ' ' + listing.location.zip_code}}</span></br>
                       <span>{{listing.phone}}</span><br>
                       <span><a href="http://{{modal_apartment.webpage}}" target="_blank">{{listing.webpage}}</a></span>
                       </span></br>
@@ -76,10 +79,7 @@
 
                 <div class="show-scroll">
                   <div class=" panel panel-default picture-scroll">
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.default_1}}"/>
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_2}}"/>
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_3}}"/>
-                    <img class="img-thumbnail img-responsive img-size" src="images/{{listing.pictures.pic_2}}"/>
+                    <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in listing.picturesArray" src="{{pic.src}}"/>
                   </div> 
                 </div> <!-- End of picture area -->
 
@@ -144,6 +144,8 @@
                   </div>
                 </div><!-- End of Amenity Details -->
 
+                <a class='col-xs-12 col-md-12 btn btn-primary btn-raised btn-sm'><i class='fa fa-plus edit-text-color'></i><span class='edit-text-color'> Add A Listing</span></a>
+
                   </div>
                 </div>
 
@@ -162,14 +164,14 @@
       <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
         <a ng-repeat="apartment in apartments" ng-click='selectListing(apartment)'>
 
-          <div  class="col-md-12 list-group-border list-styling" ng-click="getApartment(apartment)">
+          <div  class="col-md-12 list-group-border list-styling">
             <h4 class="titles-styling">{{apartment.apartment_name}}</h4>
 
               <div class="row content-box-style">
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="images/{{apartment.pictures.default_1}}" alt="images/no_image_placeholder.jpg">
+                    <img src="{{apartment.cover_picture.src}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 
@@ -195,3 +197,5 @@
 </div>
 
 <div ng-include="'views/partials/subscriberProfileEditTmpl.html'"></div>
+<div ng-include="'views/partials/subscriberListingEditTmpl.html'"></div>
+<div ng-include="'views/partials/subscriberSetupTmpl.html'"></div>
