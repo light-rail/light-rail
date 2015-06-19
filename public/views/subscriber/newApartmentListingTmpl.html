@@ -104,11 +104,11 @@
               <span class="col-xs-3 col-md-3">Monthly</span>
             </div>
 
-            <div class="col-xs-12 col-md-12 char-left-alignment" ng-repeat="unit in units">
-              <span class="col-xs-3 col-md-3 char-left-alignment">{{unit.bedrooms}}</span>
-              <span class="col-xs-3 col-md-3 ">{{unit.bathrooms}}</span>
-              <span class="col-xs-3 col-md-3 ">{{unit.square_feet}}</span>
-              <span class="col-xs-3 col-md-3 ">{{unit.monthly_rent}}</span>
+            <div class="col-xs-12 col-md-12 char-left-alignment" NOng-repeat="unit in apartment.units">
+              <span class="col-xs-3 col-md-3 char-left-alignment">{{newUnit.bedrooms}}</span>
+              <span class="col-xs-3 col-md-3">{{newUnit.bathrooms}}</span>
+              <span class="col-xs-3 col-md-3">{{newUnit.square_feet}}</span>
+              <span class="col-xs-3 col-md-3">{{newUnit.monthly_rent}}</span>
             </div>
             
             <!-- ADD UNIT - MODAL BUTTON -->
@@ -137,7 +137,7 @@
       </div><!-- End of Amenity Details -->
 
       <div class="col-md-12 center-content">
-            <button ng-click="addListing(apartment)" type="button" class="btn btn-primary" data-dismiss="modal">Add Listing</button>
+            <button ng-submit="addListing(apartment)" type="button" class="btn btn-primary">Add Listing</button>
       </div>
       
       <div class="col-md-12">
