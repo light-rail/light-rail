@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListings, GeneralUserService) {
+app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListings, GeneralUserService, SubscriberDashboardService) {
 
 	//Subscriber
 	$scope.subscriber = subProfile;
@@ -75,16 +75,23 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 	};
 
 	$scope.saveProfile = function(companyName, streetAddress, city, state, zip) {
-		
-		
-		$scope.subscriber.company_name = companyName;
-		$scope.subscriber.contact_address.street_address = streetAddress;
-		$scope.subscriber.contact_address.city = city;
-		$scope.subscriber.contact_address.state = state.name;
-		$scope.subscriber.contact_address.zip_code = zip;
+		var updateProfile = {
+			company_name: companyName,
+			contact_address: {
+				street_address: streetAddress,
+				city: city,
+				state: state,
+				zip_code: zip
+			}
+		};
 
-		return $scope.subscriber;
-	};
+		SubscriberDashboardService.saveProfile(updateProfile)
+			.then(function(res) {
+				console.log(res);
+			}
+			,function(err) {
+				console.log(err);
+			})
 
 	$scope.saveListing = function(listingName, location, phone, webpage, rentRange, picturesArray, description) {
 		$scope.listing.apartment_name = listingName;
