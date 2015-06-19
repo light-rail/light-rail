@@ -1,5 +1,5 @@
 <!-- MODAL -->
-<div class="modal animated bounceInDown add-apartment-modal-lg" tabindex="-1" role="dialog">
+<div class="modal animated bounceInDown add-apartment-modal-lg" tabindex="-1" role="dialog" ng-controller="SubscriberCtrl">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="row modal-header">
@@ -9,7 +9,7 @@
       <div class="row center-content">
 
         <!-- HEADING FOR APARTMENT DETAILS -->
-        <div  class="col-xs-11 col-md-10">
+        <form class="col-xs-11 col-md-10" >
           <h2 class="titles-styling listing-bottom-spacing bottom-border">Add A Unit</h2>
 
           <div class="panel panel-default">
@@ -18,11 +18,11 @@
               <div class="col-xs-12 col-md-12"><!-- Inner container sizing -->
 
                 <!-- ADD APARTMENT UNIT COLUMNS -->
-                <div class="col-xs-12 col-md-3 char-left-alignment">
+                <div class="col-xs-12 col-md-3 char-left-alignment" style="border: 2px dashed red;">
                   <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Bedrooms</span>
                   <div class="input-group col-xs-12 col-md-10 center-content">
                     <label for="bedrooms" class="sr-only"></label>
-                    <select class="form-control" id="select" No-ng-model="">
+                    <select class="form-control" id="select" ng-model="unit.bedrooms">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -35,7 +35,7 @@
                   <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Bathrooms</span>
                   <div class="input-group col-xs-12 col-md-10 center-content">
                     <label for="bathrooms" class="sr-only"></label>
-                    <select class="form-control" id="select" No-ng-model="">
+                    <select class="form-control" id="select" ng-model="unit.bathrooms">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -46,21 +46,26 @@
                 <div class="col-xs-12 col-md-3 char-left-alignment row-bottom-spacing"> 
                   <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Sqrft</span>
                   <label for="square_feet" class="sr-only"></label>
-                  <input type="text" class="form-control floating-label" placeholder="#,###">
+                  <input type="text" ng-model="unit.square_feet" class="form-control floating-label" placeholder="#,###">
                 </div>
 
                 <div class="col-xs-12 col-md-3 char-left-alignment row-bottom-spacing">
                   <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Monthly</span>
                   <label for="monthly_rent" class="sr-only"></label> 
-                  <input type="text" class="form-control floating-label" placeholder="#,###">
+                  <input type="text" ng-model="unit.monthly_rent" class="form-control floating-label" placeholder="#,###">
                 </div>
 
               </div>
             </div>
           </div><!-- End of Panel -->
+
+          <div class="center-content">
+            <button ng-click="addUnit(unit)" type="button" class="btn btn-primary" data-dismiss="modal">Add Unit</button>
+          </div>
+          
           <div class="bottom-border border-top-spacing"></div>         
 
-        </div><!-- End of Apartment Unit Details -->
+        </form><!-- End of Apartment Unit Details -->
 
       </div>
     </div>
