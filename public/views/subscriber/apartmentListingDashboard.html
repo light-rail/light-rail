@@ -56,15 +56,15 @@
               <div class="panel-body">
                 <span class='pull-right'>
                   <strong>Posted: </strong> 
-                  <span am-time-ago="listing.date_created"></span>
+                  <span am-time-ago="listing.created_at"></span>
                 </span>
                 <h2 class="titles-styling bottom-border">{{listing.apartment_name}}</h2>
 
                 <div class='row'>
                   <div class='col-md-6'>
                     <span>
-                      <span>{{listing.location.street_address}}</span><br>
-                      <span> {{listing.location.city + ', ' + listing.location.state.name + ' ' + listing.location.zip_code}}</span></br>
+                      <span>{{listing.address.street}}</span><br>
+                      <span> {{listing.address.city + ', ' + listing.address.state.name + ' ' + listing.address.zip_code}}</span></br>
                       <span>{{listing.phone}}</span><br>
                       <span><a href="http://{{modal_apartment.webpage}}" target="_blank">{{listing.webpage}}</a></span>
                       </span></br>
@@ -72,14 +72,14 @@
 
                   <div class="col-md-6 title">
                     <div class="panel panel-default rent-range-box">
-                      <span> ${{listing.rent_range.min}} to ${{listing.rent_range.max}} </span>
+                      <span> ${{listing.price_range.min}} to ${{listing.price_range.max}} </span>
                     </div></br>       
                   </div>
                 </div> <!-- end of row -->
 
                 <div class="show-scroll">
                   <div class=" panel panel-default picture-scroll">
-                    <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in listing.picturesArray" src="{{pic.src}}"/>
+                    <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in listing.pictures_array" src="{{pic.src}}"/>
                   </div> 
                 </div> <!-- End of picture area -->
 
@@ -104,27 +104,12 @@
                       <span class="col-xs-3 col-md-3">Monthly</span>
                     </div>
 
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">1</span>
-                      <span class="col-xs-3 col-md-3 ">1</span>
-                      <span class="col-xs-3 col-md-3 ">800</span>
-                      <span class="col-xs-3 col-md-3 ">$600</span>
+                    <div ng-repeat='opt in listing.apt_options'  class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">{{opt.bedrooms}}</span>
+                      <span class="col-xs-3 col-md-3 ">{{opt.bathrooms}}</span>
+                      <span class="col-xs-3 col-md-3 ">{{opt.square_feet}}</span>
+                      <span class="col-xs-3 col-md-3 ">$ {{opt.price}}</span>
                     </div>
-
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">2</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1000</span>
-                      <span class="col-xs-3 col-md-3 ">$1,200</span>
-                    </div>
-
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">3</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1,800</span>
-                      <span class="col-xs-3 col-md-3 ">$1,600</span>
-                    </div>
-
                   </div>
                 </div><!-- End of Bedroom Details -->
 
@@ -144,7 +129,7 @@
                   </div>
                 </div><!-- End of Amenity Details -->
 
-                <a class='col-xs-12 col-md-12 btn btn-primary btn-raised btn-sm'><i class='fa fa-plus edit-text-color'></i><span class='edit-text-color'> Add A Listing</span></a>
+                <a href='/#/subscriber/new_listing' class='col-xs-12 col-md-12 btn btn-primary btn-raised btn-sm'><i class='fa fa-plus edit-text-color'></i><span class='edit-text-color'> Add A Listing</span></a>
 
                   </div>
                 </div>
@@ -154,7 +139,7 @@
           </div>
         </div>
 
-      </div><!-- end of ng-show -->
+      </div><!-- end of ng-show --> 
    
     </div><!-- END OF LEFT PANEL -->
    
@@ -162,7 +147,7 @@
     <!-- RIGHT PANEL APARTMENTS -->
     <div class="col-md-4">
       <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
-        <a ng-repeat="apartment in apartments" ng-click='selectListing(apartment)'>
+        <a ng-repeat="apartment in listings" ng-click='selectListing(apartment)'>
 
           <div  class="col-md-12 list-group-border list-styling">
             <h4 class="titles-styling">{{apartment.apartment_name}}</h4>
@@ -171,17 +156,17 @@
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="{{apartment.cover_picture.src}}" alt="images/no_image_placeholder.jpg">
+                    <img src="{{apartment.cover_picture}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 
                 <div class="col-xm-12 col-sm-6 col-md-6 details-font-size">
                   <p><br>
-                    <span>{{apartment.location.street_address}}</span><br>
-                    <span> {{apartment.location.city + ', ' + apartment.location.state}}</span>
+                    <span>{{apartment.address.street}}</span><br>
+                    <span> {{apartment.address.city + ', ' + apartment.address.state}}</span>
                   </p> 
                   <p>
-                    <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span>
+                    <!-- <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span> -->
                   </p>
                 </div>
 
@@ -198,4 +183,4 @@
 
 <div ng-include="'views/partials/subscriberProfileEditTmpl.html'"></div>
 <div ng-include="'views/partials/subscriberListingEditTmpl.html'"></div>
-<div ng-include="'views/partials/subscriberSetupTmpl.html'"></div>
+<!-- <div ng-include="'views/partials/subscriberSetupTmpl.html'"></div> -->

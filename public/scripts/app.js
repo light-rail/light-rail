@@ -1,6 +1,7 @@
-var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment']);
+var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps']);
 
 app.config(function($routeProvider){
+
   $routeProvider
     .when('/', {
       templateUrl: 'views/mainTmpl.html',
@@ -44,8 +45,11 @@ app.config(function($routeProvider){
       templateUrl: 'views/subscriber/apartmentListingDashboard.html',
       controller: 'SubscriberDashboardCtrl',
       resolve: {
-        subData: function(GeneralUserService) {
-          return GeneralUserService.getSubscriberInfo();
+        subProfile: function(SubscriberDashboardService) {
+          return SubscriberDashboardService.getSubscriberInfo();
+        },
+        subListings: function(SubscriberDashboardService, $route) {
+          return SubscriberDashboardService.getListings($route.current.params.id);
         }
       }
     })
@@ -77,6 +81,8 @@ app.config(function($routeProvider){
      .otherwise({
       redirectTo: '/'
     });
+
+
 });
 
 

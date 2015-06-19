@@ -4,7 +4,7 @@ var app = angular.module('lightRail');
 app.service('GeneralUserService', function($http, $q) {
 
   //I recommend being more descriptive w/ this funct name, example: "getGeneralUserFavorites"
-  this.getGeneralUser = function() {
+  this.getFavorites = function() {
     var url = '/api/user/getFavorites'
     return $http({
       method: 'GET',
@@ -26,6 +26,7 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
+
   this.getSubscriberInfo = function(){
     var url = '/api/subscriber/isLoggedIn';
     return $http({
@@ -45,34 +46,37 @@ app.service('GeneralUserService', function($http, $q) {
     return allItems.replace(',', ' ');
   };
 
-  this.addApartmentListing = function(apartment) {
-    var deferred = q.defer();
-    $http({
-      method: 'POST',
-      url: '/api/subscriber/addApartmentListing',
-      data: {
-        name: apartment.name,
-        street_address: apartment.street_address,
-        city: apartment.city,
-        state: apartment.state,
-        zip_code: apartment.zip_code,
-        phone_number: apartment.phone_number,
-        webpage: apartment.webpage,
-        description: apartment.description,
-        photos: apartment.photos,
-        units: apartment.units,
-        amenities: apartment.amenities,
-        amenities_additional: apartment.amenities_additional
-      }
-    }).then(function(response) {
-      deferred.resolve(response.data);
-    }, function(error) {
-      deferred.reject(error);
+  this.getAptData = function() {
+    var url = '/api/apartment/getAptData';
+    return $http({
+      method: 'GET',
+      url: url
+    }).then(function(data){
+      console.log(data);
+      return data.data;
     });
-    return deferred.promise;
-  };
+  }
 
+   this.getNearestStops = function() {
+    var url = '/api/apartment/getNearestStops';
+    return $http({
+      method: 'GET',
+      url: url
+    }).then(function(data){
+      console.log(data);
+      return data.data;
+    });
+  }
   
+  this.getStations = function() {
+    var url = '/api/stations/getStations'
+      return $http({
+      method: 'GET',
+      url: url
+    }).then(function(data){
+      return data.data;
+    });
+  }
 
   //*** SEED DATA FOR MAIN PAGE ***//
 
