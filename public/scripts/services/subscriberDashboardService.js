@@ -22,4 +22,15 @@ app.service('SubscriberDashboardService', function($http) {
 		});
 	};
 
+	this.saveProfile = function(profile) {
+		var url = '/api/subscriber/edit_profile';
+		return $http({
+			method: 'PUT',
+			url: url,
+			data: profile
+		}).then(function(res) {
+			console.log(res);
+		})
+	};
+
 })

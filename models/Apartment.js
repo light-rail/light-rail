@@ -23,7 +23,7 @@ var apartmentSchema = new Schema({
     }
   ],
 
-  apt_options: [
+  units: [
     {
       bedrooms: {type:String, required: true},
       bathrooms: {type:String, required: true},

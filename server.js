@@ -150,6 +150,7 @@ app.post('/api/login/subscriber', passport.authenticate('subscriber-local', { fa
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 app.get('/api/subscriber/listings', SubscriberCtrl.getListings);
 app.post('/api/subscriber/addListing', SubscriberCtrl.addListing);
+app.put('/api/subscriber/edit_profile', SubscriberCtrl.editProfile);
 
 
 //** Admin ** //

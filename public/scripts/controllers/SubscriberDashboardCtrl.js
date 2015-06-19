@@ -75,7 +75,8 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 	};
 
 	$scope.saveProfile = function(companyName, streetAddress, city, state, zip) {
-		console.log(state);
+		
+		
 		$scope.subscriber.company_name = companyName;
 		$scope.subscriber.contact_address.street_address = streetAddress;
 		$scope.subscriber.contact_address.city = city;

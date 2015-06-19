@@ -49,6 +49,19 @@ module.exports = {
 
       res.status(200).json(apartment);
     });
+  },
+
+  editProfile: function(req, res) {
+    var update = req.body;
+    var options = {
+      new: true
+    };
+
+    Subscriber.findByIdAndUpdate(req.user._id, update, options, function(err, subscriber) {
+      if(err) res.status(500).json(err);
+
+      res.status(200).json(subscriber);
+    })
   }
 
 };
