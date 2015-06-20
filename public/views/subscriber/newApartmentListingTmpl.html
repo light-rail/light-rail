@@ -1,5 +1,5 @@
 
- <div ng-controller="SubscriberCtrl" class="center-content animated fadeInRight">
+ <div class="center-content animated fadeInRight">
   <form ng-submit="addApartmentListing(apartment)" class="col-xs-12 col-md-10 col-lg-8">
     <div class="col-md-12">
       <h2 class="titles-styling top-spacing bottom-border listing-bottom-spacing">Add A Listing</h2>
@@ -22,22 +22,22 @@
 
             <div class="input-group col-xs-12">
               <label for="street_address" class="sr-only"></label>
-              <input type="text" ng-model="apartment.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
+              <input type="text" ng-model="apartment.address.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
             </div><br>
 
             <div class="input-group col-xs-12">
               <label for="city" class="sr-only"></label>
-              <input type="text" ng-model="apartment.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
+              <input type="text" ng-model="apartment.address.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
             </div><br>
           
             <div class="input-group col-xs-12">
               <label for="state" class="sr-only"></label>
-              <input type="text" ng-model="apartment.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
+              <input type="text" ng-model="apartment.address.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
             </div><br>
          
             <div class="input-group col-xs-12">
               <label for="zip_code" class="sr-only"></label>
-              <input type="text" ng-model="apartment.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
+              <input type="text" ng-model="apartment.address.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
             </div><br>
 
             <div class="input-group col-xs-12">
@@ -143,6 +143,10 @@
                   <input type="checkbox" ng-model="apartment.amenities.pool" id="inlineCheckbox" ng-false-value="false" ng-true-value="true"> Pool
                 </label>
 
+                <label class="col-xs-12 col-md-2">
+                  <input type="checkbox" ng-model="apartment.amenities.gym" id="inlineCheckbox" ng-false-value="false" ng-true-value="true"> Gym
+                </label>
+
                 <label class="col-xs-12 col-md-3">
                   <input type="checkbox" ng-model="apartment.amenities.washer_dryer" id="inlineCheckbox" ng-false-value="false" ng-true-value="true"> Washer and Dryer
                 </label>
@@ -150,7 +154,7 @@
 
               <div class="input-group col-xs-12">
                 <label for="amenities_additional" class="sr-only"></label>
-                <input type="text" ng-model="apartment.amenities_additional" class="form-control floating-label" id="form-input-underline" placeholder="Additional Amenities (100 Character Limit)" maxlength="100">
+                <input type="text" ng-model="apartment.additional_amenities" class="form-control floating-label" id="form-input-underline" placeholder="Additional Amenities (100 Character Limit)" maxlength="100">
               </div>               
 
             </div>

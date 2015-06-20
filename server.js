@@ -197,7 +197,7 @@ app.post('/api/login/subscriber', passport.authenticate('subscriber-local', {
 }), SubscriberCtrl.loginSubscriber);
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 app.get('/api/subscriber/listings', SubscriberCtrl.getListings);
-app.post('/api/subscriber/addListing', SubscriberCtrl.addListing);
+app.post('/api/subscriber/addApartmentListing', SubscriberCtrl.addListing);
 app.put('/api/subscriber/edit_profile', SubscriberCtrl.editProfile);
 app.put('/api/subscriber/edit_listing', SubscriberCtrl.editListing);
 
