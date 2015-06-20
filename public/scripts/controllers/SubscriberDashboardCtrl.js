@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListings, GeneralUserService) {
+app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListings, GeneralUserService, SubscriberDashboardService) {
 
 	//Subscriber
 	$scope.subscriber = subProfile;
@@ -27,7 +27,7 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 			street: $scope.listing.address.street,
 			city: $scope.listing.address.city,
 			state: $scope.listing.address.state,
-			zip: $scope.listing.address.zip_code
+			zip_code: $scope.listing.address.zip_code
 		},
 		phone_number: $scope.listing.phone_number,
 		website: $scope.listing.website,
@@ -75,59 +75,39 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 	};
 
 	$scope.saveProfile = function(companyName, streetAddress, city, state, zip) {
-		console.log(state);
-		$scope.subscriber.company_name = companyName;
-		$scope.subscriber.contact_address.street_address = streetAddress;
-		$scope.subscriber.contact_address.city = city;
-		$scope.subscriber.contact_address.state = state.name;
-		$scope.subscriber.contact_address.zip_code = zip;
+		var updateProfile = {
+			company_name: companyName,
+			contact_address: {
+				street_address: streetAddress,
+				city: city,
+				state: state,
+				zip_code: zip
+			}
+		};
 
-		return $scope.subscriber;
+		SubscriberDashboardService.saveProfile(updateProfile)
+			.then(function(res) {
+				return $scope.subscriber = res.data;
+			})
+
+		};
+
+	$scope.saveListing = function(listingId, listingName, address, phone, website, priceRange, picturesArray, description) {
+		var updateListing = {
+			apartment_name: listingName,
+			address: address,
+			phone_number: phone,
+			website: website,
+			price_range: priceRange,
+			pictures_array: picturesArray,
+			description: description
+		}
+		var listingId = listingId;
+
+		SubscriberDashboardService.saveListing(listingId, updateListing)
+			.then(function(res) {
+				return $scope.listing = res.data;
+			})
 	};
-
-	$scope.saveListing = function(listingName, location, phone, webpage, rentRange, picturesArray, description) {
-		$scope.listing.apartment_name = listingName;
-		$scope.listing.location = {
-			street_address: location.street,
-			city: location.city,
-			state: location.state,
-			zip_code: location.zip
-		};
-		$scope.listing.phone = phone;
-		$scope.listing.webpage = webpage;
-		$scope.listing.rent_range = {
-			max: rentRange.max,
-			min: rentRange.min
-		};
-		$scope.listing.picturesArray = picturesArray;
-		$scope.listing.description = description;
-
-		$scope.editListing = {
-			listingName: $scope.listing.apartment_name,
-			location: {
-				street: $scope.listing.location.street_address,
-				city: $scope.listing.location.city,
-				state: {
-					name: $scope.listing.location.state
-				},
-				zip: $scope.listing.location.zip_code
-			},
-			phone: $scope.listing.phone,
-			webpage: $scope.listing.webpage,
-			rentRange: {
-				max: $scope.listing.rent_range.max,
-				min: $scope.listing.rent_range.min
-			},
-			coverPicture: $scope.listing.cover_picture,
-			picturesArray: $scope.listing.picturesArray,
-			description: $scope.listing.description
-		};
-
-		console.log($scope.editListing);
-
-		return $scope.listing;
-	};
-
-	//seed data for development only
 
 });
