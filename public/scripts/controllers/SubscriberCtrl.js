@@ -1,20 +1,21 @@
 var app = angular.module('lightRail');
 
 app.controller('SubscriberCtrl', function($scope, $location, SubscriberService) {
+ $scope.apartment = {
+  units:[]
+ };
 
+ $scope.unit = {};
 
   //** Add Unit Modal Content **/
   $scope.addUnit = function(unit) {
-    var newUnit= '';
-   
-    $scope.newUnit = unit;
-    console.log('scope newUnit', $scope.newUnit)
-  }
+    $scope.apartment.units.push(unit);
+    $scope.unit = {};
+  };
 
 
   //** Submits Listing to Service **/
   $scope.addApartmentListing = function(apartment) {
-    console.log('exiting apartment', apartment);
 
     SubscriberService.addApartmentListing(apartment);
   }

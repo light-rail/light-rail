@@ -1,6 +1,6 @@
-<div ng-controller="SubscriberCtrl" class="center-content animated fadeInRight">
-  <form ng-submit="addApartmentListing(apartment)"class="col-xs-12 col-md-10 col-lg-8">
 
+ <div class="center-content animated fadeInRight">
+  <form ng-submit="addApartmentListing(apartment)" class="col-xs-12 col-md-10 col-lg-8">
     <div class="col-md-12">
       <h2 class="titles-styling top-spacing bottom-border listing-bottom-spacing">Add A Listing</h2>
     </div>
@@ -22,22 +22,22 @@
 
             <div class="input-group col-xs-12">
               <label for="street_address" class="sr-only"></label>
-              <input type="text" ng-model="apartment.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
+              <input type="text" ng-model="apartment.address.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
             </div><br>
 
             <div class="input-group col-xs-12">
               <label for="city" class="sr-only"></label>
-              <input type="text" ng-model="apartment.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
+              <input type="text" ng-model="apartment.address.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
             </div><br>
           
             <div class="input-group col-xs-12">
               <label for="state" class="sr-only"></label>
-              <input type="text" ng-model="apartment.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
+              <input type="text" ng-model="apartment.address.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
             </div><br>
          
             <div class="input-group col-xs-12">
               <label for="zip_code" class="sr-only"></label>
-              <input type="text" ng-model="apartment.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
+              <input type="text" ng-model="apartment.address.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
             </div><br>
 
             <div class="input-group col-xs-12">
@@ -105,11 +105,11 @@
               <span class="col-xs-3 col-md-3">Monthly</span>
             </div>
 
-            <div class="col-xs-12 col-md-12 char-left-alignment" NOng-repeat="unit in apartment.units">
-              <span class="col-xs-3 col-md-3 char-left-alignment">{{newUnit.bedrooms}}</span>
-              <span class="col-xs-3 col-md-3">{{newUnit.bathrooms}}</span>
-              <span class="col-xs-3 col-md-3">{{newUnit.square_feet}}</span>
-              <span class="col-xs-3 col-md-3">{{newUnit.monthly_rent}}</span>
+            <div class="col-xs-12 col-md-12 char-left-alignment" ng-repeat="unit in apartment.units">
+              <span class="col-xs-3 col-md-3 char-left-alignment">{{unit.bedrooms}}</span>
+              <span class="col-xs-3 col-md-3">{{unit.bathrooms}}</span>
+              <span class="col-xs-3 col-md-3">{{unit.square_feet}}</span>
+              <span class="col-xs-3 col-md-3">{{unit.monthly_rent}}</span>
             </div>
             
             <!-- ADD UNIT - MODAL BUTTON -->
@@ -132,7 +132,7 @@
 
               <div class="checkbox col-md-12">
                 <label class="col-xs-12 col-md-2">
-                  <input type="checkbox" ng-model="apartment.amenities.pet_friendly" id="inlineCheckbox" ng-false-value="false" ng-true-value="true">  Pet Friendly
+                  <input type="checkbox" ng-model="apartment.amenities.pet_friendly" id="inlineCheckbox" ng-true-value="true" ng-false-value="false">  Pet Friendly
                 </label>
 
                 <label class="col-xs-12 col-md-2">
@@ -140,17 +140,21 @@
                 </label>
 
                 <label class="col-xs-12 col-md-2">
-                  <input type="checkbox" ng-model="apartment.amenities.pool" id="inlineCheckbox" ng-true-value="true" ng-false-value="false"> Pool
+                  <input type="checkbox" ng-model="apartment.amenities.pool" id="inlineCheckbox" ng-false-value="false" ng-true-value="true"> Pool
+                </label>
+
+                <label class="col-xs-12 col-md-2">
+                  <input type="checkbox" ng-model="apartment.amenities.gym" id="inlineCheckbox" ng-false-value="false" ng-true-value="true"> Gym
                 </label>
 
                 <label class="col-xs-12 col-md-3">
-                  <input type="checkbox" ng-model="apartment.amenities.washer_dryer" id="inlineCheckbox" ng-true-value="true" ng-false-value="false"> Washer and Dryer
+                  <input type="checkbox" ng-model="apartment.amenities.washer_dryer" id="inlineCheckbox" ng-false-value="false" ng-true-value="true"> Washer and Dryer
                 </label>
               </div>
 
               <div class="input-group col-xs-12">
                 <label for="amenities_additional" class="sr-only"></label>
-                <input type="text" ng-model="apartment.amenities_additional" class="form-control floating-label" id="form-input-underline" placeholder="Additional Amenities (100 Character Limit)" maxlength="100">
+                <input type="text" ng-model="apartment.additional_amenities" class="form-control floating-label" id="form-input-underline" placeholder="Additional Amenities (100 Character Limit)" maxlength="100">
               </div>               
 
             </div>
@@ -170,6 +174,80 @@
   </form>
 </div>
 
+<!-- MODAL -->
+<div class="modal animated bounceInDown add-apartment-modal-lg" tabindex="-1" role="dialog" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="row modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+
+      <div class="row center-content">
+
+        <!-- HEADING FOR APARTMENT DETAILS -->
+        <form class="col-xs-11 col-md-10" >
+          <h2 class="titles-styling listing-bottom-spacing bottom-border">Add A Unit</h2>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+
+              <div class="col-xs-12 col-md-12"><!-- Inner container sizing -->
+
+                <!-- ADD APARTMENT UNIT COLUMNS -->
+                <div class="col-xs-12 col-md-3 char-left-alignment">
+                  <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Bedrooms</span>
+                  <div class="input-group col-xs-12 col-md-10 center-content">
+                    <label for="bedrooms" class="sr-only"></label>
+                    <select class="form-control" id="select" ng-model="unit.bedrooms">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>                    
+                  </div> 
+                </div>
+
+                <div class="col-xs-12 col-md-3 char-left-alignment">
+                  <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Bathrooms</span>
+                  <div class="input-group col-xs-12 col-md-10 center-content">
+                    <label for="bathrooms" class="sr-only"></label>
+                    <select class="form-control" id="select" ng-model="unit.bathrooms">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>                    
+                  </div> 
+                </div>
+
+                <div class="col-xs-12 col-md-3 char-left-alignment row-bottom-spacing"> 
+                  <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Sqrft</span>
+                  <label for="square_feet" class="sr-only"></label>
+                  <input type="text" placeholder="#,###" ng-model="unit.square_feet" class="form-control" >
+                </div>
+
+                <div class="col-xs-12 col-md-3 char-left-alignment row-bottom-spacing">
+                  <span class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">Monthly</span>
+                  <label for="monthly_rent" class="sr-only"></label> 
+                  <input type="text" ng-model="unit.monthly_rent" class="form-control" placeholder="#,###">
+                </div>
+
+              </div>
+            </div>
+          </div><!-- End of Panel -->
+
+          <div class="center-content">
+            <button ng-click="addUnit(unit)" type="button" class="btn btn-primary" data-dismiss="modal">Add Unit</button>
+          </div>
+          
+          <div class="bottom-border border-top-spacing"></div>         
+
+        </form><!-- End of Apartment Unit Details -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 $(document).ready(function() {
     // This command is used to initialize some materialize elements and make them work properly
@@ -177,5 +255,4 @@ $(document).ready(function() {
 });
 </script>
 
-<div ng-include="'views/partials/addUnitTmpl.html'"></div>
  

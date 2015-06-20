@@ -40,7 +40,8 @@ module.exports = {
 
   addListing: function(req, res) {
     var apartment = new Apartment(req.body);
-    // apartment.subscriber_id = req.user._id
+    console.log('addListing server', req.body)
+    apartment.subscriber_id = req.user._id
     apartment.save(function(err, apartment) {
       if(err) {
         if(err.code === 500) return res.status(500).json(err);
@@ -49,6 +50,34 @@ module.exports = {
 
       res.status(200).json(apartment);
     });
+  },
+
+  editProfile: function(req, res) {
+    var update = req.body;
+    var options = {
+      new: true
+    };
+
+    Subscriber.findByIdAndUpdate(req.user._id, update, options, function(err, subscriber) {
+      if(err) res.status(500).json(err);
+
+      res.status(200).json(subscriber);
+    })
+  },
+
+  editListing: function(req, res) {
+    console.log(req.body);
+    var update = req.body.listing;
+    var options = {
+      new: true
+    };
+
+    Apartment.findByIdAndUpdate(req.body._id, update, options, function(err, listing) {
+      if(err) res.status(500).json(err);
+
+      res.status(200).json(listing);
+    })
+
   }
 
 };
