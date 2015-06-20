@@ -27,7 +27,7 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 			street: $scope.listing.address.street,
 			city: $scope.listing.address.city,
 			state: $scope.listing.address.state,
-			zip: $scope.listing.address.zip_code
+			zip_code: $scope.listing.address.zip_code
 		},
 		phone_number: $scope.listing.phone_number,
 		website: $scope.listing.website,
@@ -87,55 +87,27 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 
 		SubscriberDashboardService.saveProfile(updateProfile)
 			.then(function(res) {
-				console.log(res);
-			}
-			,function(err) {
-				console.log(err);
+				return $scope.subscriber = res.data;
 			})
 
-	$scope.saveListing = function(listingName, location, phone, webpage, rentRange, picturesArray, description) {
-		$scope.listing.apartment_name = listingName;
-		$scope.listing.location = {
-			street_address: location.street,
-			city: location.city,
-			state: location.state,
-			zip_code: location.zip
-		};
-		$scope.listing.phone = phone;
-		$scope.listing.webpage = webpage;
-		$scope.listing.rent_range = {
-			max: rentRange.max,
-			min: rentRange.min
-		};
-		$scope.listing.picturesArray = picturesArray;
-		$scope.listing.description = description;
-
-		$scope.editListing = {
-			listingName: $scope.listing.apartment_name,
-			location: {
-				street: $scope.listing.location.street_address,
-				city: $scope.listing.location.city,
-				state: {
-					name: $scope.listing.location.state
-				},
-				zip: $scope.listing.location.zip_code
-			},
-			phone: $scope.listing.phone,
-			webpage: $scope.listing.webpage,
-			rentRange: {
-				max: $scope.listing.rent_range.max,
-				min: $scope.listing.rent_range.min
-			},
-			coverPicture: $scope.listing.cover_picture,
-			picturesArray: $scope.listing.picturesArray,
-			description: $scope.listing.description
 		};
 
-		console.log($scope.editListing);
+	$scope.saveListing = function(listingId, listingName, address, phone, website, priceRange, picturesArray, description) {
+		var updateListing = {
+			apartment_name: listingName,
+			address: address,
+			phone_number: phone,
+			website: website,
+			price_range: priceRange,
+			pictures_array: picturesArray,
+			description: description
+		}
+		var listingId = listingId;
 
-		return $scope.listing;
+		SubscriberDashboardService.saveListing(listingId, updateListing)
+			.then(function(res) {
+				return $scope.listing = res.data;
+			})
 	};
-
-	//seed data for development only
 
 });

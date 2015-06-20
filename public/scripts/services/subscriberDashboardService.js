@@ -23,17 +23,26 @@ app.service('SubscriberDashboardService', function($http, $q) {
 	};
 
 	this.saveProfile = function(profile) {
-		var dfd = $q.defer();
 		var url = '/api/subscriber/edit_profile';
-		 $http({
+
+		 return $http({
 			method: 'PUT',
 			url: url,
 			data: profile
-		}).then(function(res) {
-			console.log(res);
-			return dfd.resolve(res.data);
-		})
-		return dfd.promise;
+		});
+	};
+
+	this.saveListing = function(id, listing) {
+		var url = '/api/subscriber/edit_listing';
+
+		return $http({
+			method: 'PUT',
+			url: url,
+			data: {
+				_id: id,
+				listing: listing
+			}
+		});
 	};
 
 })
