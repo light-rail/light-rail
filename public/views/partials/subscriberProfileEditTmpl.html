@@ -12,12 +12,12 @@
               <label for='editAddress'>Address</label>
               <input ng-model='editSubscriber.streetAddress' class='form-control' type='text' placeholder='Street' />
               <input ng-model='editSubscriber.city' class='form-control' type='text' placeholder='City' />
-              <select ng-model='editSubscriber.state.name' ng-options='state.name for state in states' class='form-control'>
-                <option value=''>{{editSubscriber.state.name}}</option>
+              <select ng-model='editSubscriber.state' ng-options='state for state in states' class='form-control'>
+                <option value=''>{{editSubscriber.state}}</option>
               </select>
               <input ng-model='editSubscriber.zip' class='form-control' type='text' placeholder='Zipcode'/>
             </div>
-            <button ng-click='saveProfile(editSubscriber.companyName, editSubscriber.streetAddress, editSubscriber.city, editSubscriber.state.name, editSubscriber.zip)' class='btn btn-success' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
+            <button ng-click='saveProfile(editSubscriber.companyName, editSubscriber.streetAddress, editSubscriber.city, editSubscriber.state, editSubscriber.zip)' class='btn btn-success' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
           </div>
         </div>
     </div>
