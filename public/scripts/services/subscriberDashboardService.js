@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.service('SubscriberDashboardService', function($http) {
+app.service('SubscriberDashboardService', function($http, $q) {
 
 	this.getSubscriberInfo = function() {
 		var url = '/api/subscriber/isLoggedIn';
@@ -19,6 +19,29 @@ app.service('SubscriberDashboardService', function($http) {
 			url: url +'?id='+ id,
 		}).then(function(listings) {
 			return listings.data;
+		});
+	};
+
+	this.saveProfile = function(profile) {
+		var url = '/api/subscriber/edit_profile';
+
+		 return $http({
+			method: 'PUT',
+			url: url,
+			data: profile
+		});
+	};
+
+	this.saveListing = function(id, listing) {
+		var url = '/api/subscriber/edit_listing';
+
+		return $http({
+			method: 'PUT',
+			url: url,
+			data: {
+				_id: id,
+				listing: listing
+			}
 		});
 	};
 
