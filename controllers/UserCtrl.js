@@ -4,14 +4,18 @@ module.exports = {
 
   createUser: function(req, res) {
     var newUser = new User(req.body);
-    newUser.save(function(err, result) {
-      console.log('err: ', err);
-      if(err) {
-        if(err.code === 500) return res.status(500).json(err);
-        if(err.code === 11000) return res.status(11000).json(err);
-      }
-      res.send(result);
-    });
+    console.log("req.body server", req.body);
+      newUser.save(function (err, result) {
+        console.log('err: ', err);
+        if (err) {
+          if (err.code === 500)
+            return res.status(500).json(err);
+          if (err.code === 11000)
+            return res.status(11000).json(err);
+        }
+        console.log('results create User: ', result);
+        res.send(result);
+      });
   },
 
   loginUser: function(req, res) {

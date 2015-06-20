@@ -1,39 +1,58 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 var q = require('q');
 
 var GeneralUserSchema = new Schema({
-  name: {type: String},
-  email: { type: String, unique: true, lowercase: true, required: true },
-  password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  name: {
+    type: String
+  },
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
   favorites: {
     apartments: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Apartment'
-    }]
-  // hotels: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'GeneralUser'
-  // }],
-  // realEstate: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'GeneralUser'
-  // }],
-  // entertainment: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'GeneralUser'
-  // }]
+        type: Schema.Types.ObjectId,
+        ref: 'Apartment'
+      }]
+      // hotels: [{
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'GeneralUser'
+      // }],
+      // realEstate: [{
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'GeneralUser'
+      // }],
+      // entertainment: [{
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'GeneralUser'
+      // }]
+  },
+  facebookId: {
+    type: String
+  },
+  provider: {
+    type: String
   }
-
 });
-
 
 //Pre('save') runs before every user is created
 GeneralUserSchema.pre('save', function(next) {
   var user = this;
-  //passw encryption
+  if (!user.isModified('password')) {
+    return next();
+  }
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(user.password, salt, null, function(err, hash) {
       //console.log(hash)
@@ -53,6 +72,6 @@ GeneralUserSchema.methods.verifyPassword = function(password) {
     deferred.resolve(true);
   });
   return deferred.promise;
-}
+};
 
 module.exports = mongoose.model('GeneralUser', GeneralUserSchema);
