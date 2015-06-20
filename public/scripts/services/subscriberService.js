@@ -6,7 +6,8 @@ app.service('SubscriberService', function($http, $q) {
 
 
   this.addApartmentListing = function(apartment) {
-    var deferred = q.defer();
+    var deferred = $q.defer();
+    console.log('subscriberService', apartment)
     $http({
       method: 'POST',
       url: '/api/subscriber/addApartmentListing',
