@@ -2,12 +2,7 @@ var app = angular.module('lightRail');
 
 app.controller('SubscriberCtrl', function($scope, $location, SubscriberService) {
  $scope.apartment = {
-  units:[{
-    bedrooms: '1',
-    bathrooms: '1',
-    square_feet: '800',
-    monthly_rent: '1000'
-  }]
+  units:[];
  };
 
  $scope.unit = {};
