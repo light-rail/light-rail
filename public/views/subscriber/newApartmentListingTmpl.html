@@ -1,6 +1,6 @@
+
  <div class="center-content animated fadeInRight">
   <form class="col-xs-12 col-md-10">
-
     <div class="col-md-12">
       <h2 class="titles-styling top-spacing bottom-border listing-bottom-spacing">Add A Listing</h2>
     </div>
@@ -129,8 +129,30 @@
             </div>
 
             <div class="col-xs-12 col-md-12 char-left-alignment amenity-content-spacing">
-              <p><span class="col-xs-12 col-md-12 char-left-alignment">Pet Friendly, Garage, Pool, Gym, Washer & Dryer</span></p>
-              <span>Other: Granite Counter tops, other, other, etc.</span>
+
+              <div class="checkbox col-md-12">
+                <label class="col-xs-12 col-md-2">
+                  <input type="checkbox" ng-model="apartment.amenities.pet_friendly" id="inlineCheckbox" ng-false-value="false" ng-true-value="true">  Pet Friendly
+                </label>
+
+                <label class="col-xs-12 col-md-2">
+                  <input type="checkbox" ng-model="apartment.amenities.garage" id="inlineCheckbox" ng-true-value="true" ng-false-value="false"> Garage
+                </label>
+
+                <label class="col-xs-12 col-md-2">
+                  <input type="checkbox" ng-model="apartment.amenities.pool" id="inlineCheckbox" ng-true-value="true" ng-false-value="false"> Pool
+                </label>
+
+                <label class="col-xs-12 col-md-3">
+                  <input type="checkbox" ng-model="apartment.amenities.washer_dryer" id="inlineCheckbox" ng-true-value="true" ng-false-value="false"> Washer and Dryer
+                </label>
+              </div>
+
+              <div class="input-group col-xs-12">
+                <label for="amenities_additional" class="sr-only"></label>
+                <input type="text" ng-model="apartment.amenities_additional" class="form-control floating-label" id="form-input-underline" placeholder="Additional Amenities (100 Character Limit)" maxlength="100">
+              </div>               
+
             </div>
 
           </div>
@@ -138,7 +160,7 @@
       </div><!-- End of Amenity Details -->
 
       <div class="col-md-12 center-content">
-            <button ng-submit="addListing(apartment)" type="button" class="btn btn-primary">Add Listing</button>
+        <button type="submit" value="Add Listing" class="btn btn-primary">Add Listing</button>
       </div>
       
       <div class="col-md-12">
