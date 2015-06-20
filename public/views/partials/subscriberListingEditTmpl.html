@@ -12,7 +12,7 @@
               <label for='editLocation'>Location</label>
               <input ng-model='editListing.address.street' class='form-control' type='text' placeholder='Street' />
               <input ng-model='editListing.address.city' class='form-control' type='text' placeholder='City' />
-              <select ng-model='editListing.address.state' ng-options='state.name for state in states' class='form-control'>
+              <select ng-model='editListing.address.state' ng-options='state for state in states' class='form-control'>
                 <option value=''>{{editListing.address.state}}</option>
               </select>
               <input ng-model='editListing.address.zip_code' class='form-control' type='text' placeholder='Zipcode'/>

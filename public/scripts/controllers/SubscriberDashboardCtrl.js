@@ -10,9 +10,7 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 		companyName: $scope.subscriber.company_name,
 		streetAddress: $scope.subscriber.contact_address.street_address,
 		city: $scope.subscriber.contact_address.city,
-		state: {
-			name: $scope.subscriber.contact_address.state
-		},
+		state: $scope.subscriber.contact_address.state,
 		zip: $scope.subscriber.contact_address.zip_code
 	};
 
@@ -40,12 +38,7 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 		}
 	};
 
-	$scope.states = [
-		{name: 'AZ'},
-		{name: 'UT'},
-		{name: 'NM'},
-		{name: 'CO'}
-	];
+	$scope.states = ['AZ','UT','NM','CO'];
 
 	$scope.selectListing = function(apartment) {
 		$scope.listing = apartment;
@@ -55,9 +48,7 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 		location: {
 			street: $scope.listing.location.street_address,
 			city: $scope.listing.location.city,
-			state: {
-				name: $scope.listing.location.state
-			},
+			state: $scope.listing.location.state,
 			zip: $scope.listing.location.zip_code
 		},
 		phone: $scope.listing.phone,
