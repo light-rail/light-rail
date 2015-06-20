@@ -2,7 +2,7 @@ var app = angular.module('lightRail');
 
 app.controller('SubscriberCtrl', function($scope, $location, SubscriberService) {
  $scope.apartment = {
-  units:[];
+  units:[]
  };
 
  $scope.unit = {};
