@@ -14,9 +14,9 @@ app.controller('SubscriberCtrl', function($scope, $location, SubscriberService) 
 
   //** Submits Listing to Service **/
   $scope.addApartmentListing = function(apartment) {
+    console.log('exiting apartment', apartment);
 
     SubscriberService.addApartmentListing(apartment);
-    consol.log('exiting apartment', apartment)
   }
 
 });
