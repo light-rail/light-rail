@@ -14,14 +14,17 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
-  this.addToFavoritesList = function(locationId) {
+  this.addToFavorites = function(locationId) {
+    console.log("hit service");
     var url = '/api/user/addToFavorites'
     return $http({
       method: 'POST',
       url: url,
-      data: locationId
-
+      data: {
+        id: locationId
+        }    
     }).then(function(response){
+      console.log(response);
       return response.data;
     })
   };
@@ -52,7 +55,6 @@ app.service('GeneralUserService', function($http, $q) {
       method: 'GET',
       url: url
     }).then(function(data){
-      console.log(data);
       return data.data;
     });
   }
