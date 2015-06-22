@@ -34,15 +34,23 @@ app.controller('SubscriberCtrl', function($scope, $location, $routeParams, Subsc
   };
 
   //** Address Verification
-  $scope.verifyApartmentAddress = function(address) {
-    SubscriberService.verifyApartmentAddress(address);
+  $scope.verifiyApartmentAddress = function(address) {
+    SubscriberService.verifyApartmentAddress(address).then (function(res) {
+      toaster.pop('success', 'Your address registration was successfull!');
+      $location.path('/subscriber/new-listing/:subscriberId');//Needs a :subscriberId
+    }, function(err) {
+      console.log('verifyApartment err', err)
+      //Need to add an error.status for address not being within range of lightrail
+      if(err.status === 11000) toaster.pop('error', 'This listing is already registered');
+      else toaster.pop('error', 'Sorry, something went wrong!');
+    });
   };
 
   //** Submits Listing to Service **/
   $scope.addApartmentListing = function(apartment) {
     SubscriberService.addApartmentListing(apartment).then (function(res) {
-      toaster.pop('success', 'Your address registration was successfull!');
-      $location.path('/subscriber/new-listing/:subscriberId');//Needs a :subscriberId
+      toaster.pop('success', 'You successfully added the Listing!');
+      $location.path('/subscriber/dashboard/:id');//Change to :subscriberId?
     }, function(err) {
       console.log('AddApartment err', err)
       //Need to add an error.status for address not being within range of lightrail
