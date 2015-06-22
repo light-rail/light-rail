@@ -49,11 +49,14 @@
         <div class="row">
           <div class="col-md-12">
             <div class="panel panel-default panel-spacing">
-              <div class="panel-heading" id="panel-heading-color">
+            <div ng-show='!showListings' class="panel-heading" id="panel-heading-color"> 
+                <h3 class="panel-title">Listing Details: You Have No Listings</h3>
+              </div>
+              <div ng-show='showListings' class="panel-heading" id="panel-heading-color">
                 <a href='' data-target='.listing-edit-modal-lg' data-toggle='modal' class="pull-right">Edit</a> 
                 <h3 class="panel-title">Listing Details</h3>
               </div>
-              <div class="panel-body">
+              <div ng-show='showListings' class="panel-body">
                 <span class='pull-right'>
                   <strong>Posted: </strong> 
                   <span am-time-ago="listing.created_at"></span>
@@ -147,9 +150,26 @@
     <!-- RIGHT PANEL APARTMENTS -->
     <div class="col-md-4">
       <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
-        <a ng-repeat="apartment in listings" ng-click='selectListing(apartment)'>
 
-          <div  class="col-md-12 list-group-border list-styling">
+      <div ng-show='!showListings'>
+
+          <div class="col-md-12 list-group-border list-styling">
+            <h4 class="titles-styling">Add A Listing To Have It Displayed Here</h4>
+
+              <div class="row content-box-style">
+                <a href='/#/subscriber/new_listing' class='col-md-12 btn btn-primary btn-raised'>
+                  <i class='fa fa-plus edit-text-color'></i>
+                  <span class='edit-text-color'></span>
+                </a>
+              </div>
+
+            <div class="list-group-separator"></div>        
+          </div>
+        </div>
+
+        <a ng-show='showListings' ng-repeat="apartment in listings" ng-click='selectListing(apartment)'>
+
+          <div class="col-md-12 list-group-border list-styling">
             <h4 class="titles-styling">{{apartment.apartment_name}}</h4>
 
               <div class="row content-box-style">
@@ -181,6 +201,79 @@
   </div><!-- End Of Row -->
 </div>
 
-<div ng-include="'views/partials/subscriberProfileEditTmpl.html'"></div>
-<div ng-include="'views/partials/subscriberListingEditTmpl.html'"></div>
-<!-- <div ng-include="'views/partials/subscriberSetupTmpl.html'"></div> -->
+<!-- Subscriber Edit Modal -->
+<div class="modal animated bounceInDown profile-edit-modal-md" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-body center-content">
+          <div  class="col-xs-12 col-md-10">
+            <h2 class="titles-styling bottom-border">Profile</h2>
+            <div class='form-group'>
+              <label for='editCompanyName'>Company Name</label>
+              <input ng-model='editSubscriber.companyName' class='form-control input-lg' type='text' placeholder='Company Name' />
+            </div>
+            <div class='form-group'>
+              <label for='editAddress'>Address</label>
+              <input ng-model='editSubscriber.streetAddress' class='form-control' type='text' placeholder='Street' />
+              <input ng-model='editSubscriber.city' class='form-control' type='text' placeholder='City' />
+              <select ng-model='editSubscriber.state' ng-options='state for state in states' class='form-control'>
+                <option value=''>{{editSubscriber.state}}</option>
+              </select>
+              <input ng-model='editSubscriber.zip' class='form-control' type='text' placeholder='Zipcode'/>
+            </div>
+            <button ng-click='saveProfile(editSubscriber.companyName, editSubscriber.streetAddress, editSubscriber.city, editSubscriber.state, editSubscriber.zip)' class='btn btn-success' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Listing Edit Modal -->
+<div class="modal animated bounceInDown listing-edit-modal-lg" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body center-content">
+          <div  class="col-xs-12 col-md-10">
+            <h2 class="titles-styling bottom-border">Listing</h2>
+            <div class='form-group'>
+              <label for='editListingName'>Listing Name</label>
+              <input ng-model='editListing.apartment_name' class='form-control input-lg' type='text' placeholder='Listing Name' />
+            </div>
+            <div class='form-group'>
+              <label for='editLocation'>Location</label>
+              <input ng-model='editListing.address.street' class='form-control' type='text' placeholder='Street' />
+              <input ng-model='editListing.address.city' class='form-control' type='text' placeholder='City' />
+              <select ng-model='editListing.address.state' ng-options='state for state in states' class='form-control'>
+                <option value=''>{{editListing.address.state}}</option>
+              </select>
+              <input ng-model='editListing.address.zip_code' class='form-control' type='text' placeholder='Zipcode'/>
+            </div>
+            <div class='form-group'>
+              <label for='editLocation'>Contact</label>
+              <input ng-model='editListing.phone_number' class='form-control' type='text' placeholder='Phone' />
+              <input ng-model='editListing.website' class='form-control' type='text' placeholder='Webpage' />
+            </div>
+            <div class='form-group'>
+              <label for='editPricing'>Pricing $</label>
+              <input ng-model='editListing.price_range.min' class='form-control' type='text' placeholder='Minimum' />
+              <input ng-model='editListing.price_range.max' class='form-control' type='text' placeholder='Maximum' />
+            </div>
+            <div class='form-group'>
+              <label for='editPictures'>Pictures</label>
+              <div class="show-scroll">
+                <div class=" panel panel-default picture-scroll">
+                  <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in editListing.picturesArray" src="{{pic.src}}"/>
+
+                </div>
+              </div>
+            </div>
+            <div class='form-group'>
+              <label>Description</label>
+              <textarea ng-model='editListing.description' class="form-control" rows="5"></textarea>
+            </div>
+            <button ng-click='saveListing(listing._id, editListing.apartment_name, editListing.address, editListing.phone_number, editListing.website, editListing.price_range, editListing.picturesArray, editListing.description)' class='btn btn-success' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
