@@ -9,6 +9,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var env = require('dotenv').load();
 var FACEBOOK_ID = process.env.FACEBOOK_ID;
 var FACEBOOK_SECRET = process.env.FACEBOOK_SECRET;
+var AWS = require('aws-sdk');
 
 var port = 9001;
 //*** CONTROLLERS ***//
@@ -40,6 +41,12 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+//AWS Config
+// aws.config.update({
+//   accessKeyId: process.env.AWS_ACCESS_KEY,
+//   secretAccessKey: process.env.AWS_SECRET_KEY,
+//   region: 'us-west-1'
+// })
 
 //Passport Strategy
 passport.use('user-local', new LocalStrategy({
@@ -198,8 +205,15 @@ app.post('/api/login/subscriber', passport.authenticate('subscriber-local', {
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 app.get('/api/subscriber/listings', SubscriberCtrl.getListings);
 app.post('/api/subscriber/addApartmentListing', SubscriberCtrl.addListing);
+
+//*Photo upload to AWS endpoint
+app.post('/api/subscriber/addApartmentPictures', SubscriberCtrl.addPictures);
+//*Photo get request from app
+app.get('/api/subscriber/apartmentPictures', SubscriberCtrl.getPictures);
+
 app.put('/api/subscriber/edit_profile', SubscriberCtrl.editProfile);
 app.put('/api/subscriber/edit_listing', SubscriberCtrl.editListing);
+
 
 
 //** Admin ** //
