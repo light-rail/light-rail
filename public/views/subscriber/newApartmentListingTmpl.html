@@ -2,7 +2,7 @@
  <div class="center-content animated fadeInRight">
   <form ng-submit="addApartmentListing(apartment)" class="col-xs-12 col-md-10 col-lg-8">
     <div class="col-md-12">
-      <h2 class="titles-styling top-spacing bottom-border listing-bottom-spacing">Add A Listing</h2>
+      <h2 class="titles-styling top-spacing bottom-border listing-bottom-spacing">Add Listing Details</h2>
     </div>
     
 
@@ -10,44 +10,37 @@
       <div class="col-md-5">
         <div class="panel panel-default panel-spacing">
           <div class="panel-heading" id="panel-heading-color">
-            <h3 class="panel-title">Apartment Information Details</h3>  
+            <h3 class="panel-title">Apartment Address</h3>  
+          </div>
+          <div class="panel-body">
+
+            <!--Change to reflect dynamic -->
+            <div class="col-md-12">
+              <span>
+                <h4>{{seededApartment.apartment_name}}</h4>
+                <span>{{seededApartment.location.street_address}}</span><br>
+                <span> {{seededApartment.location.city + ', ' + seededApartment.location.state + ' ' + seededApartment.location.zip_code}}</span></br>
+              </span><br>
+            </div>
+
+          </div> 
+        </div>
+
+        <!-- PHONE AND WEBPAGE -->
+        <div class="panel panel-default panel-spacing">
+          <div class="panel-heading" id="panel-heading-color">
+            <h3 class="panel-title">Contact Details</h3>  
           </div>
           <div class="panel-body">
 
             <div class="input-group col-xs-12">
-              <label for="street_address" class="sr-only"></label>
-              <input type="text" ng-model="apartment.apartment_name" class="form-control floating-label" id="form-input-underline" placeholder="Apartment Complex Name" required>
-            </div><br>
-
-
-            <div class="input-group col-xs-12">
-              <label for="street_address" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
-            </div><br>
-
-            <div class="input-group col-xs-12">
-              <label for="city" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
-            </div><br>
-          
-            <div class="input-group col-xs-12">
               <label for="state" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
-            </div><br>
-         
-            <div class="input-group col-xs-12">
-              <label for="zip_code" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
-            </div><br>
-
-            <div class="input-group col-xs-12">
-              <label for="state" class="sr-only"></label>
-              <input type="text" ng-model="apartment.phone_number" class="form-control floating-label" id="form-input-underline" placeholder="Phone Number" required>
+              <input type="text" ng-model="apartment.phone_number" class="form-control floating-label" placeholder="Phone Number" required>
             </div><br>
 
             <div class="input-group col-xs-12">
               <label for="zip_code" class="sr-only"></label>
-              <input type="text" ng-model="apartment.webpage" class="form-control floating-label" id="form-input-underline" placeholder="Web Page - Example: www.mywebpage.com" required>
+              <input type="text" ng-model="apartment.webpage" class="form-control floating-label" placeholder="Web Page - Example: www.mywebpage.com" required>
             </div><br>
 
           </div> 
@@ -55,39 +48,42 @@
       </div>
 
 
-      <!-- APARTMENT DESCRIPTION -->
+      <!-- APARTMENT DESCRIPTION //missing label-->
       <div class="col-md-7">
         <div class="panel panel-default panel-spacing">
           <div class="panel-heading" id="panel-heading-color">
-            <h3 class="panel-title">Apartment Description (600 Character Limit)</h3>  
+            <h3 class="panel-title">Apartment Description <i>(600 Character Limit)</i></h3>  
           </div>
           <div class="panel-body">
-            <textarea type="text" class="form-control floting-label" ng-model="apartment.description" rows="10" maxlength="600" id="form-input-underline"></textarea>
+            <textarea type="text" class="form-control floting-label description-bottom-spacing" ng-model="apartment.description"  rows="6" maxlength="600"></textarea>
           </div> 
         </div>
       </div>
 
       
       <!-- PICTURE UPLOAD BUTTON -->
+      
       <div class="col-md-7">
         <div class="panel panel-default">
           <div class="panel-body" Noid="panel-heading-color">
             <div class="col-xs-12 col-md-12 char-left-alignment">
-              <label class="control-label btn btn-primary btn-sm" for="inputFile">Add Photo</label>   
-              <div class="col-lg-12 photo-bottom-spacing">
-                <input type="text" ng-model="apartment.photos" readonly="" class="form-control floating-label" placeholder="Browse...">
-                <input type="file" id="inputFile" multiple="">
+              <label class="control-label btn btn-primary btn-sm" data-target=".add-picture-modal-lg" data-toggle="modal" for="add_pictures">Add Photo</label>   
+              <div class="col-lg-12">
+                <input type="text" readonly="" class="form-control floating-label" placeholder="Browse..."><br>
+<!--                 <input type="file" id="inputFile" ng-model="picture" multiple=""> -->
               </div>
             </div>
           </div>
         </div>
       </div><!-- End of Upload button -->
 
+
       <!-- PICTURE DISPLAY AREA -->
-      <div class="col-md-12">
+      <div ng-hide="(apartment.pictures_array.length === 0)" class="col-md-12">
         <div class="show-scroll">
           <div class=" panel panel-default picture-scroll">
-            <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in apartment.picturesArray" src="{{pic.src}}"/>
+            <img class="img-thumbnail img-responsive img-size" nong-repeat="pic in apartment.pictures_array" ng-src="{{pic}}"/>
+            <img ng-show="apartment.pictures_array[0] != null" ng-src="apartment.pictures_array.pic" class="thumb">
           </div> 
         </div>
       </div><!-- End of picture area -->
@@ -150,11 +146,11 @@
                 <label class="col-xs-12 col-md-3">
                   <input type="checkbox" ng-model="apartment.amenities.washer_dryer" id="inlineCheckbox" ng-false-value="false" ng-true-value="true"> Washer and Dryer
                 </label>
-              </div>
+              </div><br>
 
               <div class="input-group col-xs-12">
                 <label for="amenities_additional" class="sr-only"></label>
-                <input type="text" ng-model="apartment.additional_amenities" class="form-control floating-label" id="form-input-underline" placeholder="Additional Amenities (100 Character Limit)" maxlength="100">
+                <input type="text" ng-model="apartment.additional_amenities" class="form-control floating-label" placeholder="Additional Amenities <i>(100 Character Limit)</i>" maxlength="100">
               </div>               
 
             </div>
@@ -246,7 +242,58 @@
       </div>
     </div>
   </div>
-</div>
+</div><!-- End of Modal -->
+
+<!-- PICTURE MODAL -->
+<div class="modal animated bounceInDown add-picture-modal-lg" tabindex="-1" role="dialog" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="row modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+
+      <div class="row center-content">
+
+        <!-- HEADING FOR PICTURE ENTRY -->
+        <form class="col-xs-11 col-md-10" >
+          <h2 class="titles-styling listing-bottom-spacing bottom-border">Add A Picture</h2>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+
+              <div class="col-xs-12 col-md-12"><!-- Inner container sizing -->
+
+                <!-- ADD FILE -->
+                <div class="col-md-7">
+                  <div class="panel panel-default">
+                    <div class="panel-body" Noid="panel-heading-color">
+                      <div class="col-xs-12 col-md-12 char-left-alignment">
+                        <!-- <button class="control-label btn btn-primary btn-sm" for="pictures">Add Photo</button>  -->  
+                        <div class="col-lg-12 photo-bottom-spacing">
+                          <input type="text" ng-model="picture.src" readonly="" class="form-control floating-label" placeholder="Browse...">
+                          <input type="file" id="inputFile" ng-model="picture.photo" multiple="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End of Upload button -->
+
+              </div>
+            </div>
+          </div><!-- End of Panel -->
+
+          <div class="center-content">
+            <button ng-click="addPicture(picture)" type="button" class="btn btn-primary" data-dismiss="modal">Add Picture</button>
+          </div>
+          
+          <div class="bottom-border border-top-spacing"></div>         
+
+        </form><!-- End of Apartment Unit Details -->
+
+      </div>
+    </div>
+  </div>
+</div><!-- End of Modal -->
 
 <script>
 $(document).ready(function() {

@@ -52,6 +52,43 @@ module.exports = {
     });
   },
 
+  //adjust for pic's, pictures have to be submitted as a standalone file
+  addPictures: function(req, res) {
+    var file = req.files.photo;
+
+    var s3_filename = req.user._id+'.'+file.extension;
+    var s3_bucket_name = 'light-rail-connect';//identifies the bucket name
+    var s3bucket = new aws.S3();
+
+    fs.readFile(filepath, function(err, file_buffer) {
+      var params = {
+        Bucket: s3_bucket_name, //folder name in amazon
+        Key: s3_filename, //filename in amazon
+        Body: file_buffer,
+        ACL: 'public-read', //review this in amazon settings
+        ContentType: file.mimetype
+      };
+      s3bucket.putObject(params, function(s3_err, response) {
+        console.log(response);
+        //update this to name of pictures
+        User.findOneAndUpdate({_id: req.user.id}, {profile_picture: s3_bucket_name+'/'+s3_filename}, function() {
+          return res.status(200).end();
+        })
+      })
+    });
+  },
+  
+  //adjust for listing pictures
+  getPictures: function(req, res) {
+    Apartment
+    .findOne({_id: req.subscriber.id})
+    .populate('light-rail-connect')
+    exec().then(function(subscriber) {
+      return res.json(subscriber)
+    })
+
+  },
+
   editProfile: function(req, res) {
     var update = req.body;
     var options = {
