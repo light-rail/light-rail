@@ -8,24 +8,10 @@ var GeneralUserSchema = new Schema({
   email: { type: String, unique: true, lowercase: true, required: true },
   password: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  favorites: {
-    apartments: [{
+  favorites: [{
       type: Schema.Types.ObjectId,
       ref: 'Apartment'
     }]
-  // hotels: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'GeneralUser'
-  // }],
-  // realEstate: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'GeneralUser'
-  // }],
-  // entertainment: [{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'GeneralUser'
-  // }]
-  }
 
 });
 
