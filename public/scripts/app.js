@@ -37,7 +37,12 @@ app.config(function($routeProvider){
       templateUrl: 'views/login/loginSubscriberTmpl.html',
       controller: 'LoginCtrl'
     })
-    .when('/subscriber/new_listing', {
+    .when('/subscriber/verify-address', {
+      templateUrl: 'views/subscriber/newApartmentAddressVerificationTmpl.html',
+      controller: 'SubscriberCtrl'
+    })
+    //needs to be dynamic, w/ :subscriberId
+    .when('/subscriber/new-listing/:subscriberId', {
       templateUrl: 'views/subscriber/newApartmentListingTmpl.html',
       controller: 'SubscriberCtrl'
     })

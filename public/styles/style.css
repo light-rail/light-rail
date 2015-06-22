@@ -204,11 +204,15 @@ html, body {
   background-color: #CFD8DC;
 }
 
-.photo-bottom-spacing {
-  margin-bottom: 10px;
+.description-bottom-spacing {
+  margin-bottom: 15px;
 }
 
 #unit-button-spacing {
   margin-top: 20px;
+}
+
+.checkbox-right-spacing {
+  margin-right: 20px;
 }
 
