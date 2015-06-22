@@ -186,6 +186,7 @@ app.post('/api/login/user', passport.authenticate('user-local', {
 }), UserCtrl.loginUser);
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 app.get('/api/user/getFavorites', UserCtrl.getFavorites);
+app.post('/api/user/addToFavorites', UserCtrl.addToFavorites);
 
 
 

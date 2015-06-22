@@ -240,9 +240,34 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
 
 
 
+$scope.favoriteMarkers = [];
+$scope.getFavorites = function() {
+  GeneralUserService.getFavorites().then(function(data) {
+    console.log(data[0]);
+    var favoriteArr = data[0].favorites;
+    for (var i = 0; i < favoriteArr.length; i++) {
+      var apt = favoriteArr[i];
+      $scope.favoriteMarkers.push({
+        id: i,
+        latitude: apt.location.lat,
+        longitude: apt.location.long,
+        title: apt.apartment_name,
+        clicked: false,
+        events: {
+          mouseover: function(marker, mouseover, favoriteMarkers) {
+            favoriteMarkers.show = true;
+          },
+          mouseout: function(marker, mouseout, favoriteMarkers) {
+            favoriteMarkers.show = false;
+          }
+        }
+      })
 
+    };
+  })
+}
 
-
+$scope.getFavorites();
 
 
 
