@@ -12,7 +12,7 @@ var apartmentSchema = new Schema({
   },
   phone_number: {type:String, required: true},
   email: {type: String, lowercase: true, required: true},
-  website: {type: String, required: true},
+  webpage: {type: String, required: true},
   cover_picture: {type: String},
 
   pictures_array: [
