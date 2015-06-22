@@ -40,6 +40,7 @@ app.service('GeneralUserService', function($http, $q) {
     });
   };
 
+
   this.displayAll = function(obj) {
     var allItems = '';
     for (var prop in obj) {
@@ -47,7 +48,6 @@ app.service('GeneralUserService', function($http, $q) {
     }
     return allItems.replace(',', ' ');
   };
-
 
   this.getAptData = function() {
     var url = '/api/apartment/getAptData';
@@ -79,6 +79,7 @@ app.service('GeneralUserService', function($http, $q) {
       return data.data;
     });
   }
+
   //*** SEED DATA FOR MAIN PAGE ***//
 
 

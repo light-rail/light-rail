@@ -8,7 +8,7 @@
 
         <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" geodesic='p.geodesic'></ui-gmap-polyline>
 
-        <ui-gmap-markers models="stationMarkers" coords="'self'" click="clickStation" events="stationMarkers.events" icon='{url: "OrangeSmall.png"}'>
+        <ui-gmap-markers models="stationMarkers" coords="'self'" click="clickStation" events="stationMarkers.events" icon='{url: "images/OrangeSmall.png"}'>
                  <ui-gmap-windows show="show">
                     <div ng-non-bindable>{{title}}</div>
                  </ui-gmap-windows>
