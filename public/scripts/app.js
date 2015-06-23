@@ -1,7 +1,6 @@
-var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps', 'flow']);
+var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps', 'flow', 'chart.js']);
 
 app.config(function($routeProvider){
-
   $routeProvider
     .when('/', {
       templateUrl: 'views/mainTmpl.html',
