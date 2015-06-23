@@ -14,6 +14,20 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
+  this.getAddedApt = function(id) {
+    console.log(id);
+    var url = '/api/apartment/';
+      return $http({
+      method: 'GET',
+      url: url + id
+    }).then(function(response){
+      return response.data;
+    })
+  }
+
+
+
+
   this.addToFavorites = function(locationId) {
     console.log("hit service");
     var url = '/api/user/addToFavorites'

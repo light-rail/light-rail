@@ -1,6 +1,6 @@
 
  <div class="center-content animated fadeInRight">
-  <form ng-submit="verifyApartmentAddress(address)" class="col-xs-12 col-md-10 col-lg-6">
+  <form ng-submit="verifyApartmentAddress()" class="col-xs-12 col-md-10 col-lg-6">
     <div class="col-md-12">
       <h2 class="titles-styling top-spacing bottom-border listing-bottom-spacing">Add &amp; Verify Your Apartment Address</h2>
     </div>
@@ -16,28 +16,28 @@
 
             <div class="input-group col-xs-12">
               <label for="street_address" class="sr-only"></label>
-              <input type="text" ng-model="apartment.apartment_name" class="form-control floating-label" id="form-input-underline" placeholder="Apartment Complex Name" required>
+              <input type="text" ng-model="apartment_name" class="form-control floating-label" id="form-input-underline" placeholder="Apartment Complex Name" required>
             </div><br>
 
 
             <div class="input-group col-xs-12">
               <label for="street_address" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
+              <input type="text" ng-model="address.street_address" class="form-control floating-label" id="form-input-underline" placeholder="Street Address" required>
             </div><br>
 
             <div class="input-group col-xs-12">
               <label for="city" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
+              <input type="text" ng-model="address.city" class="form-control floating-label" id="form-input-underline" placeholder="City" required>
             </div><br>
           
             <div class="input-group col-xs-12">
               <label for="state" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
+              <input type="text" ng-model="address.state" class="form-control floating-label" id="form-input-underline" placeholder="State" required>
             </div><br>
          
             <div class="input-group col-xs-12">
               <label for="zip_code" class="sr-only"></label>
-              <input type="text" ng-model="apartment.address.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
+              <input type="text" ng-model="address.zip_code" class="form-control floating-label" id="form-input-underline" placeholder="Zip Code" required>
             </div><br>
 
           </div> 
