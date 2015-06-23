@@ -10,7 +10,7 @@
 
           <ui-gmap-markers models="stationMarkers" coords="'self'" click="clickStation" events="stationMarkers.events" icon='{url: "images/pin2.png"}'>
                  <ui-gmap-windows show="show">
-                    <div ng-non-bindable>{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div>
+                   <div ng-non-bindable>{{title}}</div>
                  </ui-gmap-windows>
         </ui-gmap-markers>
 
@@ -19,7 +19,7 @@
 
        <ui-gmap-markers models="favoriteMarkers" coords="'self'" events="favoriteMarkers.events" icon='{url: "pin1.png"}'>
                  <ui-gmap-windows show="show">
-                    <div ng-non-bindable>{{title}}</div>
+                   <div ng-non-bindable>{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div>
                  </ui-gmap-windows>
         </ui-gmap-markers>
 
@@ -43,7 +43,7 @@
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="images/{{apartment.picture}}" alt="...">
+                    <img src="{{apartment.cover_picture.src}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 
