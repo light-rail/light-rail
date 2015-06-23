@@ -17,12 +17,73 @@
 
     <title>LightRail Connect</title>
   </head>
-  <body class="nav-spacing">
+  <body class="nav-spacing" ng-controller='NavCtrl'>
 
     <!-- Toaster status: info, wait, error, success, warning -->
     <toaster-container toaster-options="{'time-out': 3000, 'close-button':true}"></toaster-container>
 
-    <nav ng-include="'views/nav.html'"></nav>
+    <!-- Nav Bar -->
+<div class="navbar navbar-warning navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand brand-style" href="#/">LightRail Connect</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-warning-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#/myfavorites">My Favorites </a></li>
+
+<!--    <li class="dropdown">
+          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:void(0)">Action</a></li>
+            <li><a href="javascript:void(0)">Another action</a></li>
+            <li><a href="javascript:void(0)">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Dropdown header</li>
+            <li><a href="javascript:void(0)">Separated link</a></li>
+            <li><a href="javascript:void(0)">One more separated link</a></li>
+          </ul>
+        </li> -->
+      </ul>
+        <form class="navbar-form navbar-left">
+          <input type="text" class="form-control col-lg-8" placeholder="Search">
+        </form>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/register/general_user">Register GenUser</a></li>
+            <li><a href="#/register/subscriber">Register to List An Apartment</a></li>
+            <li><a href="#/register/admin">RegisterAdmin</a></li> <!-- temoprary -->
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#/map">Map</a></li>
+            <li class="divider"></li>
+            <li><a href="#/login">General User Login</a></li>
+            <li><a href="#/login/subscriber">Subscriber Login</a></li>
+            <li><a href="#/login/admin">Login Admin</a></li> <!-- temoprary -->
+            <li><a href="#/subscriber/verify-address">Add A Listing</a></li> <!-- temporary -->
+            <li><a href="#/subscriber/new-listing/1">Add A Listing2</a></li> <!-- temporary hardcoded -->
+          </ul>
+        </li>
+        <li>
+          <a ng-show='isLoggedIn' href='/api/user/logout'>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End Nav Bar -->
+
     <div class="jumbotron"></div>
       <ng-view></ng-view>
     </div>
@@ -62,6 +123,8 @@
         $.material.init();
       });
     </script>
+
+    <script src='/scripts/controllers/navCtrl.js'></script>
 
     <script src="/scripts/controllers/RegisterCtrl.js"></script>
     <script src="/scripts/controllers/LoginCtrl.js"></script>

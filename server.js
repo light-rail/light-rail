@@ -227,6 +227,12 @@ app.get('/api/admin/isLoggedIn', AdminCtrl.isLoggedIn);
 app.post('/api/trainStation', TrainStationCtrl.createLocation);
 app.get('/api/stations/getStations', TrainStationCtrl.getStations);
 
+//** Logout **//
+app.get('/api/user/logout', function(req, res) {
+  req.logOut();
+  res.redirect('/#/');
+});
+
 /* facebook endpoints*/
 
 app.get('/auth/facebook', passport.authenticate('facebook'));

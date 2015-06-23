@@ -1,9 +1,12 @@
 var app = angular.module('lightRail');
 
-app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService) {
+app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService, isLoggedIn) {
 
   var allApartmentsData = GeneralUserService.apartmentData;
 
+  //displays and hides logout button
+  $scope.isLoggedIn = isLoggedIn;
+  
   $scope.apartments = allApartmentsData;
 
 
