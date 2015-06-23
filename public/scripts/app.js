@@ -7,14 +7,6 @@ app.config(function($routeProvider){
       templateUrl: 'views/mainTmpl.html',
       controller: 'MainPageCtrl'
     })
-    .when('/apartments/:apartmentId', {
-      templateUrl: 'views/mainTmpl.html',
-      controller: 'MainPageCtrl'
-    })
-    .when('/map', {
-      templateUrl: 'views/map.html',
-      controller: 'MapCtrl'
-    })
     //General User Routes
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
