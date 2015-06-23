@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService, isLoggedIn) {
+app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService) {
 
       var allApartmentsData = GeneralUserService.apartmentData;
 

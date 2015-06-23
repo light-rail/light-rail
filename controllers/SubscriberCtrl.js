@@ -41,7 +41,7 @@ module.exports = {
   addListing: function(req, res) {
     var apartment = new Apartment(req.body);
     console.log('addListing server', req.body)
-    //apartment.subscriber_id = req.user._id
+    apartment.subscriber_id = req.user._id
     apartment.save(function(err, apartment) {
       if(err) {
         if(err.code === 500) return res.status(500).json(err);

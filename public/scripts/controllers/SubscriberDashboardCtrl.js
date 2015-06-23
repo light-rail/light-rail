@@ -1,8 +1,7 @@
 var app = angular.module('lightRail');
 
-app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListings, isLoggedIn, GeneralUserService, SubscriberDashboardService) {
+app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListings, GeneralUserService, SubscriberDashboardService) {
 
-	$scope.isLoggedIn = isLoggedIn;
 	//Subscriber
 	$scope.subscriber = subProfile;
 	console.log($scope.subscriber);
