@@ -62,4 +62,5 @@ app.controller('SubscriberCtrl', function($scope, $location, $routeParams, Subsc
     } // ends function
 
 
+
 });
