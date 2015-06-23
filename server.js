@@ -243,6 +243,7 @@ app.get('/logout', function(req, res) {
 //** Apartments **//
 app.get('/api/apartment/getAptData', ApartmentCtrl.getAptData);
 app.get('/api/apartment/getNearestStops', ApartmentCtrl.getNearestStops);
+app.get('/api/apartment/:aptId', ApartmentCtrl.getAddedApt);
 
 app.get('/api/users/userId', isAuthed, function(req, res) {
   User.findOne({
