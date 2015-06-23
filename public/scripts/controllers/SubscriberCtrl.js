@@ -1,62 +1,65 @@
 var app = angular.module('lightRail');
 
-app.controller('SubscriberCtrl', function($scope, $location, $routeParams, SubscriberService, GeneralUserService) {
-
-  //Used to link seeded Data -- Erase when linked to Subscriber backend
-  var selectedSubscriberData = GeneralUserService.apartmentData[$routeParams.subscriberId];
-  
-  $scope.seededApartment = selectedSubscriberData;
-  //** End of Seeded Data Reference
-
-  $scope.apartment = {
-    units:[],
-    pictures_array: []
-  };
-
-  $scope.unit = {};
-  $scope.picture = {};
-
-
-  //** Add Unit Modal Content **/
-  $scope.addUnit = function(unit) {
-    $scope.apartment.units.push(unit);
-    $scope.unit = {};
-    console.log('apartment', $scope.apartment)
-    console.log('unit', $scope.unit)
-  };
-
-  //** Add Pictures Container Content **/
-  $scope.addPicture = function(picture) {
-    $scope.apartment.pictures_array.push(picture);
-    $scope.picture = {};
-    console.log('picture', $scope.picture)
-    console.log('apartment', $scope.apartment)
-  };
+app.controller('SubscriberCtrl', function($scope, $location, $routeParams, SubscriberService, GeneralUserService, toaster) {
 
   //** Address Verification
-  $scope.verifiyApartmentAddress = function(address) {
-    SubscriberService.verifyApartmentAddress(address).then (function(res) {
-      toaster.pop('success', 'Your address registration was successfull!');
-      $location.path('/subscriber/new-listing/:subscriberId');//Needs a :subscriberId
-    }, function(err) {
-      console.log('verifyApartment err', err)
-      //Need to add an error.status for address not being within range of lightrail
-      if(err.status === 11000) toaster.pop('error', 'This listing is already registered');
-      else toaster.pop('error', 'Sorry, something went wrong!');
-    });
-  };
+  $scope.verifyApartmentAddress = function() {
+      var aptInfo = {
+        apartment_name: $scope.apartment_name,
+        address: $scope.address
+      };
+      var geocoder = new google.maps.Geocoder();
+      var radius = 804.67200;
+      console.log($scope.address);
+      var addressString = $scope.address.street_address + " " + $scope.address.city + " " + $scope.address.state + " " + $scope.address.zip_code;
+      geocoder.geocode({
+          'address': addressString
+        }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var addressCoords = results[0].geometry.location;
+            aptInfo.location = {
+              lat: addressCoords.A,
+              long: addressCoords.F
+            } 
+            aptInfo.nearest_stops = [];
+            console.log("addressCoords", addressCoords);
+            GeneralUserService.getStations().then(function(data) {
+                for (var i = 0; i < data.length; i++) {
+                  var stationCoords = new google.maps.LatLng(data[i].lat, data[i].lng);
+                  var dist = google.maps.geometry.spherical.computeDistanceBetween(stationCoords, addressCoords);
+                  if (dist < radius) {
+                    console.log(data[i]);
+                   aptInfo.nearest_stops.push(data[i]._id);
+                   console.log(aptInfo.nearest_stops);
+                  } // ends if (dist < radius)
+                }; // ends for through stations
 
-  //** Submits Listing to Service **/
-  $scope.addApartmentListing = function(apartment) {
-    SubscriberService.addApartmentListing(apartment).then (function(res) {
-      toaster.pop('success', 'You successfully added the Listing!');
-      $location.path('/subscriber/dashboard/:id');//Change to :subscriberId?
-    }, function(err) {
-      console.log('AddApartment err', err)
-      //Need to add an error.status for address not being within range of lightrail
-      if(err.status === 11000) toaster.pop('error', 'This listing is already registered');
-      else toaster.pop('error', 'Sorry, something went wrong!');
-    });
-  };
+                if (aptInfo.nearest_stops.length > 0) {
+                  console.log(aptInfo.nearest_stops);
+                  SubscriberService.addApartmentListing(aptInfo).then(function(res) {
+                    console.log("result", res);
+                    toaster.pop('success', 'Your address registration was successfull!');
+                    $location.path('/subscriber/new-listing/' + res._id); 
+                  }, function(err) {
+                    console.log('verifyApartment err', err)
+                      //Need to add an error.status for address not being within range of lightrail
+                    if (err.status === 11000) toaster.pop('error', 'This listing is already registered');
+                    else toaster.pop('error', 'Sorry, something went wrong!');
+                  });
+                } else {
+                  toaster.pop('failure', 'Your address was not found within half a mile from a stop.');
+                  $scope.apartment_name = "";
+                  $scope.address.street_address = "";
+                  $scope.address.city = "";
+                  $scope.address.state = "";
+                  $scope.address.zip_code = "";
+                }
+              }) // ends getting stations
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+        }) // ends geocoder 
+    } // ends function
+
 
 });

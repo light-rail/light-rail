@@ -6,7 +6,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
       $scope.apartments = allApartmentsData;
 
-
+    
       //** Modal Initiation **//
       $scope.getApartment = function(apartment) {
         var modal_apartment = '';
@@ -16,7 +16,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
       }
 
 
-      $scope.aptMarkers = [];
+        $scope.aptMarkers = [];
       $scope.createAptMarkers = function(marker) {
         GeneralUserService.getAptData().then(function(data) {
             var aptArray = data;
@@ -138,6 +138,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
       }, {
         "elementType": "labels.text.fill",
         "stylers": [{
+
           "saturation": 36
         }, {
           "color": "#333333"
