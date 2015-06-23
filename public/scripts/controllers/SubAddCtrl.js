@@ -1,18 +1,23 @@
 var app = angular.module('lightRail');
 
-app.controller('SubAddCtrl', function($scope, $location, $routeParams, SubscriberService, GeneralUserService, toaster, getAddedApt) {
+app.controller('SubAddCtrl', function($scope,$location, $routeParams, SubscriberService, GeneralUserService, toaster, getAddedApt) {
 
-  $scope.apt = getAddedApt[0];
-  console.log($scope.apt);
-  console.log($scope.apt.apartment_name);
+  console.log(getAddedApt);
+  $scope.apartment = getAddedApt[0];
+  console.log($scope.apartment);
   
-  $scope.apartment = {
-    units: [],
-    pictures_array: []
-  };
-
   $scope.unit = {};
   $scope.picture = {};
+
+  // $scope.processFiles = function(files) {
+  //   angular.forEach(files, function(flowFile, i) {
+  //     var fileReader = new FileRead();
+  //     fileReader.onLoad = function(event) {
+  //       var uri = event.target.result;
+  //       console.log(uri);
+  //     }
+  //   })
+  // }
 
 
   //** Add Unit Modal Content **/
@@ -26,6 +31,7 @@ app.controller('SubAddCtrl', function($scope, $location, $routeParams, Subscribe
   //** Add Pictures Container Content **/
   $scope.addPicture = function(picture) {
     $scope.apartment.pictures_array.push(picture);
+
     $scope.picture = {};
     console.log('picture', $scope.picture)
     console.log('apartment', $scope.apartment)

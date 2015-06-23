@@ -15,28 +15,34 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 	};
 
 	//listings
-	$scope.listings = subListings;
-	console.log('Listings:', $scope.listings);
-	$scope.listing = subListings[0];
+	if(subListings.length > 0) {
+		$scope.showListings = true;
+		$scope.listing = subListings[0];
+		$scope.listings = subListings;
+		$scope.editListing = {
+			apartment_name: $scope.listing.apartment_name,
+			address: {
+				street: $scope.listing.address.street,
+				city: $scope.listing.address.city,
+				state: $scope.listing.address.state,
+				zip_code: $scope.listing.address.zip_code
+			},
+			phone_number: $scope.listing.phone_number,
+			website: $scope.listing.website,
+			coverPicture: $scope.listing.cover_picture,
+			picturesArray: $scope.listing.picturesArray,
+			description: $scope.listing.description,
+			price_range: {
+				min: $scope.listing.price_range.min,
+				max: $scope.listing.price_range.max
+			}
+		};
+	} else {
+		$scope.showListings = false;
+		$scope.listing;
+		$scope.listings;
+	}
 
-	$scope.editListing = {
-		apartment_name: $scope.listing.apartment_name,
-		address: {
-			street: $scope.listing.address.street,
-			city: $scope.listing.address.city,
-			state: $scope.listing.address.state,
-			zip_code: $scope.listing.address.zip_code
-		},
-		phone_number: $scope.listing.phone_number,
-		website: $scope.listing.website,
-		coverPicture: $scope.listing.cover_picture,
-		picturesArray: $scope.listing.picturesArray,
-		description: $scope.listing.description,
-		price_range: {
-			min: $scope.listing.price_range.min,
-			max: $scope.listing.price_range.max
-		}
-	};
 
 	$scope.states = ['AZ','UT','NM','CO'];
 
@@ -100,5 +106,7 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 				return $scope.listing = res.data;
 			})
 	};
+
+	console.log($scope);
 
 });
