@@ -14,15 +14,26 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
-  this.addToFavorites = function(locationId) {
-    console.log("hit service");
+  this.getAddedApt = function(id) {
+    console.log(id);
+    var url = '/api/apartment/';
+      return $http({
+      method: 'GET',
+      url: url + id
+    }).then(function(response){
+      return response.data;
+    })
+  }
+
+
+
+
+  this.addToFavorites = function(aptId) {
     var url = '/api/user/addToFavorites'
     return $http({
       method: 'POST',
       url: url,
-      data: {
-        id: locationId
-        }    
+      data: {aptId: aptId}  
     }).then(function(response){
       console.log(response);
       return response.data;

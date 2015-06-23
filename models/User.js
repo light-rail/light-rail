@@ -21,12 +21,10 @@ var GeneralUserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  favorites: {
-    apartments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Apartment'
-      }]
-  },
+  favorites: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Apartment'
+  }],
   facebookId: {
     type: String
   },

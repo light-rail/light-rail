@@ -7,14 +7,6 @@ app.config(function($routeProvider){
       templateUrl: 'views/mainTmpl.html',
       controller: 'MainPageCtrl'
     })
-    .when('/apartments/:apartmentId', {
-      templateUrl: 'views/mainTmpl.html',
-      controller: 'MainPageCtrl'
-    })
-    .when('/map', {
-      templateUrl: 'views/map.html',
-      controller: 'MapCtrl'
-    })
     //General User Routes
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
@@ -41,10 +33,14 @@ app.config(function($routeProvider){
       templateUrl: 'views/subscriber/newApartmentAddressVerificationTmpl.html',
       controller: 'SubscriberCtrl'
     })
-    //needs to be dynamic, w/ :subscriberId
-    .when('/subscriber/new-listing/:subscriberId', {
+    .when('/subscriber/new-listing/:id', {
       templateUrl: 'views/subscriber/newApartmentListingTmpl.html',
-      controller: 'SubscriberCtrl'
+      controller: 'SubAddCtrl',
+      resolve: {
+        getAddedApt: function(GeneralUserService, $route) {
+          return GeneralUserService.getAddedApt($route.current.params.id);
+        }
+      }
     })
     .when('/subscriber/dashboard/:id', {
       templateUrl: 'views/subscriber/apartmentListingDashboard.html',

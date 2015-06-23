@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var apartmentSchema = new Schema({
-  subscriber_id: {type: Schema.Types.ObjectId, ref:'Subscriber', required: true, index: true},
+  subscriber_id: {type: Schema.Types.ObjectId, ref:'Subscriber', index: true},
   apartment_name: {type:String, required: true},
   address: {
     street_address: {type:String, required: true},
@@ -10,8 +10,8 @@ var apartmentSchema = new Schema({
     state: {type: String, required: true},
     zip_code: {type: String, required: true}
   },
-  phone_number: {type:String, required: true},
-  webpage: {type: String, required: true},
+  phone_number: {type:String},
+  webpage: {type: String},
   cover_picture: {type: String},
 
   pictures_array: [
@@ -24,10 +24,10 @@ var apartmentSchema = new Schema({
 
   units: [
     {
-      bedrooms: {type:String, required: true},
-      bathrooms: {type:String, required: true},
-      monthly_rent: {type:String, required: true},
-      square_feet: {type:String, required: true}
+      bedrooms: {type:String},
+      bathrooms: {type:String},
+      monthly_rent: {type:String},
+      square_feet: {type:String}
     }
   ],
   price_range: {
@@ -35,11 +35,11 @@ var apartmentSchema = new Schema({
     max: {type: String}
   },
   amenities: {
-    pet_friendly: {type:Boolean, required: true, default: false},
-    garage: {type:Boolean, required: true, default: false},
-    pool: {type:Boolean, required: true, default: false},
-    gym: {type:Boolean, required: true, default: false},
-    washer_dryer: {type:Boolean, required: true, default: false}
+    pet_friendly: {type:Boolean, default: false},
+    garage: {type:Boolean,  default: false},
+    pool: {type:Boolean,  default: false},
+    gym: {type:Boolean,  default: false},
+    washer_dryer: {type:Boolean,  default: false}
   },
   description: {type: String},
   additional_amenities: {type:String},
@@ -48,7 +48,7 @@ var apartmentSchema = new Schema({
     lat: {type:String},
     long: {type:String}
   },
-  created_at: {type: Date, required: true, default: Date.now }
+  created_at: {type: Date, default: Date.now }
  
 });
 
