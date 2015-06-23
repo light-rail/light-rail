@@ -1,5 +1,6 @@
 var Subscriber = require('../models/Subscriber');
 var Apartment = require('../models/Apartment');
+var aws = require('aws-sdk');
 
 module.exports = {
 
@@ -58,7 +59,7 @@ module.exports = {
     var file = req.files.photo;
 
     var s3_filename = req.user._id+'.'+file.extension;
-    var s3_bucket_name = 'light-rail-connect';//identifies the bucket name
+    var s3_bucket_name = 'lightrail-apartment';//identifies the bucket name
     var s3bucket = new aws.S3();
 
     fs.readFile(filepath, function(err, file_buffer) {
