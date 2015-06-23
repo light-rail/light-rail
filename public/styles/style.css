@@ -1,9 +1,9 @@
-/*
- * {
+
+/* * {
   border: 1px dashed blue;
 }
-
 */
+
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
@@ -164,6 +164,18 @@ html, body {
   border-bottom:  1px solid #CFD8DC;
 }
 
+.like-heart {
+  position: absolute;
+  right: 0px;
+/*  background-color: white;
+  border: white;*/
+}
+
+.like-heart:hover {
+  color: pink;
+  border: 2px solid white;
+}
+
 /* Pic Container Scrollbar */
 
 .show-scroll ::-webkit-scrollbar {
@@ -195,7 +207,7 @@ html, body {
   padding-top: 40px;
 }
 
-/*** LISTING PAGE ***/
+/*** NEW LISTING PAGE ***/
 .listing-bottom-spacing {
   margin-bottom: 20px;
 }
@@ -205,7 +217,7 @@ html, body {
 }
 
 .description-bottom-spacing {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 #unit-button-spacing {
@@ -216,3 +228,19 @@ html, body {
   margin-right: 20px;
 }
 
+.flow-picture-scroll {
+  overflow-x: scroll;
+  height: 280px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+
+} 
+
+.quiet {
+  color: grey;
+  font-weight: 200;
+}
+
+.photo-button {
+  padding: 0px;
+}

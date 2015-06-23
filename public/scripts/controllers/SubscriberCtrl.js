@@ -1,6 +1,6 @@
 var app = angular.module('lightRail');
 
-app.controller('SubscriberCtrl', function($scope, $location, $routeParams, SubscriberService, GeneralUserService) {
+app.controller('SubscriberCtrl', function($scope, $location, $routeParams, SubscriberService, GeneralUserService, toaster) {
 
   //Used to link seeded Data -- Erase when linked to Subscriber backend
   var selectedSubscriberData = GeneralUserService.apartmentData[$routeParams.subscriberId];
@@ -10,12 +10,10 @@ app.controller('SubscriberCtrl', function($scope, $location, $routeParams, Subsc
 
   $scope.apartment = {
     units:[],
-    pictures_array: []
   };
 
   $scope.unit = {};
   $scope.picture = {};
-
 
   //** Add Unit Modal Content **/
   $scope.addUnit = function(unit) {
@@ -25,13 +23,6 @@ app.controller('SubscriberCtrl', function($scope, $location, $routeParams, Subsc
     console.log('unit', $scope.unit)
   };
 
-  //** Add Pictures Container Content **/
-  $scope.addPicture = function(picture) {
-    $scope.apartment.pictures_array.push(picture);
-    $scope.picture = {};
-    console.log('picture', $scope.picture)
-    console.log('apartment', $scope.apartment)
-  };
 
   //** Address Verification
   $scope.verifiyApartmentAddress = function(address) {
@@ -48,6 +39,7 @@ app.controller('SubscriberCtrl', function($scope, $location, $routeParams, Subsc
 
   //** Submits Listing to Service **/
   $scope.addApartmentListing = function(apartment) {
+    console.log("addApartmentListing-apartment", apartment)
     SubscriberService.addApartmentListing(apartment).then (function(res) {
       toaster.pop('success', 'You successfully added the Listing!');
       $location.path('/subscriber/dashboard/:id');//Change to :subscriberId?
