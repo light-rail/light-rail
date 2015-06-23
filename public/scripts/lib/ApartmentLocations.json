@@ -1,0 +1,201 @@
+{
+  "Apartments": [{
+      "apartment_name": "the Lofts at Rio Salado",
+      "address": {
+        "street_address": "1033 N Parkside Dr",
+        "city": "tempe",
+        "state": "AZ",
+        "zip_code": "85281"
+      },
+      "phone_number": "602-761-7884",
+      "webpage": "http://www.loftsatriosaladoapartments.com/",
+      "cover_picture": "",
+      "pictures_array": [{
+        "name": "",
+        "src": "",
+        "url": "http://medialibrarycdn.propertysolutions.com/media_library/3049/513137d600c12731.jpg"
+      }, {
+        "name": "",
+        "src": "",
+        "url": "http://medialibrarycdn.propertysolutions.com/websites_media/loftsatriosaladoapartments.com/cached_thumbs/79x56/513137c27c864864.jpg"
+      }, {
+        "name": "",
+        "src": "",
+        "url": "http://medialibrarycdn.propertysolutions.com/media_library/3049/513137450d279891.jpg"
+      }, {
+        "name": "",
+        "src": "",
+        "url": "http://medialibrarycdn.propertysolutions.com/media_library/3049/513137e673c80295.jpg"
+      }],
+      "units": [{
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "monthly_rent": "892",
+        "square_feet": "795"
+
+      }, {
+        "bedrooms": "2",
+        "bathrooms": "2",
+        "monthly_rent": "1320",
+        "square_feet": "1,024"
+
+      }, {
+        "bedrooms": "3",
+        "bathrooms": "2",
+        "monthly_rent": "1572",
+        "square_feet": "1489"
+
+      }],
+      "price_range": {
+        "min": "892",
+        "max": "1846"
+      },
+      "amentities": {
+        "pet_friendly": "false",
+        "garage": "false",
+        "pool": "true",
+        "gym": "true",
+        "washer_dryer": "true"
+      },
+      "description": "Lovely family oriented apartment complex",
+      "additional_amentities": "gated, cooking grills, Eleavtor, cable Ready, Ceiling Fans, Fireplace, High Speed Internet Access",
+      "nearest_stops": ["ObjectId('556bc4b7a9e58fc42094c25')", "ObjectId('556bc9387a80dd9c247475dd')"],
+      "lat": "33.4385762",
+      "long": "-111.9496601",
+      "created_at": "",
+    }, {
+      "apartment_name": "",
+      "address": {
+        "street_address": "",
+        "city": "tempe",
+        "state": "AZ",
+        "zip_code": "85281"
+      },
+      "phone_number": "",
+      "webpage": "",
+      "cover_picture": "",
+      "pictures_array": [{
+        "name": "",
+        "src": "",
+        "url":
+      }],
+      "units": [{
+        "bedrooms": "",
+        "bathrooms": "",
+        "monthly_rent": "",
+        "square_feet": ""
+
+      }],
+      "price_range": {
+        "min": "",
+        "max": ""
+      },
+      "amentities": {
+        "pet_friendly": "",
+        "garage": "",
+        "pool": "",
+        "gym": "",
+        "washer_dryer": ""
+      },
+
+      "description": "",
+      "additional_amentities": "",
+      "nearest_stops": [{
+        "TrainStation._id": "",
+      }],
+      "lat": "",
+      "long": "",
+      "created_at": "",
+    }, {
+      "apartment_name": "",
+      "address": {
+        "street_address": "",
+        "city": "tempe",
+        "state": "AZ",
+        "zip_code": "85281"
+      },
+      "phone_number": "",
+      "webpage": "",
+      "cover_picture": "",
+      "pictures_array": [{
+        "name": "",
+        "src": "",
+        "url":
+      }],
+      "units": [{
+        "bedrooms": "",
+        "bathrooms": "",
+        "monthly_rent": "",
+        "square_feet": ""
+
+      }],
+      "price_range": {
+        "min": "",
+        "max": ""
+      },
+      "amentities": {
+        "pet_friendly": "",
+        "garage": "",
+        "pool": "",
+        "gym": "",
+        "washer_dryer": ""
+      },
+
+      "description": "",
+      "additional_amentities": "",
+      "nearest_stops": [{
+        "TrainStation._id": "",
+      }],
+      "lat": "",
+      "long": "",
+      "created_at": "",
+    }, {
+      "apartment_name": "",
+      "address": {
+        "street_address": "",
+        "city": "tempe",
+        "state": "AZ",
+        "zip_code": "85281"
+      },
+      "phone_number": "",
+      "webpage": "",
+      "cover_picture": "",
+      "pictures_array": [{
+        "name": "",
+        "src": "",
+        "url":
+      }],
+      "units": [{
+        "bedrooms": "",
+        "bathrooms": "",
+        "monthly_rent": "",
+        "square_feet": ""
+
+      }],
+      "price_range": {
+        "min": "",
+        "max": ""
+      },
+      "amentities": {
+        "pet_friendly": "",
+        "garage": "",
+        "pool": "",
+        "gym": "",
+        "washer_dryer": ""
+      },
+
+      "description": "",
+      "additional_amentities": "",
+      "nearest_stops": [{
+        "TrainStation._id": "",
+      }],
+      "lat": "",
+      "long": "",
+      "created_at": "",
+    },
+
+
+
+
+  ]
+}
