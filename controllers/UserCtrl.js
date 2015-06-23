@@ -37,7 +37,7 @@ module.exports = {
 
   getFavorites: function(req, res) {
     User
-    .find({_id: "5584994173914ca9d73ae1c2"})
+    .find({_id: req.user._id})
     .populate('favorites') 
     .exec(function(err, data) {
       if (err) return res.status(500).send(err);
@@ -46,7 +46,7 @@ module.exports = {
   },
 
   addToFavorites: function(req, res) {
-    User.findByIdAndUpdate("5584994173914ca9d73ae1c2", {$push:{favorites: req.body.id}},
+    User.findByIdAndUpdate(req.user._id, {$push:{favorites: req.body.aptId}},
       function(err, data) {
         if (err) console.log(err);
          res.json(data); 
