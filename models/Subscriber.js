@@ -1,22 +1,66 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
 var q = require('q');
+var SubscriberListing = require('./SubscriberListings');
 
 var SubscriberSchema = new Schema({
-  company_name: {type: String, required: true },
-  first_name: { type: String, required: true },
-  last_name: { type: String, required: true},
-  phone_number: { type: String, required: true },
-  email: { type: String, unique: true, lowercase: true, required: true },
-  password: { type: String, required: true },
-  contact_address: {
-     street_address: { type: String},
-     city: { type: String },
-     state: { type: String },
-     zip_code: { type: Number }
+  company_name: {
+    type: String,
+    required: true
   },
-  createdAt: { type: Date, default: Date.now }
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
+    type: String,
+    required: true
+  },
+  phone_number: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  contact_address: {
+    street_address: {
+      type: String
+    },
+    city: {
+      type: String
+    },
+    state: {
+      type: String
+    },
+    zip_code: {
+      type: Number
+    }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  stripeId: {
+    type: String
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  subscribed: {
+    type: Boolean,
+    default: false
+  },
+  listings: [SubscriberListing]
 });
 
 
@@ -25,7 +69,7 @@ SubscriberSchema.pre('save', function(next) {
   var user = this;
   //passw encryption
   bcrypt.genSalt(10, function(err, salt) {
-    bcrypt.hash(user.password, salt, function(err, hash) {
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
       //console.log(hash)
       user.password = hash;
       next();

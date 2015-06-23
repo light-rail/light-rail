@@ -4,8 +4,8 @@ var app = angular.module('lightRail');
 app.service('GeneralUserService', function($http, $q) {
 
   //I recommend being more descriptive w/ this funct name, example: "getGeneralUserFavorites"
-  this.getGeneralUser = function() {
-    var url = '/api/generalUser/myfavorites'
+  this.getFavorites = function() {
+    var url = '/api/user/getFavorites'
     return $http({
       method: 'GET',
       url: url
@@ -14,18 +14,82 @@ app.service('GeneralUserService', function($http, $q) {
     })
   };
 
+  this.getAddedApt = function(id) {
+    console.log(id);
+    var url = '/api/apartment/';
+      return $http({
+      method: 'GET',
+      url: url + id
+    }).then(function(response){
+      return response.data;
+    })
+  }
+
+
+
+
+  this.addToFavorites = function(aptId) {
+    var url = '/api/user/addToFavorites'
+    return $http({
+      method: 'POST',
+      url: url,
+      data: {aptId: aptId}  
+    }).then(function(response){
+      console.log(response);
+      return response.data;
+    })
+  };
+
+
   this.getSubscriberInfo = function(){
-    var url = '/api/subscriber/profile';
+    var url = '/api/subscriber/isLoggedIn';
     return $http({
       method: 'GET',
       url: url
     }).then(function(data){
-      console.log("getSubscriberInfo", data)
-      return data;
+      return data.data;
     });
   };
 
+
+  this.displayAll = function(obj) {
+    var allItems = '';
+    for (var prop in obj) {
+      allItems = allItems + obj[prop];
+    }
+    return allItems.replace(',', ' ');
+  };
+
+  this.getAptData = function() {
+    var url = '/api/apartment/getAptData';
+    return $http({
+      method: 'GET',
+      url: url
+    }).then(function(data){
+      return data.data;
+    });
+  }
+
+   this.getNearestStops = function() {
+    var url = '/api/apartment/getNearestStops';
+    return $http({
+      method: 'GET',
+      url: url
+    }).then(function(data){
+      console.log(data);
+      return data.data;
+    });
+  }
   
+  this.getStations = function() {
+    var url = '/api/stations/getStations'
+      return $http({
+      method: 'GET',
+      url: url
+    }).then(function(data){
+      return data.data;
+    });
+  }
 
   //*** SEED DATA FOR MAIN PAGE ***//
 
@@ -35,12 +99,27 @@ app.service('GeneralUserService', function($http, $q) {
       apartmentId: 0,
 
       apartment_name: 'Monroe Street Abbey',
-      pictures: {
-        default_1:'apt_abbey1.jpg',
-        pic_2:'apt_abbey2.jpg',
-        pic_3:'apt_abbey3.jpg'
+      cover_picture: {
+        src:'images/apt_abbey1.jpg'
       },
-      webpage: 'theabbeyapartments.com',
+      picturesArray: [{
+        name:'apt_abbey1.jpg',
+        src: 'images/apt_abbey1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_abbey2.jpg',
+        src: 'images/apt_abbey2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_abbey3.jpg',
+        src: 'images/apt_abbey3.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: 'www.theabbeyapartments.com',
       description: 'Monroe Street Abbey, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         street_address: '334 W Monroe St',
@@ -58,13 +137,27 @@ app.service('GeneralUserService', function($http, $q) {
     {
       apartmentId: 1,
       apartment_name: 'West 6th Tempe Apartments',
-      pictures: {
-        default_1:'apt_west1.jpg',
-        pic_2:'apt_west2.jpg',
-        pic_3:'apt_west3.jpg',
-        pic_4:'apt.west4.jpg'
+      cover_picture: {
+        src: 'images/apt_west1.jpg'
       },
-      webpage: 'west6thtempe.com',
+      picturesArray: [{
+        name:'apt_west1.jpg',
+        src: 'images/apt_west1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_west2.jpg',
+        src: 'images/apt_west2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_west3.jpg',
+        src: 'images/apt_west3.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: 'www.west6thtempe.com',
       description: 'West 6th Tempe Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         street_address: '115 W 6th St',
@@ -82,13 +175,27 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 2,
       apartment_name: 'Bella Solano Apartments',
-      pictures: {
-        default_1:'apt_bella1.jpg',
-        pic_2:'apt_bella2.jpg',
-        pic_3:'apt_bella3.jpg',
-        pic_4:'apt.bella4.jpg'
+      cover_picture: {
+        src: 'images/apt_bella1.jpg'
       },
-      webpage: 'bellasolanoapartments.com',
+      picturesArray: [{
+        name:'apt_bella1.jpg',
+        src: 'images/apt_bella1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_bella2.jpg',
+        src: 'images/apt_bella2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_bella3.jpg',
+        src: 'images/apt_bella3.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: 'www.bellasolanoapartments.com',
       description: 'Glenwood Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         street_address: '5656 N 17th Ave',
@@ -106,13 +213,32 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 3,
       apartment_name: 'Pavilions On Central',
-      pictures: {
-        default_1:'apt_pavillions1.jpg',
-        pic_2:'apt_pavillions2.jpg',
-        pic_3:'apt_pavillions3.jpg',
-        pic_4:'apt.pavillions4.jpg'
+      cover_picture: {
+        src: 'images/apt_pavillions1.jpg'
       },
-      webpage: 'liveatthepavilions.com',
+      picturesArray: [{
+        name:'apt_pavillions1.jpg',
+        src: 'images/apt_pavillions1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_pavillions2.jpg',
+        src: 'images/apt_pavillions2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_pavillions3.jpg',
+        src: 'images/apt_pavillions3.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_pavillions4.jpg',
+        src: 'images/apt_pavillions4.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: 'www.liveatthepavilions.com',
       description: 'Pavilions Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         street_address: '1 W Campbell Ave',
@@ -130,13 +256,32 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 4,
       apartment_name: 'The Met Apartments',
-      pictures: {
-        default_1:'apt_met1.jpg',
-        pic_2:'apt_met2.jpg',
-        pic_3:'apt_met3.jpg',
-        pic_4:'apt.met4.jpg'
+      cover_picture: {
+        src: 'images/apt_met1.jpg'
       },
-      webpage: 'themetapartmenthomes.com',
+      picturesArray: [{
+        name:'apt_met1.jpg',
+        src: 'images/apt_met1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_met2.jpg',
+        src: 'images/apt_met2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_met3.jpg',
+        src: 'images/apt_met3.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_met4.jpg',
+        src: 'images/apt_met4.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: 'www.themetapartmenthomes.com',
       description: 'The Met Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         street_address: '200 E Fillmore St',
@@ -154,13 +299,32 @@ app.service('GeneralUserService', function($http, $q) {
     {
       apartmentId: 5,
       apartment_name: 'Midtown on Main Apartments',
-      pictures: {
-        default_1:'apt_midtown1.jpg',
-        pic_2:'apt_midtown2.jpg',
-        pic_3:'apt_midtown3.jpg',
-        pic_4:'apt.midtown4.jpg'
+      cover_picture: {
+        src: 'images/apt_midtown1.jpg'
       },
-      webpage: 'midtownonmain.com',
+      picturesArray: [{
+        name:'apt_midtown1.jpg',
+        src: 'images/apt_midtown1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_midtown2.jpg',
+        src: 'images/apt_midtown2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_midtown3.jpg',
+        src: 'images/apt_midtown3.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_midtown4.jpg',
+        src: 'images/apt_midtown4.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: 'www.midtownonmain.com',
       description: 'Midtown Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         street_address: '2121 W Main St',
@@ -178,13 +342,37 @@ app.service('GeneralUserService', function($http, $q) {
       {
       apartmentId: 6,
       apartment_name: 'Tempe Metro Apartments',
-      pictures: {
-        default_1:'apt_met1.jpg',
-        pic_2:'apt_met2.jpg',
-        pic_3:'apt_met3.jpg',
-        pic_4:'apt.met4.jpg'
+      cover_picture: {
+        src: 'images/apt_tempe_metro1.jpg'
       },
-      webpage: "tempemetro.com",
+      picturesArray: [{
+        name:'apt_tempe_metro1.jpg',
+        src: 'images/apt_tempe_metro1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_tempe_metro2.jpg',
+        src: 'images/apt_tempe_metro2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_tempe_metro3.jpg',
+        src: 'images/apt_tempe_metro3.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_tempe_metro4.jpg',
+        src: 'images/apt_tempe_metro4.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_tempe_metro5.jpg',
+        src: 'images/apt_tempe_metro5.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: "www.tempemetro.com",
       description: 'Tempe Metro Apartments, located right along Jefferson and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         street_address: '1811 E Apache Blvd',
@@ -202,13 +390,32 @@ app.service('GeneralUserService', function($http, $q) {
     {
       apartmentId: 7,
       apartment_name: 'Villas On Apache',
-      pictures: {
-        default_1:'apt_apache1.jpg',
-        pic_2:'apt_apache2.jpg',
-        pic_3:'apt_apache3.jpg',
-        pic_4:'apt.apache4.jpg'
+      cover_picture: {
+        src: 'images/apt_apache1.jpg'
       },
-      webpage: "villasonapache.com",
+      picturesArray: [{
+        name:'apt_apache1.jpg',
+        src: 'images/apt_apache1.jpg',
+        profile_pic: true
+        },
+        {
+        name:'apt_apache2.jpg',
+        src: 'images/apt_apache2.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_apache3.jpg',
+        src: 'images/apt_apache3.jpg',
+        profile_pic: false
+        },
+        {
+        name:'apt_apache4.jpg',
+        src: 'images/apt_apache4.jpg',
+        profile_pic: false
+        }
+      ],
+      phone: '602-555-5555',
+      webpage: "www.villasonapache.com",
       description: 'Villas Apartments, located right along Apache and 4th Street, is your new luxury housing community in downtown Phoenix. When you live at Roosevelt Point, you’re in the heart of downtown Phoenix, so you’ll enjoy urban living at its finest. Catch the Light Rail, located just 3 blocks from our community, and head to Mill Avenue in Tempe where you’ll discover more restaurants, entertainment venues, shops, boutiques and art studios.',
       location: {
         city: 'Tempe',

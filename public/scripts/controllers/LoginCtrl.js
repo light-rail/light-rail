@@ -18,7 +18,8 @@ app.controller('LoginCtrl', function($scope, $routeParams, $location, AuthServic
   $scope.loginSubscriber = function(user) {
     AuthService.loginSubscriber(user).then(function(res) {
       toaster.pop('success', 'You have logged in successfully.');
-      $location.path('/profile');
+      console.log('Changing path to sub dash')
+      $location.path('/subscriber/dashboard/' + res._id);
     }, function(err) {
       console.log('loginController', err)
       toaster.pop('error', 'Sorry, something went wrong!');
@@ -37,6 +38,18 @@ app.controller('LoginCtrl', function($scope, $routeParams, $location, AuthServic
     });
   };
 
+  // //** Submits Listing to Service **/
+  // $scope.addApartmentListing = function(apartment) {
+  //   SubscriberService.addApartmentListing(apartment).then(function(res) {
+  //     toaster.pop('success', 'You successfully added the Listing!');
+  //     $location.path('/subscriber/dashboard/:id'); //Change to :subscriberId?
+  //   }, function(err) {
+  //     console.log('AddApartment err', err)
+  //       //Need to add an error.status for address not being within range of lightrail
+  //     if (err.status === 11000) toaster.pop('error', 'This listing is already registered');
+  //     else toaster.pop('error', 'Sorry, something went wrong!');
+  //   });
+  // };
 
 
 

@@ -1,81 +1,88 @@
-var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'chart.js']);
+var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps', 'flow', 'chart.js']);
 
-app.config(function($routeProvider, ChartJsProvider){
+app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/mainTmpl.html',
       controller: 'MainPageCtrl'
     })
-    .when('/apartments/:apartmentId', {
-      templateUrl: 'views/mainTmpl.html',
-      controller: 'MainPageCtrl'
-    })
-    .when('/map', {
-      templateUrl: 'views/map.html',
-      controller: 'MapCtrl'
-    })
+    //General User Routes
     .when('/register/general_user', {
       templateUrl: 'views/register/registerGeneralUserTmpl.html',
-      controller: 'RegisterCtrl'
-    })
-    .when('/register/subscriber', {
-      templateUrl: 'views/register/registerSubscriberTmpl.html',
-      controller: 'RegisterCtrl'
-    })
-    .when('/register/admin', {
-      templateUrl: 'views/register/registerAdminTmpl.html',
       controller: 'RegisterCtrl'
     })
     .when('/login', {
       templateUrl: 'views/login/loginUserTmpl.html',
       controller: 'LoginCtrl'
     })
+    .when('/myfavorites', {
+      templateUrl: 'views/generalUser/generalUserFavoritesTmpl.html',
+      controller: 'GeneralUserFavoritesCtrl'
+    })
+    //Subscriber Routes
+    .when('/register/subscriber', {
+      templateUrl: 'views/register/registerSubscriberTmpl.html',
+      controller: 'RegisterCtrl'
+    })
     .when('/login/subscriber', {
       templateUrl: 'views/login/loginSubscriberTmpl.html',
       controller: 'LoginCtrl'
+    })
+    .when('/subscriber/verify-address', {
+      templateUrl: 'views/subscriber/newApartmentAddressVerificationTmpl.html',
+      controller: 'SubscriberCtrl'
+    })
+    .when('/subscriber/new-listing/:id', {
+      templateUrl: 'views/subscriber/newApartmentListingTmpl.html',
+      controller: 'SubAddCtrl',
+      resolve: {
+        getAddedApt: function(GeneralUserService, $route) {
+          return GeneralUserService.getAddedApt($route.current.params.id);
+        }
+      }
+    })
+    .when('/subscriber/dashboard/:id', {
+      templateUrl: 'views/subscriber/apartmentListingDashboard.html',
+      controller: 'SubscriberDashboardCtrl',
+      resolve: {
+        subProfile: function(SubscriberDashboardService) {
+          return SubscriberDashboardService.getSubscriberInfo();
+        },
+        subListings: function(SubscriberDashboardService, $route) {
+          return SubscriberDashboardService.getListings($route.current.params.id);
+        }
+      }
+    })
+    //Admin Routes
+    .when('/register/admin', {
+      templateUrl: 'views/register/registerAdminTmpl.html',
+      controller: 'RegisterCtrl'
     })
     .when('/login/admin', {
       templateUrl: 'views/login/loginAdminTmpl.html',
       controller: 'LoginCtrl'
     })
-    .when('/myfavorites', {
-      templateUrl: 'views/generalUser/generalUserFavoritesTmpl.html',
-      controller: 'GeneralUserFavoritesCtrl'
-    })
-    .when('/adminSubPage/:apartmentId', {
-      templateUrl:'views/adminSubPage.html',
-      controller: 'adminSubPageCtrl'
-    })
     .when('/adminUser/:apartmentId', {
-      templateUrl: 'views/adminGenUser.html',
+      templateUrl: 'views/admin/adminGenUser.html',
       controller: 'adminUserCtrl'
     })
-    .when('/general_user/profile', {
-      templateUrl: 'views/generalUser/generalUserProfileTmpl.html',
-      controller: 'ProfileCtrl',
-      resolve: {
-        userData: function(GeneralUserService){
-          GeneralUserService.getSubscriberInfo().then(function(response){
-            console.log(response);
-          });
-        }
-      }
-    })
     .when('/adminSubPage', {
-      templateUrl: 'views/adminSubPage.html',
+      templateUrl: 'views/admin/adminSubPage.html',
       controller: 'adminSubPageCtrl'
     })
     .when('/adminUser', {
-      templateUrl: 'views/adminGenUser.html',
+      templateUrl: 'views/admin/adminGenUser.html',
       controller: 'adminUserCtrl'
     })
     .when('/adminStats',{
-      templateUrl: 'views/adminStats.html',
+      templateUrl: 'views/admin/adminStats.html',
       controller: 'adminStatsCtrl'
     })
      .otherwise({
       redirectTo: '/'
     });
+
+
 });
 
 

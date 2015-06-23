@@ -4,14 +4,18 @@ module.exports = {
 
   createUser: function(req, res) {
     var newUser = new User(req.body);
-    newUser.save(function(err, result) {
-      console.log('err: ', err);
-      if(err) {
-        if(err.code === 500) return res.status(500).json(err);
-        if(err.code === 11000) return res.status(11000).json(err);
-      }
-      res.send(result);
-    });
+    console.log("req.body server", req.body);
+      newUser.save(function (err, result) {
+        console.log('err: ', err);
+        if (err) {
+          if (err.code === 500)
+            return res.status(500).json(err);
+          if (err.code === 11000)
+            return res.status(11000).json(err);
+        }
+        console.log('results create User: ', result);
+        res.send(result);
+      });
   },
 
   loginUser: function(req, res) {
@@ -29,6 +33,27 @@ module.exports = {
         return res.status(200).json({isSubscriber: true});
       }
     }
+  },
+
+  getFavorites: function(req, res) {
+    User
+    .find({_id: req.user._id})
+    .populate('favorites') 
+    .exec(function(err, data) {
+      if (err) return res.status(500).send(err);
+      res.json(data);    
+    })
+  },
+
+  addToFavorites: function(req, res) {
+    User.findByIdAndUpdate(req.user._id, {$push:{favorites: req.body.aptId}},
+      function(err, data) {
+        if (err) console.log(err);
+         res.json(data); 
+    }
+    )
   }
+
+
 
 };

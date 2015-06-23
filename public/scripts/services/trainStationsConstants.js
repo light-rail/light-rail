@@ -167,5 +167,28 @@ app.constant('trainStations', [
     name: "Sycamore/ Main",
     lat: 33.414879,
     long: -111.870018
+  }, 
+  {
+    name: "Alma School/Main",
+     lat: 33.414901,
+    long: -111.856611
+  },
+  {
+   name: "Country Club/ Main",
+    lat: 33.415255,
+    long: -111.840030 
+  },
+  {
+   name: "Center/ Main",
+    lat: 33.415181,
+    long: -111.831450
+  },
+   {
+   name: "Mesa/ Main",
+    lat: 33.415122,
+    long: -111.822935
   }
+
 ]);
+  
+  

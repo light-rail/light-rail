@@ -3,14 +3,35 @@
 
     <!-- LEFT PANEL MAP -->
     <div class="col-md-8 animated slideInLeft map-position" Erase-style="border: 2px dashed green;">
-      <div ng-controller="MapCtrl" id="map-canvas" style="width:100%; height:800px; "></div>
+      <div id="map-canvas" style="width:100%; height:800px;">
+        <ui-gmap-google-map center="map.center"zoom="map.zoom" options="options">
+
+        <ui-gmap-polyline ng-repeat="p in polylines" path="p.path" stroke="p.stroke" geodesic='p.geodesic'></ui-gmap-polyline>
+
+        <ui-gmap-markers models="stationMarkers" coords="'self'" click="clickStation" events="stationMarkers.events" icon='{url: "images/OrangeSmall.png"}'>
+                 <ui-gmap-windows show="show">
+                    <div ng-non-bindable>{{title}}</div>
+                 </ui-gmap-windows>
+        </ui-gmap-markers>
+
+
+        <ui-gmap-circle ng-repeat="c in circles" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" clickable="c.clickable" visible="c.visible"></ui-gmap-circle>
+
+        <ui-gmap-markers models="aptMarkers" coords="'self'" click="clickApt" events="aptMarkers.events" icon='{url: "pin1.png"}'>
+                 <ui-gmap-windows show="show">
+                    <div ng-non-bindable>{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div>
+                 </ui-gmap-windows>
+        </ui-gmap-markers>
+
+        </ui-gmap-google-map>
+      </div>
     </div>
    
 
     <!-- RIGHT PANEL APARTMENTS -->
     <div class="col-md-4">
       <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
-        <a data-target=".apartment-modal-lg" data-toggle="modal" ng-repeat="apartment in apartments">
+        <a data-target=".apartment-modal-lg" data-toggle="modal" ng-repeat="apartment in aptArray">
 
           <div class="col-md-12 list-group-border list-styling" ng-click="getApartment(apartment)">
             <h4 class="titles-styling">{{apartment.apartment_name}}</h4>
@@ -19,19 +40,18 @@
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="images/{{apartment.pictures.default_1}}" alt="images/no_image_placeholder.jpg">
+                    <img src="{{apartment.cover_picture.src}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 
                 <div class="col-xm-12 col-sm-6 col-md-6 details-font-size">
                   <p><br>
-                    <span>{{apartment.location.street_address}}</span><br>
-                    <span> {{apartment.location.city + ', ' + apartment.location.state}}</span>
+                    <span>{{apartment.address.street_address}}</span><br>
+                    <span> {{apartment.address.city + ', ' + apartment.address.state}}</span>
                   </p> 
                   <p>
                     <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span>
                   </p>
-
                 </div>
                 
               </div>

@@ -1,9 +1,9 @@
-/*
- * {
+
+/* * {
   border: 1px dashed blue;
 }
-
 */
+
 /*** GLOBAL STYLES ***/
 
 /* Background Color */
@@ -31,6 +31,10 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.char-left-alignment {
+  padding-left: 0;
 }
 
 /* Panels Header Background Color */
@@ -61,6 +65,8 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.angular-google-map-container { height: 800px; }
 
 .map-position {
   padding: 0px;
@@ -154,19 +160,42 @@ html, body {
   max-height: 200px;
 }
 
+.titles-bottom-border {
+  border-bottom:  1px solid #CFD8DC;
+}
+
+.like-heart {
+  position: absolute;
+  right: 0px;
+/*  background-color: white;
+  border: white;*/
+}
+
+.like-heart:hover {
+  color: pink;
+  border: 2px solid white;
+}
+
 /* Pic Container Scrollbar */
 
 .show-scroll ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
+  -webkit-appearance: none;
+  width: 7px;
 }
 
 .show-scroll ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #787878;
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  border-radius: 8px;
+  background-color: #787878;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
+.amenity-content-spacing {
+  padding: 15px 0px;
+}
+
+.border-top-spacing {
+  margin: 40px 0px;
+}
 
 /*** FORMS ***/
 
@@ -213,5 +242,41 @@ html, body {
   color: #ff4019;
   margin-top: 510px;
   font-size: 15px;
+}
+/*** NEW LISTING PAGE ***/
+.listing-bottom-spacing {
+  margin-bottom: 20px;
+}
 
+#button-color {
+  background-color: #CFD8DC;
+}
+
+.description-bottom-spacing {
+  margin-bottom: 10px;
+}
+
+#unit-button-spacing {
+  margin-top: 20px;
+}
+
+.checkbox-right-spacing {
+  margin-right: 20px;
+}
+
+.flow-picture-scroll {
+  overflow-x: scroll;
+  height: 280px;
+  white-space: nowrap;
+  margin-bottom: 20px;
+
+}
+
+.quiet {
+  color: grey;
+  font-weight: 200;
+}
+
+.photo-button {
+  padding: 0px;
 }

@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var subscriberListing = new Schema({
-  apartment:
-})
+var subscriberListingSchema = new Schema({
+  apartment: [{type:Schema.Types.ObjectId, ref:'Apartment' }]
+  // hotel: [{type:Schema.Types.ObjectId, ref:'Stop' }],
+  // real_estate: [{type:Schema.Types.ObjectId, ref:'Stop' }]
+});
+
+module.exports = mongoose.model('SubscriberListing', subscriberListingSchema);
