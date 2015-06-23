@@ -19,8 +19,8 @@
   "homepage": "https://github.com/rickcid/light-rail",
   "dependencies": {
     "angular-chart.js": "^0.7.1",
-    "bcrypt": "^0.8.3",
     "aws-sdk": "^2.1.35",
+    "bcrypt": "^0.8.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.4",
     "connect-multiparty": "^1.2.5",
