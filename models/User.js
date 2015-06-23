@@ -26,18 +26,6 @@ var GeneralUserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Apartment'
       }]
-      // hotels: [{
-      //   type: Schema.Types.ObjectId,
-      //   ref: 'GeneralUser'
-      // }],
-      // realEstate: [{
-      //   type: Schema.Types.ObjectId,
-      //   ref: 'GeneralUser'
-      // }],
-      // entertainment: [{
-      //   type: Schema.Types.ObjectId,
-      //   ref: 'GeneralUser'
-      // }]
   },
   facebookId: {
     type: String

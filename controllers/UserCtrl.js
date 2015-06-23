@@ -36,19 +36,24 @@ module.exports = {
   },
 
   getFavorites: function(req, res) {
-    User.find({_id: req.user._id}, 'favorites', function(err, data) {
+    User
+    .find({_id: "5584994173914ca9d73ae1c2"})
+    .populate('favorites') 
+    .exec(function(err, data) {
       if (err) return res.status(500).send(err);
       res.json(data);    
     })
   },
 
   addToFavorites: function(req, res) {
-    
-    User.findByIdAndUpdate(req.user._id, {$push:{'favorites.apartments': req.body}},
+    User.findByIdAndUpdate("5584994173914ca9d73ae1c2", {$push:{favorites: req.body.id}},
       function(err, data) {
-        if (err) return res.status(500).send(err);
+        if (err) console.log(err);
          res.json(data); 
-    })
+    }
+    )
   }
+
+
 
 };

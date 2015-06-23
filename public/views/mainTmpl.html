@@ -17,6 +17,12 @@
 
         <ui-gmap-circle ng-repeat="c in circles" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" clickable="c.clickable" visible="c.visible"></ui-gmap-circle>
 
+        <ui-gmap-markers models="aptMarkers" coords="'self'" click="clickApt" events="aptMarkers.events" icon='{url: "pin1.png"}'>
+                 <ui-gmap-windows show="show">
+                    <div ng-non-bindable>{{title}}</br>${{price_range.min}} - ${{price_range.max}}</div>
+                 </ui-gmap-windows>
+        </ui-gmap-markers>
+
         </ui-gmap-google-map>
       </div>
     </div>
@@ -46,7 +52,6 @@
                   <p>
                     <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span>
                   </p>
-
                 </div>
                 
               </div>
