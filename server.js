@@ -1,4 +1,5 @@
 //*** DEPENDENCIES ***//
+var env = require('dotenv').load();
 var mongoose = require('mongoose');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -6,7 +7,6 @@ var passport = require('passport');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var env = require('dotenv').load();
 var FACEBOOK_ID = process.env.FACEBOOK_ID;
 var FACEBOOK_SECRET = process.env.FACEBOOK_SECRET;
 var AWS = require('aws-sdk');
