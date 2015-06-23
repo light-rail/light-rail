@@ -10,18 +10,18 @@
 
           <ui-gmap-markers models="stationMarkers" coords="'self'" click="clickStation" events="stationMarkers.events" icon='{url: "images/pin2.png"}'>
                  <ui-gmap-windows show="show">
-                    <div ng-non-bindable>{{title}}</div>
+                    <div ng-non-bindable>{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div>
                  </ui-gmap-windows>
         </ui-gmap-markers>
 
         
         <ui-gmap-circle ng-repeat="c in circles" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" clickable="c.clickable" visible="c.visible"></ui-gmap-circle>
 
-     <!--   <ui-gmap-markers models="favoriteMarkers" coords="'self'" events="favoriteMarkers.events" icon='{url: "pin1.png"}'>
+       <ui-gmap-markers models="favoriteMarkers" coords="'self'" events="favoriteMarkers.events" icon='{url: "pin1.png"}'>
                  <ui-gmap-windows show="show">
                     <div ng-non-bindable>{{title}}</div>
                  </ui-gmap-windows>
-        </ui-gmap-markers> -->
+        </ui-gmap-markers>
 
 
         </ui-gmap-google-map>

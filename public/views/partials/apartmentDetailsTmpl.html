@@ -9,13 +9,13 @@
 
           <!-- APARTMENT DETAILS -->
           <div  class="col-xs-12 col-md-10">
-            <div class="titles-styling bottom-border">{{modal_apartment.apartment_name}}<a class="like-heart"><i class="fa fa-heart fa-2x" style="color: red;"></i></a></div>
+            <div class="titles-styling bottom-border">{{modal_apartment.apartment_name}}<a class="like-heart" ng-click="addToFavorites(modal_apartment)"><i class="fa fa-heart fa-2x" style="color: red;"></i></a></div>
 
             <div class="row">
               <div class="col-md-6">
               <span>
-                <span>{{modal_apartment.location.street_address}}</span><br>
-                <span> {{modal_apartment.location.city + ', ' + modal_apartment.location.state + ' ' + modal_apartment.location.zip_code}}</span></br>
+                <span>{{modal_apartment.address.street_address}}</span><br>
+                <span> {{modal_apartment.address.city + ', ' + modal_apartment.address.state + ' ' + modal_apartment.address.zip_code}}</span></br>
                 <span>{{modal_apartment.phone}}</span><br>
                 <span><a href="http://{{modal_apartment.webpage}}" target="_blank">{{modal_apartment.webpage}}</a></span>
               </span></br>

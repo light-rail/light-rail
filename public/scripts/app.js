@@ -1,19 +1,10 @@
-var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps', 'flow']);
+var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps', 'flow', 'chart.js']);
 
 app.config(function($routeProvider){
-
   $routeProvider
     .when('/', {
       templateUrl: 'views/mainTmpl.html',
       controller: 'MainPageCtrl'
-    })
-    .when('/apartments/:apartmentId', {
-      templateUrl: 'views/mainTmpl.html',
-      controller: 'MainPageCtrl'
-    })
-    .when('/map', {
-      templateUrl: 'views/map.html',
-      controller: 'MapCtrl'
     })
     //General User Routes
     .when('/register/general_user', {

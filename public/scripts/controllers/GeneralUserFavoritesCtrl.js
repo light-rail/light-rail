@@ -3,12 +3,45 @@ var app = angular.module('lightRail');
 app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, GeneralUserService, $timeout, trainStations) {
 
 
-  var allApartmentsData = GeneralUserService.apartmentData;
-  var selectedApartmentData = GeneralUserService.apartmentData[$routeParams.apartmentId];
+  // var allApartmentsData = GeneralUserService.apartmentData;
+  // var selectedApartmentData = GeneralUserService.apartmentData[$routeParams.apartmentId];
+  // I need to add this into the click station function after the favorites array button is connected 
+  
+
+  $scope.favoriteMarkers = [];
+  $scope.favoriteArr = [];
+  $scope.getFavorites = function() {
+    GeneralUserService.getFavorites().then(function(data) {
+      console.log(data[0]);
+      $scope.favoriteArr = data[0].favorites;
+      $scope.apartments = $scope.favoriteArr;
+      for (var i = 0; i < $scope.favoriteArr.length; i++) {
+        var apt = $scope.favoriteArr[i];
+        console.log(apt);
+        $scope.favoriteMarkers.push({
+          id: i,
+          latitude: apt.location.lat,
+          longitude: apt.location.long,
+          title: apt.apartment_name,
+          clicked: false,
+          events: {
+            mouseover: function(marker, mouseover, favoriteMarkers) {
+              favoriteMarkers.show = true;
+            },
+            mouseout: function(marker, mouseout, favoriteMarkers) {
+              favoriteMarkers.show = false;
+            }
+          }
+        })
+      };
+    })
+  }
+
+  $scope.getFavorites();
 
 
   $scope.todayDate = new Date();
-  $scope.apartments = allApartmentsData;
+  // $scope.apartments = $scope.favoriteArr ;
 
 
   //** Modal Initiation**//
@@ -21,125 +54,125 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
 
   // ** Angular Google Maps ** //
 
-      var mapStyles = [{
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#CCE4FC"
-      }, {
-        "lightness": 17
-      }]
+  var mapStyles = [{
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [{
+      "color": "#CCE4FC"
     }, {
-      "featureType": "landscape",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#f5f5f5"
-      }, {
-        "lightness": 20
-      }]
+      "lightness": 17
+    }]
+  }, {
+    "featureType": "landscape",
+    "elementType": "geometry",
+    "stylers": [{
+      "color": "#f5f5f5"
     }, {
-      "featureType": "road.highway",
-      "elementType": "geometry.fill",
-      "stylers": [{
-        "color": "#ffffff"
-      }, {
-        "lightness": 17
-      }]
+      "lightness": 20
+    }]
+  }, {
+    "featureType": "road.highway",
+    "elementType": "geometry.fill",
+    "stylers": [{
+      "color": "#ffffff"
     }, {
-      "featureType": "road.highway",
-      "elementType": "geometry.stroke",
-      "stylers": [{
-        "color": "#ffffff"
-      }, {
-        "lightness": 29
-      }, {
-        "weight": 0.2
-      }]
+      "lightness": 17
+    }]
+  }, {
+    "featureType": "road.highway",
+    "elementType": "geometry.stroke",
+    "stylers": [{
+      "color": "#ffffff"
     }, {
-      "featureType": "road.arterial",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#ffffff"
-      }, {
-        "lightness": 18
-      }]
+      "lightness": 29
     }, {
-      "featureType": "road.local",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#ffffff"
-      }, {
-        "lightness": 18
-      }]
+      "weight": 0.2
+    }]
+  }, {
+    "featureType": "road.arterial",
+    "elementType": "geometry",
+    "stylers": [{
+      "color": "#ffffff"
     }, {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#f5f5f5"
-      }, {
-        "lightness": 21
-      }]
+      "lightness": 18
+    }]
+  }, {
+    "featureType": "road.local",
+    "elementType": "geometry",
+    "stylers": [{
+      "color": "#ffffff"
     }, {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#AFDEAF"
-      }, {
-        "lightness": 21
-      }]
+      "lightness": 18
+    }]
+  }, {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [{
+      "color": "#f5f5f5"
     }, {
-      "elementType": "labels.text.stroke",
-      "stylers": [{
-        "visibility": "on"
-      }, {
-        "color": "#ffffff"
-      }, {
-        "lightness": 16
-      }]
+      "lightness": 21
+    }]
+  }, {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [{
+      "color": "#AFDEAF"
     }, {
-      "elementType": "labels.text.fill",
-      "stylers": [{
-        "saturation": 36
-      }, {
-        "color": "#333333"
-      }, {
-        "lightness": 40
-      }]
+      "lightness": 21
+    }]
+  }, {
+    "elementType": "labels.text.stroke",
+    "stylers": [{
+      "visibility": "on"
     }, {
-      "elementType": "labels.icon",
-      "stylers": [{
-        "visibility": "on"
-      }]
+      "color": "#ffffff"
     }, {
-      "featureType": "transit",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#f2f2f2"
-      }, {
-        "lightness": 19
-      }]
+      "lightness": 16
+    }]
+  }, {
+    "elementType": "labels.text.fill",
+    "stylers": [{
+      "saturation": 36
     }, {
-      "featureType": "administrative",
-      "elementType": "geometry.fill",
-      "stylers": [{
-        "color": "#BFE3BF"
-      }, {
-        "lightness": 20
-      }]
+      "color": "#333333"
     }, {
-      "featureType": "administrative",
-      "elementType": "geometry.stroke",
-      "stylers": [{
-        "color": "#fefefe"
-      }, {
-        "lightness": 17
-      }, {
-        "weight": 1.2
-      }]
-    }];
+      "lightness": 40
+    }]
+  }, {
+    "elementType": "labels.icon",
+    "stylers": [{
+      "visibility": "on"
+    }]
+  }, {
+    "featureType": "transit",
+    "elementType": "geometry",
+    "stylers": [{
+      "color": "#f2f2f2"
+    }, {
+      "lightness": 19
+    }]
+  }, {
+    "featureType": "administrative",
+    "elementType": "geometry.fill",
+    "stylers": [{
+      "color": "#BFE3BF"
+    }, {
+      "lightness": 20
+    }]
+  }, {
+    "featureType": "administrative",
+    "elementType": "geometry.stroke",
+    "stylers": [{
+      "color": "#fefefe"
+    }, {
+      "lightness": 17
+    }, {
+      "weight": 1.2
+    }]
+  }];
 
 
- $scope.map = {
+  $scope.map = {
     center: {
       latitude: 33.439266,
       longitude: -111.971015
@@ -197,7 +230,7 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
   }]
 
 
-   $scope.circles = [];
+  $scope.circles = [];
   $scope.clickStation = function(marker) {
     var id = marker.model.id;
     if (marker.model.clicked === false) {
@@ -222,7 +255,10 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
       $scope.$apply(function() {
         $scope.circles.push(circle);
         $scope.map.zoom = 15;
-        $scope.map.center = circle.center;
+        $scope.map.center = {
+          latitude: marker.model.latitude,
+          longitude: marker.model.longitude
+        };
       })
       marker.model.clicked = true;
     } else {
@@ -231,6 +267,7 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
         for (var i = 0; i < $scope.circles.length; i++) {
           if ($scope.circles[i].id === id) {
             $scope.circles.splice(i, 1);
+            i--;
           }
         };
         $scope.map.zoom = 13;
@@ -240,34 +277,6 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
 
 
 
-$scope.favoriteMarkers = [];
-$scope.getFavorites = function() {
-  GeneralUserService.getFavorites().then(function(data) {
-    console.log(data[0]);
-    var favoriteArr = data[0].favorites;
-    for (var i = 0; i < favoriteArr.length; i++) {
-      var apt = favoriteArr[i];
-      $scope.favoriteMarkers.push({
-        id: i,
-        latitude: apt.location.lat,
-        longitude: apt.location.long,
-        title: apt.apartment_name,
-        clicked: false,
-        events: {
-          mouseover: function(marker, mouseover, favoriteMarkers) {
-            favoriteMarkers.show = true;
-          },
-          mouseout: function(marker, mouseout, favoriteMarkers) {
-            favoriteMarkers.show = false;
-          }
-        }
-      })
-
-    };
-  })
-}
-
-$scope.getFavorites();
 
 
 
