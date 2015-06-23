@@ -179,24 +179,8 @@ html, body {
 }
 
 /** Admin Stats Page **/
-.adminListingsChart {
-height: 300px;
-width: 400px;
-margin-left: 15%;
-text-align: center;
-font-size: 25px;
-float: left;
-margin-top: 155px;
-}
-.otherAdminListingsChart {
-height: 300px;
-width: 400px;
-margin-left: 15%;
-text-align: center;
-font-size: 25px;
-float: left;
 
-}
+
 /** Admin Stats Page **/
 
 .adminTopContainer {

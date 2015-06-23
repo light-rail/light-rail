@@ -1,6 +1,6 @@
-var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'tc.chartjs']);
+var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'chart.js']);
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, ChartJsProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/mainTmpl.html',
