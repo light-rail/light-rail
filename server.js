@@ -10,6 +10,8 @@ var env = require('dotenv').load();
 var FACEBOOK_ID = process.env.FACEBOOK_ID;
 var FACEBOOK_SECRET = process.env.FACEBOOK_SECRET;
 var AWS = require('aws-sdk');
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
 
 var port = 9001;
 //*** CONTROLLERS ***//
@@ -200,7 +202,8 @@ app.get('/api/subscriber/listings', SubscriberCtrl.getListings);
 app.post('/api/subscriber/addApartmentListing', SubscriberCtrl.addListing);
 
 //*Photo upload to AWS endpoint
-app.post('/api/subscriber/addApartmentPictures', SubscriberCtrl.addPictures);
+app.post('/api/subscriber/addApartmentPictures/:id', multipartMiddleware, SubscriberCtrl.addPicturesPost);
+app.get('/api/subscriber/addApartmentPictures/:id', SubscriberCtrl.addPicturesGet);
 //*Photo get request from app
 app.get('/api/subscriber/apartmentPictures', SubscriberCtrl.getPictures);
 

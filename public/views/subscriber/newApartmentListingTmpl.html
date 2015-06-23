@@ -62,7 +62,7 @@
 
       
       <!-- PICTURE UPLOAD BUTTON -->
-      <div flow-init="{target: '/api/">
+      <div flow-init="{target: '/api/subscriber/addApartmentPictures/' + apartment._id}" flow-name='apartment.flow' flow-files-added="processFiles($files)" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
       <div class="col-md-7">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -80,6 +80,7 @@
 
             <div class="form-group col-xs-12 col-md-12 char-left-alignment">
               <label class='control-label btn btn-primary btn-sm' ng-model="apartment.flow.files" for="pictures_array" flow-btn>Add Photo</label>
+              <span class="btn btn-primary btn-sm" flow-btn>Upload File</span>
               <div class="col-lg-12 char-left-alignment">
                 <div class="quiet"><i>Only PNG, GIF, JPG, JEPG files allowed.<i></div>
               </div>
