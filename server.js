@@ -127,27 +127,19 @@ passport.use(new FacebookStrategy({
   clientSecret: FACEBOOK_SECRET,
   callbackURL: 'http://localhost:9001/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
-  User.findOrCreate({
-    facebookId: profile.id
-  }, function(err, user) {
+  var update = profile._json;
+  var options = {
+    new: true,
+    upsert: true
+  };
+  User.findOneAndUpdate({
+    facebook_id: profile.id
+  }, update, options, function(err, user) {
     if (err) {
       return done(err);
     }
-    user = newUser({
-      email: profile.email,
-      provider: "facebook"
-    });
-    user.save(function(err, user) {
-        console.log(profile);
-        if (err) {
-          console.log(err)
-        };
-        console.log("callingdone", user);
-        done(null, user);
-      })
-      //process.nextTick(function() {
-    return done(null, profile);
-  })
+    return done(null, user);
+  });
 }));
 
 
@@ -194,6 +186,7 @@ app.post('/api/login/user', passport.authenticate('user-local', {
 }), UserCtrl.loginUser);
 app.get('/api/user/isLoggedIn', UserCtrl.isLoggedIn);
 app.get('/api/user/getFavorites', UserCtrl.getFavorites);
+app.post('/api/user/addToFavorites', UserCtrl.addToFavorites);
 
 
 

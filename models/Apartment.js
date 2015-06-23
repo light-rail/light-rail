@@ -44,8 +44,10 @@ var apartmentSchema = new Schema({
   description: {type: String},
   additional_amenities: {type:String},
   nearest_stops: [{type: Schema.Types.ObjectId, ref:'TrainStation'}],
-  lat: {type:String},
-  long: {type:String},
+  location: {
+    lat: {type:String},
+    long: {type:String}
+  },
   created_at: {type: Date, required: true, default: Date.now }
  
 });

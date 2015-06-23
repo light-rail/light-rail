@@ -5,7 +5,6 @@ module.exports = {
 
   getAptData: function(req, res) {
     Apartment.find({}, function(error, data) {
-      console.log(data);
       return res.json(data);
     })
   },
