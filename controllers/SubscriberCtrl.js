@@ -13,11 +13,11 @@ aws.config.update({
 var ACCESS_CONTROLL_ALLOW_ORIGIN = false;
 
 var findRentRange = function(arr, cb) {
-  newArr = [];
+  var stringArr = [];
   for(var i = 0; i < arr.length; i++) {
-    newArr.push(arr[i].monthly_rent);
+    stringArr.push(arr[i].monthly_rent);
   } 
-  var numbersArr = newArr.map(function(a) {
+  var numbersArr = stringArr.map(function(a) {
     return parseInt(a);
   });
   priceRange = {
@@ -64,33 +64,37 @@ module.exports = {
       })
   },
 
-  addListing: function(req, res) {
-    var priceRange = findRentRange(req.body.units, function(priceRange) {
-
-    })
-    var update = {
-      phone_number: req.body.phone_number,
-      webpage: req.body.webpage,
-      units: req.body.units,
-      price_range: priceRange,
-      amenities: req.body.amenities,
-      description: req.body.description,
-      additional_amenities: req.body.additional_amenities
-    };
-    var options = {new: true};
-
-    Apartment.findByIdAndUpdate(req.body._id)
+  verifyApartmentAddress: function(req, res) {
     var apartment = new Apartment(req.body);
-    console.log('addListing server', req.body)
     apartment.subscriber_id = req.user._id;
     apartment.save(function(err, apartment) {
       if(err) {
         if(err.code === 500) return res.status(500).json(err);
-        if(err.code === 11000) return res.status(11000).json(err);
+        if(err.code === 500) return res.status(11000).json(err);
       }
-      console.log("saved Apartment", apartment);
+      console.log('Saved Apartment', apartment);
       res.status(200).json(apartment);
-    });
+    })
+  },
+  addListing: function(req, res) {
+    findRentRange(req.body.units, function(priceRange) {
+      var update = {
+        phone_number: req.body.phone_number,
+        webpage: req.body.webpage,
+        units: req.body.units,
+        price_range: priceRange,
+        amenities: req.body.amenities,
+        description: req.body.description,
+        additional_amenities: req.body.additional_amenities
+      };
+      var options = {new: true};
+
+      Apartment.findByIdAndUpdate(req.body._id, update, options, function(err, apartment) {
+        if(err) res.status(500).json(err);
+        console.log(apartment);
+        res.status(200).json(apartment);
+      })
+    })
   },
 
   addPicturesPost: function(req, res) {

@@ -40,9 +40,9 @@ app.controller('SubAddCtrl', function($scope,$location, $routeParams, Subscriber
     //** Submits Listing to Service **/
   $scope.addApartmentListing = function(apartment) {
     console.log("addApartmentListing-apartment", apartment)
-    SubscriberService.addApartmentListing(apartment).then (function(res) {
+    SubscriberService.addApartmentListing(apartment).then(function(res) {
       toaster.pop('success', 'You successfully added the Listing!');
-      $location.path('/subscriber/dashboard/:id');//Change to :subscriberId?
+      $location.path('/subscriber/dashboard/' + res.subscriber_id);//Change to :subscriberId?
     }, function(err) {
       console.log('AddApartment err', err)
       //Need to add an error.status for address not being within range of lightrail
