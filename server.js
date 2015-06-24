@@ -200,6 +200,7 @@ app.post('/api/login/subscriber', passport.authenticate('subscriber-local', {
 app.get('/api/subscriber/isLoggedIn', SubscriberCtrl.isLoggedIn);
 app.get('/api/subscriber/listings', SubscriberCtrl.getListings);
 app.post('/api/subscriber/addApartmentListing', SubscriberCtrl.addListing);
+app.post('/api/subscriber/verifyApartmentAddress', SubscriberCtrl.verifyApartmentAddress);
 
 //*Photo upload to AWS endpoint
 app.post('/api/subscriber/addApartmentPictures/:id', multipartMiddleware, SubscriberCtrl.addPicturesPost);
