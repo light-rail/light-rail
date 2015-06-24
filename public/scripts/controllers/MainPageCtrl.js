@@ -3,8 +3,8 @@ var app = angular.module('lightRail');
 app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService, toaster) {
 
   // this is for the seeded data --- change the ng-repeat if you want to use it! 
-  //  var allApartmentsData = GeneralUserService.apartmentData;
-  // $scope.apartments = allApartmentsData;
+  var allApartmentsData = GeneralUserService.apartmentData;
+  $scope.apartments = allApartmentsData;
 
 
   $scope.aptArray;
