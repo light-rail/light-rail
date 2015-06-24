@@ -36,7 +36,7 @@ app.controller('SubscriberCtrl', function($scope, $location, $routeParams, Subsc
 
                 if (aptInfo.nearest_stops.length > 0) {
                   console.log(aptInfo.nearest_stops);
-                  SubscriberService.addApartmentListing(aptInfo).then(function(res) {
+                  SubscriberService.verifyApartmentAddress(aptInfo).then(function(res) {
                     console.log("result", res);
                     toaster.pop('success', 'Your address registration was successfull!');
                     $location.path('/subscriber/new-listing/' + res._id); 
