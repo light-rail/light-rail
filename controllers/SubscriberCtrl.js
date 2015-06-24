@@ -127,7 +127,7 @@ module.exports = {
           var update = {
             $push: {'pictures_array': {
               name: s3_filename,
-              src: s3_bucket_name +'/'+ s3_filename
+              src: 'https://s3.amazonaws.com/'+ s3_bucket_name +'/'+ s3_filename
             }}
           };
           var options = {
