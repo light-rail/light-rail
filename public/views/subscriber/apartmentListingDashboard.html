@@ -66,7 +66,7 @@
                 <div class='row'>
                   <div class='col-md-6'>
                     <span>
-                      <span>{{listing.address.street}}</span><br>
+                      <span>{{listing.address.street_address}}</span><br>
                       <span> {{listing.address.city}}, {{listing.address.state}} {{listing.address.zip_code}}</span></br>
                       <span>{{listing.phone}}</span><br>
                       <span><a href="http://{{modal_apartment.webpage}}" target="_blank">{{listing.webpage}}</a></span>
@@ -107,12 +107,13 @@
                       <span class="col-xs-3 col-md-3">Monthly</span>
                     </div>
 
-                    <div ng-repeat='opt in listing.apt_options'  class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">{{opt.bedrooms}}</span>
-                      <span class="col-xs-3 col-md-3 ">{{opt.bathrooms}}</span>
-                      <span class="col-xs-3 col-md-3 ">{{opt.square_feet}}</span>
-                      <span class="col-xs-3 col-md-3 ">$ {{opt.price}}</span>
+                    <div ng-repeat='unit in listing.units'  class="col-xs-12 col-md-12 char-left-alignment">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">{{unit.bedrooms}}</span>
+                      <span class="col-xs-3 col-md-3 ">{{unit.bathrooms}}</span>
+                      <span class="col-xs-3 col-md-3 ">{{unit.square_feet}}</span>
+                      <span class="col-xs-3 col-md-3 ">$ {{unit.monthly_rent}}</span>
                     </div>
+
                   </div>
                 </div><!-- End of Bedroom Details -->
 
@@ -125,14 +126,32 @@
                     </div>
 
                     <div class="col-xs-12 col-md-12 char-left-alignment amenity-content-spacing">
-                      <p><span class="col-xs-12 col-md-12 char-left-alignment">Pet Friendly, Garage, Pool, Gym, Washer & Dryer</span></p>
-                      <span>Other: Granite Counter tops, other, other, etc.</span>
+                      <p>
+                          <span ng-show='listing.amenities.pet_friendly'>
+                            <i class='fa fa-check-square-o'></i>
+                            Pet Friendly
+                          </span>
+                          <span ng-show='listing.amenities.garage'>
+                            <i class='fa fa-check-square-o'></i> Garage
+                          </span>
+                          <span ng-show='listing.amenities.pool'>
+                            <i class='fa fa-check-square-o'></i>
+                            Pool
+                          </span>
+                          <span ng-show='listing.amenities.gym'>
+                            <i class='fa fa-check-square-o'></i>
+                            Gym
+                          </span>
+                          <span ng-show='listing.amenities.washer_dryer'>
+                            <i class='fa fa-check-square-o'></i>
+                            Washer & Dryer
+                          </span>
+                      </p>
+                      <span ng-show='listing.aditional_amenities'>Other: {{listing.aditional_amenities}}</span>
                     </div>
 
                   </div>
                 </div><!-- End of Amenity Details -->
-
-                <a href='/#/subscriber/new_listing' class='col-xs-12 col-md-12 btn btn-primary btn-raised btn-sm'><i class='fa fa-plus edit-text-color'></i><span class='edit-text-color'> Add A Listing</span></a>
 
                   </div>
                 </div>
@@ -157,7 +176,7 @@
             <h4 class="titles-styling">Add A Listing To Have It Displayed Here</h4>
 
               <div class="row content-box-style">
-                <a href='/#/subscriber/new_listing' class='col-md-12 btn btn-primary btn-raised'>
+                <a href='/#/subscriber/verify-address' class='col-md-12 btn btn-primary btn-raised'>
                   <i class='fa fa-plus edit-text-color'></i>
                   <span class='edit-text-color'></span>
                 </a>
@@ -176,13 +195,13 @@
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="{{apartment.cover_picture}}" alt="images/no_image_placeholder.jpg">
+                    <img src="{{apartment.pictures_array[0].src}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 
                 <div class="col-xm-12 col-sm-6 col-md-6 details-font-size">
                   <p><br>
-                    <span>{{apartment.address.street}}</span><br>
+                    <span>{{apartment.address.street_address}}</span><br>
                     <span> {{apartment.address.city}}, {{apartment.address.state}}</span>
                   </p> 
                   <p>
@@ -241,22 +260,17 @@
             </div>
             <div class='form-group'>
               <label for='editLocation'>Location</label>
-              <input ng-model='editListing.address.street' class='form-control' type='text' placeholder='Street' />
+              <input ng-model='editListing.address.street_address' class='form-control' type='text' placeholder='Street' />
               <input ng-model='editListing.address.city' class='form-control' type='text' placeholder='City' />
               <select ng-model='editListing.address.state' ng-options='state for state in states' class='form-control'>
-                <option value=''>{{editListing.address.state}}</option>
+                <!-- <option value=''>{{editListing.address.state}}</option> -->
               </select>
               <input ng-model='editListing.address.zip_code' class='form-control' type='text' placeholder='Zipcode'/>
             </div>
             <div class='form-group'>
               <label for='editLocation'>Contact</label>
               <input ng-model='editListing.phone_number' class='form-control' type='text' placeholder='Phone' />
-              <input ng-model='editListing.website' class='form-control' type='text' placeholder='Webpage' />
-            </div>
-            <div class='form-group'>
-              <label for='editPricing'>Pricing $</label>
-              <input ng-model='editListing.price_range.min' class='form-control' type='text' placeholder='Minimum' />
-              <input ng-model='editListing.price_range.max' class='form-control' type='text' placeholder='Maximum' />
+              <input ng-model='editListing.webpage' class='form-control' type='text' placeholder='Webpage' />
             </div>
             <div class='form-group'>
               <label for='editPictures'>Pictures</label>
@@ -268,10 +282,47 @@
               </div>
             </div>
             <div class='form-group'>
+              <label for='editUnits'>Units</label>
+              <div class="panel-body">
+
+                <div class="col-xs-12 col-md-12 char-left-alignment titles-bottom-border">
+                  <span class="col-xs-3 col-md-3 char-left-alignment">Bedrooms</span>
+                  <span class="col-xs-3 col-md-3">Bath</span>
+                  <span class="col-xs-3 col-md-3">SqrFt</span>
+                  <span class="col-xs-3 col-md-3">Monthly</span>
+                </div>
+
+                <div ng-repeat='unit in editListing.units'  class="col-xs-12 col-md-12 char-left-alignment">
+                  <span class="col-xs-3 col-md-3 char-left-alignment"><select ng-model='unit.bedrooms' ng-options='number for number in numbers'></select></span>
+                  <span class="col-xs-3 col-md-3 "><select ng-model='unit.bathrooms' ng-options='number for number in numbers'></select></span>
+                  <span class="col-xs-3 col-md-3 "><input ng-model='unit.square_feet'/></span>
+                  <span class="col-xs-3 col-md-3 "><input ng-model='unit.monthly_rent'/></span>
+                </div>
+
+              </div>
+            </div>
+            <div class='form-group'>
               <label>Description</label>
               <textarea ng-model='editListing.description' class="form-control" rows="5"></textarea>
             </div>
-            <button ng-click='saveListing(listing._id, editListing.apartment_name, editListing.address, editListing.phone_number, editListing.website, editListing.price_range, editListing.picturesArray, editListing.description)' class='btn btn-success' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
+            <div class='form-group'>
+              <label>
+                <input type='checkbox' ng-model='editListing.amenities.pet_friendly' id='inlineCheckbox' ng-true-value='true' ng-false-value='false' /> Pet Friendly
+              </label>
+              <label>
+                <input type='checkbox' ng-model='editListing.amenities.pet_friendly' id='inlineCheckbox' ng-true-value='true' ng-false-value='false' /> Garage
+              </label>
+              <label>
+                <input type='checkbox' ng-model='editListing.amenities.pet_friendly' id='inlineCheckbox' ng-true-value='true' ng-false-value='false' /> Pool
+              </label>
+              <label>
+                <input type='checkbox' ng-model='editListing.amenities.pet_friendly' id='inlineCheckbox' ng-true-value='true' ng-false-value='false' /> Gym
+              </label>
+              <label>
+                <input type='checkbox' ng-model='editListing.amenities.pet_friendly' id='inlineCheckbox' ng-true-value='true' ng-false-value='false' /> Washer & Dryer
+              </label>
+            </div>
+            <button ng-click='saveListing(editListing)' class='btn btn-success' data-dismiss='modal' aria-hidden='true' type='button'>Save</button>
           </div>
         </div>
     </div>
