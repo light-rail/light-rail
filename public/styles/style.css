@@ -167,11 +167,24 @@ html, body {
 .like-heart {
   position: absolute;
   right: 0px;
-/*  background-color: white;
-  border: white;*/
 }
 
 .like-heart:hover {
+  color: pink;
+  border: 2px solid white;
+}
+
+.like-heart-position {
+  position: absolute;
+  right:0;
+}
+
+.not-like-heart {
+  color: red;
+
+}
+
+.not-like-heart:hover {
   color: pink;
   border: 2px solid white;
 }

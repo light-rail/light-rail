@@ -8,8 +8,17 @@
         <div class="modal-body center-content">
 
           <!-- APARTMENT DETAILS -->
-          <div  class="col-xs-12 col-md-10">
-            <div class="titles-styling bottom-border">{{modal_apartment.apartment_name}}<a class="like-heart" ng-click="addToFavorites(modal_apartment)"><i class="fa fa-heart fa-2x" style="color: red;"></i></a></div>
+        <div  class="col-xs-12 col-md-10">
+         
+         <!-- LIKE BUTTON -->
+         <span class="fa-stack fa-lg like-heart-position">
+           <i class="fa fa-circle fa-stack-2x"></i><!--Note: Attach the favorite variable to object for ng-hide/show -->
+           <i ng-click="addToFavorites(modal_apartment)" ng-hide="!favorite" class="fa fa-heart fa-stack-1x fa-inverse like-heart"></i>
+           <i ng-click="removeFavorites(modal_apartment)" ng-show="!favorite" class="fa fa-heart fa-stack-1x not-like-heart"></i>
+         </span>
+       
+           
+           <h3 class="titles-styling bottom-border">{{modal_apartment.apartment_name}}</h3>
 
             <div class="row">
               <div class="col-md-6">
