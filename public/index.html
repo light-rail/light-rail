@@ -75,8 +75,8 @@
             <li><a href="#/subscriber/new-listing/1">Add A Listing2</a></li> <!-- temporary hardcoded -->
           </ul>
         </li>
-        <li>
-          <a href='/api/user/logout'>Logout</a>
+        <li ng-show='isLoggedIn.subscriber || isLoggedIn.user || isLoggedIn.admin' ng-cloak>
+          <a href='' ng-click='logOut()'>Logout</a>
         </li>
       </ul>
     </div>

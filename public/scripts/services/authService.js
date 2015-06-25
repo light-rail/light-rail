@@ -2,7 +2,33 @@ var app = angular.module('lightRail');
 
 
 app.service('AuthService', function($http, $q, $location) {
+  
+  var isLoggedIn = {
+    subscriber: false,
+    user: false,
+    admin: false
+  };
 
+  this.isLoggedIn = function() {
+    return isLoggedIn;
+  }
+
+  this.logOut = function() {
+    var dfd = $q.defer();
+    var url = '/api/user/logout';
+     $http({
+      method: 'GET',
+      url: url
+    }).then(function(res) {
+      isLoggedIn = {
+        subscriber: false,
+        user: false,
+        admin: false
+      }
+      dfd.resolve(res);
+    })
+    return dfd.promise;
+  };
 //*** REGISTRATION & LOGIN ***//
   this.registerUser = function(user) {
     var deferred = $q.defer();
@@ -123,6 +149,7 @@ app.service('AuthService', function($http, $q, $location) {
       }
     }).then(function(res) {
       console.log('loginSubscriber:', res)
+      isLoggedIn.subscriber = true;
       deferred.resolve(res.data);
     }).catch(function(res) {
       console.log('loginSubscriber catch', res)
