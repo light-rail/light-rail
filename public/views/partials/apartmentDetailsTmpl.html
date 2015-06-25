@@ -70,23 +70,11 @@
                       <span class="col-xs-3 col-md-3">Monthly</span>
                     </div>
 
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">1</span>
-                      <span class="col-xs-3 col-md-3 ">1</span>
-                      <span class="col-xs-3 col-md-3 ">800</span>
-                      <span class="col-xs-3 col-md-3 ">$600</span>
-                    </div>
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">2</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1000</span>
-                      <span class="col-xs-3 col-md-3 ">$1,200</span>
-                    </div>
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">3</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1,800</span>
-                      <span class="col-xs-3 col-md-3 ">$1,600</span>
+                    <div class="col-xs-12 col-md-12 char-left-alignment" ng-repeat="unit in apartment.units">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">{{unit.bedrooms}}</span>
+                      <span class="col-xs-3 col-md-3">{{unit.bathrooms}}</span>
+                      <span class="col-xs-3 col-md-3">{{unit.square_feet}}</span>
+                      <span class="col-xs-3 col-md-3">{{unit.monthly_rent}}</span>
                     </div>
 
                   </div>

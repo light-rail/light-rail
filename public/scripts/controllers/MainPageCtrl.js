@@ -11,7 +11,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
   $scope.getAptArr = function() {
     GeneralUserService.getAptData().then(function(data) {
       $scope.aptArray = data;
-      console.log($scope.aptArray);
+      console.log('aptArray', $scope.aptArray);
     })
   }
 
@@ -19,7 +19,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
   //** Modal Initiation **//
   $scope.getApartment = function(apartment) {
-    console.log(apartment);
+    console.log('getApartment apartment', apartment);
     var modal_apartment = '';
 
     $scope.modal_apartment = apartment;
@@ -29,7 +29,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
   $scope.clickApt = function(marker) {
     var clickedApt = marker.model;
-    console.log(clickedApt);
+    console.log('clickedApt', clickedApt);
     $scope.getApartment(clickedApt)
   }
 

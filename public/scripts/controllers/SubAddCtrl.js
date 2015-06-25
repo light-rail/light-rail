@@ -2,9 +2,9 @@ var app = angular.module('lightRail');
 
 app.controller('SubAddCtrl', function($scope,$location, $routeParams, SubscriberService, GeneralUserService, toaster, getAddedApt) {
 
-  console.log(getAddedApt);
+  console.log('getAddedApt', getAddedApt);
   $scope.apartment = getAddedApt[0];
-  console.log($scope.apartment);
+  console.log('getAddedApt apartment', $scope.apartment);
   
   $scope.unit = {};
   $scope.picture = {};
@@ -24,18 +24,18 @@ app.controller('SubAddCtrl', function($scope,$location, $routeParams, Subscriber
   $scope.addUnit = function(unit) {
     $scope.apartment.units.push(unit);
     $scope.unit = {};
-    console.log('apartment', $scope.apartment)
+    console.log('addUnit apartment', $scope.apartment)
     console.log('unit', $scope.unit)
   };
 
   //** Add Pictures Container Content **/
-  $scope.addPicture = function(picture) {
-    $scope.apartment.pictures_array.push(picture);
+  // $scope.addPicture = function(picture) {
+  //   $scope.apartment.pictures_array.push(picture);
 
-    $scope.picture = {};
-    console.log('picture', $scope.picture)
-    console.log('apartment', $scope.apartment)
-  };
+  //   $scope.picture = {};
+  //   console.log('picture', $scope.picture)
+  //   console.log('apartment', $scope.apartment)
+  // };
 
     //** Submits Listing to Service **/
   $scope.addApartmentListing = function(apartment) {
