@@ -3,11 +3,11 @@ var app = angular.module('lightRail');
 app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, GeneralUserService, $timeout, trainStations) {
 
 
-  var allApartmentsData = GeneralUserService.apartmentData;
+  // var allApartmentsData = GeneralUserService.apartmentData;
   // var selectedApartmentData = GeneralUserService.apartmentData[$routeParams.apartmentId];
   // I need to add this into the click station function after the favorites array button is connected 
   // $scope.todayDate = new Date();
-  $scope.apartments = allApartmentsData;
+  // $scope.apartments = allApartmentsData;
 
   $scope.favoriteMarkers = [];
   $scope.favoriteArr = [];
@@ -15,7 +15,7 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
     GeneralUserService.getFavorites().then(function(data) {
       console.log(data[0]);
       $scope.favoriteArr = data[0].favorites;
-      // $scope.apartments = $scope.favoriteArr;
+      $scope.apartments = $scope.favoriteArr;
       for (var i = 0; i < $scope.favoriteArr.length; i++) {
         var apt = $scope.favoriteArr[i];
         console.log(apt);
@@ -31,6 +31,10 @@ app.controller('GeneralUserFavoritesCtrl', function($scope, $routeParams, Genera
             state: apt.address.state,
             zip_code: apt.address.zip_code
           },
+          // phone: apt.phone,
+          // website: apt.website,
+          // photos:
+          // units:
           rent_range: {
             min: 900,
             max: 1800
