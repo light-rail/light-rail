@@ -75,8 +75,11 @@
             <li><a href="#/subscriber/new-listing/1">Add A Listing2</a></li> <!-- temporary hardcoded -->
           </ul>
         </li>
-        <li>
-          <a href='/api/user/logout'>Logout</a>
+        <li ng-show='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
+          <a href='' ng-click='logOut()'>Logout</a>
+        </li>
+        <li ng-show='isLoggedIn.subscriber.loggedIn' ng-cloak>
+          <a href='#/subscriber/dashboard/{{isLoggedIn.subscriber.id}}'>Dashboard</a>
         </li>
       </ul>
     </div>
@@ -85,7 +88,7 @@
 <!-- End Nav Bar -->
 
     <div class="jumbotron"></div>
-      <ng-view></ng-view>
+      <ng-view autoscroll='true'></ng-view>
     </div>
 
 
