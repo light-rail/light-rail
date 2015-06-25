@@ -35,11 +35,13 @@ app.controller('SubscriberDashboardCtrl', function($scope, subProfile, subListin
 			coverPicture: $scope.listing.cover_picture,
 			picturesArray: $scope.listing.pictures_array,
 			description: $scope.listing.description,
+			amenities: $scope.listing.amenities,
 			price_range: {
 				min: $scope.listing.price_range.min,
 				max: $scope.listing.price_range.max
 			}
 		};
+		console.log($scope.editListing)
 	} else {
 		$scope.showListings = false;
 		$scope.listing;
