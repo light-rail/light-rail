@@ -4,9 +4,18 @@ var app = angular.module('lightRail');
 app.service('AuthService', function($http, $q, $location) {
   
   var isLoggedIn = {
-    subscriber: false,
-    user: false,
-    admin: false
+    subscriber: {
+      loggedIn: false,
+      id: undefined
+    },
+    user: {
+      loggedIn: false,
+      id: undefined
+    },
+    admin: {
+      loggedIn: false,
+      id: undefined
+    }
   };
 
   this.isLoggedIn = function() {
@@ -149,7 +158,8 @@ app.service('AuthService', function($http, $q, $location) {
       }
     }).then(function(res) {
       console.log('loginSubscriber:', res)
-      isLoggedIn.subscriber = true;
+      isLoggedIn.subscriber.loggedIn = true;
+      isLoggedIn.subscriber.id = res.data._id
       deferred.resolve(res.data);
     }).catch(function(res) {
       console.log('loginSubscriber catch', res)
