@@ -1,17 +1,19 @@
 var app = angular.module('lightRail');
 
-app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService, toaster) {
+app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService, isLoggedIn, toaster) {
 
+  $scope.isLoggedIn = isLoggedIn;
   // this is for the seeded data --- change the ng-repeat if you want to use it! 
-  var allApartmentsData = GeneralUserService.apartmentData;
-  $scope.apartments = allApartmentsData;
+  // var allApartmentsData = GeneralUserService.apartmentData;
+  // $scope.apartments = allApartmentsData;
 
 
   $scope.aptArray;
   $scope.getAptArr = function() {
     GeneralUserService.getAptData().then(function(data) {
       $scope.aptArray = data;
-      console.log('aptArray', $scope.aptArray);
+      $scope.selectApt = data;
+      console.log($scope.aptArray);
     })
   }
 
@@ -26,16 +28,22 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
 
   }
 
+  $scope.hello = function() {
+    console.log("HELLO");
+  }
 
+  var clickedApt;
   $scope.clickApt = function(marker) {
-    var clickedApt = marker.model;
-    console.log('clickedApt', clickedApt);
-    $scope.getApartment(clickedApt)
+    clickedApt = marker.model;
+    console.log("IN FUNC", clickedApt);
+    $scope.getApartment(clickedApt);
   }
 
 
 
+
   $scope.aptMarkers = [];
+  $scope.selectedApt = [];
   $scope.createAptMarkers = function(marker) {
     console.log(marker);
     console.log($scope.aptArray);
@@ -43,8 +51,6 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
       var apt = $scope.aptArray[i];
       var nearest_stops = apt.nearest_stops;
       for (var k = 0; k < nearest_stops.length; k++) {
-        console.log("nearest_stops[k]", nearest_stops[k]);
-        console.log(marker.model.mongoId);
         if (nearest_stops[k] === marker.model.mongoId) {
           console.log(marker.model);
           $scope.aptMarkers.push({
@@ -64,20 +70,25 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
                 max: 1800
               },
               station: marker.model.title,
+              func: {
+                func: function() {
+                  console.log(hello);
+                }
+              },
               events: {
-                mouseover: function(marker, mouseover, aptMarkers) {
+                click: function(marker, click, aptMarkers) {
                   aptMarkers.show = true;
-                },
-                mouseout: function(marker, mouseout, aptMarkers) {
-                  aptMarkers.show = false;
+                  $scope.clickApt(marker);
+
                 }
               } // ends events
             }) // ends push
+          $scope.selectedApt = $scope.aptMarkers.slice(0);
+          console.log($scope.selectedApt);
         } // if 
       } // for nearest
     } // for apt Array
     console.log($scope.aptMarkers);
-
   }
 
 
@@ -300,24 +311,32 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
           longitude: marker.model.longitude
         };
         $scope.createAptMarkers(marker);
-        // $scope.aptArray = $scope.aptMarkers;
+        if ($scope.selectedApt.length > 0) {
+          $scope.selectApt = $scope.selectedApt;
+        }
       })
       marker.model.clicked = true;
     } else {
+      GeneralUserService.getAptData().then(function(data) {
+        $scope.selectApt = data;
+      })
       marker.model.clicked = false;
       $scope.map.zoom = 14;
       $scope.$apply(function() {
-        // $scope.getAptArr();
         for (var i = 0; i < $scope.circles.length; i++) {
           if ($scope.circles[i].id === id) {
             $scope.circles.splice(i, 1);
           }
         };
         for (var i = 0; i < $scope.aptMarkers.length; i++) {
-          console.log($scope.aptMarkers);
           if ($scope.aptMarkers[i].station === marker.model.title) {
-            console.log($scope.aptMarkers[i].station);
             $scope.aptMarkers.splice(i, 1);
+            i--;
+          }
+        };
+        for (var i = 0; i < $scope.selectApt.length; i++) {
+          if ($scope.selectApt[i].station === marker.model.title) {
+            $scope.selectApt.splice(i, 1);
             i--;
           }
         };

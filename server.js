@@ -247,7 +247,7 @@ app.get('/auth/facebook/callback',
 // LOGOUT
 app.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.status(200).send('Logged Out')
   console.log("You've logged out");
 });
 
