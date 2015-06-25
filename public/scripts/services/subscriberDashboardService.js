@@ -32,16 +32,14 @@ app.service('SubscriberDashboardService', function($http, $q) {
 		});
 	};
 
-	this.saveListing = function(id, listing) {
+	this.saveListing = function(listing) {+
+		console.log(listing);
 		var url = '/api/subscriber/edit_listing';
 
 		return $http({
 			method: 'PUT',
 			url: url,
-			data: {
-				_id: id,
-				listing: listing
-			}
+			data: listing
 		});
 	};
 
