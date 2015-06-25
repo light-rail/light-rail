@@ -19,7 +19,7 @@
 
        <ui-gmap-markers models="favoriteMarkers" coords="'self'" events="favoriteMarkers.events" icon='{url: "pin1.png"}'>
                  <ui-gmap-windows show="show">
-                   <div ng-non-bindable>{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div>
+                   <a data-target=".apartment-modal-lg" data-toggle="modal"><div ng-non-bindable >{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div></a>
                  </ui-gmap-windows>
         </ui-gmap-markers>
 
@@ -49,8 +49,8 @@
 
                 <div class="col-xm-12 col-sm-6 col-md-6 details-font-size">
                   <p><br>
-                    <span>{{apartment.location.street_address}}</span><br>
-                    <span> {{apartment.location.city + ', ' + apartment.location.state}}</span>
+                    <span>{{apartment.address.street_address}}</span><br>
+                    <span> {{apartment.address.city + ', ' + apartment.address.state}}</span>
                   </p> 
                   <p>
                     <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span>
