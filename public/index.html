@@ -55,7 +55,7 @@
         <li>
           <a href="#/myfavorites" ng-show='isLoggedIn.user.loggedIn' ng-cloak>My Favorites </a>
         </li>
-        <li class="dropdown">
+        <li class="dropdown" ng-hide='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
           <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="#/register/general_user">Register</a></li>
@@ -69,11 +69,11 @@
             <li><a href="#/login/subscriber">Subscriber Login</a></li>
           </ul>
         </li>
-        <li ng-show='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
-          <a href='' ng-click='logOut()'>Logout</a>
-        </li>
         <li ng-show='isLoggedIn.subscriber.loggedIn' ng-cloak>
           <a href='#/subscriber/dashboard/{{isLoggedIn.subscriber.id}}'>Dashboard</a>
+        </li>
+        <li ng-show='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
+          <a href='' ng-click='logOut()'>Logout</a>
         </li>
       </ul>
     </div>
