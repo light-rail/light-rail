@@ -19,7 +19,7 @@ module.exports = {
   },
 
   loginUser: function(req, res) {
-    return res.json({loggedIn:true});
+    return res.status(200).json(req.user);
   },
 
   isLoggedIn: function(req, res) {

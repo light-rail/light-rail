@@ -30,10 +30,20 @@ app.service('AuthService', function($http, $q, $location) {
       url: url
     }).then(function(res) {
       isLoggedIn = {
-        subscriber: false,
-        user: false,
-        admin: false
-      }
+        subscriber: {
+          loggedIn: false,
+          id: undefined
+        },
+        user: {
+          loggedIn: false,
+          id: undefined,
+          favorites: undefined
+        },
+        admin: {
+          loggedIn: false,
+          id: undefined
+        }
+      };
       dfd.resolve(res);
     })
     return dfd.promise;
@@ -58,6 +68,8 @@ app.service('AuthService', function($http, $q, $location) {
           password: user.password
         }
       }).then(function(res) {
+        isLoggedIn.user.loggedIn = true;
+        isLoggedIn.user.id = res.data._id
         deferred.resolve(res.data);
       }).catch(function(err) {
         deferred.reject(err);
@@ -80,6 +92,10 @@ app.service('AuthService', function($http, $q, $location) {
         password: user.password
       }
     }).then(function(res) {
+      console.log('USER', res.data);
+      isLoggedIn.user.loggedIn = true;
+      isLoggedIn.user.id = res.data._id;
+      isLoggedIn.user.favorites = res.data.favorites
       deferred.resolve(res.data);
     }).catch(function(res) {
       deferred.reject(res.data);
@@ -135,6 +151,8 @@ app.service('AuthService', function($http, $q, $location) {
           password: user.password
         }
       }).then(function(res) {
+        isLoggedIn.subscriber.loggedIn = true;
+        isLoggedIn.subscriber.id = res.data._id
         deferred.resolve(res.data);
       }).catch(function(err) {
         deferred.reject(err);
@@ -208,6 +226,8 @@ app.service('AuthService', function($http, $q, $location) {
           password: user.password
         }
       }).then(function(res) {
+        isLoggedIn.admin.loggedIn = true;
+        isLoggedIn.admin.id = res.data._id
         deferred.resolve(res.data);
       }).catch(function(err) {
         deferred.reject(err);
@@ -231,6 +251,8 @@ app.service('AuthService', function($http, $q, $location) {
       }
     }).then(function(res) {
       console.log('loginAdmin:', res)
+      isLoggedIn.admin.loggedIn = true;
+      isLoggedIn.admin.id = res.data._id
       deferred.resolve(res.data);
     }).catch(function(res) {
       deferred.reject(res.data);
