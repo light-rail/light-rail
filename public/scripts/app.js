@@ -50,6 +50,9 @@ app.config(function($routeProvider){
       resolve: {
         getAddedApt: function(GeneralUserService, $route) {
           return GeneralUserService.getAddedApt($route.current.params.id);
+        },
+        isLoggedIn: function(AuthService) {
+          return AuthService.isLoggedIn();
         }
       }
     })
