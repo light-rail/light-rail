@@ -19,7 +19,7 @@
 
         <ui-gmap-markers models="aptMarkers" coords="'self'" events="aptMarkers.events" icon='{url: "pin1.png"}'>
                  <ui-gmap-windows show="show">
-                    <a data-target=".apartment-modal-lg" data-toggle="modal"> <div ng-non-bindable>{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div></a>
+                    <a data-target=".apartment-modal-lg" data-toggle="modal"> <div ng-non-bindable>{{apartment_name}}</br>${{price_range.min}} - ${{price_range.max}}</div></a>
                  </ui-gmap-windows>
         </ui-gmap-markers>
 
@@ -40,7 +40,7 @@
 
                 <span class="col-xm-6 col-sm-6 col-md-6 pic-container">
                   <span class="thumbnail thumb-sizing">
-                    <img src="https://s3.amazonaws.com/{{apartment.pictures_array[2].src}}" alt="images/no_image_placeholder.jpg">
+                    <img src="{{apartment.pictures_array[0].src}}" alt="images/no_image_placeholder.jpg">
                   </span>
                 </span>
 
@@ -50,7 +50,7 @@
                     <span> {{apartment.address.city + ', ' + apartment.address.state}}</span>
                   </p> 
                   <p>
-                    <span class="price-text-size">${{apartment.rent_range.min}} to {{apartment.rent_range.max}}</span>
+                    <span class="price-text-size">${{apartment.price_range.min}} to ${{apartment.price_range.max}}</span>
                   </p>
                 </div>
                 

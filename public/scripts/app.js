@@ -1,10 +1,22 @@
 var app = angular.module('lightRail', ['ngRoute', 'toaster', 'angularMoment', 'uiGmapgoogle-maps', 'flow', 'chart.js']);
+// app.run(function($rootScope) {
+//   $rootScope.isLoggedIn = {
+//     subscriber: false,
+//     user: false,
+//     admin: false
+//   }
+// });
 
 app.config(function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/mainTmpl.html',
-      controller: 'MainPageCtrl'
+      controller: 'MainPageCtrl',
+      resolve: {
+        isLoggedIn: function(AuthService) {
+          return AuthService.isLoggedIn();
+        }
+      }
     })
     //General User Routes
     .when('/register/general_user', {
@@ -38,6 +50,9 @@ app.config(function($routeProvider){
       resolve: {
         getAddedApt: function(GeneralUserService, $route) {
           return GeneralUserService.getAddedApt($route.current.params.id);
+        },
+        isLoggedIn: function(AuthService) {
+          return AuthService.isLoggedIn();
         }
       }
     })
@@ -50,6 +65,9 @@ app.config(function($routeProvider){
         },
         subListings: function(SubscriberDashboardService, $route) {
           return SubscriberDashboardService.getListings($route.current.params.id);
+        },
+        isLoggedIn: function(AuthService) {
+          return AuthService.isLoggedIn();
         }
       }
     })

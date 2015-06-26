@@ -2,7 +2,52 @@ var app = angular.module('lightRail');
 
 
 app.service('AuthService', function($http, $q, $location) {
+  
+  var isLoggedIn = {
+    subscriber: {
+      loggedIn: false,
+      id: undefined
+    },
+    user: {
+      loggedIn: false,
+      id: undefined
+    },
+    admin: {
+      loggedIn: false,
+      id: undefined
+    }
+  };
 
+  this.isLoggedIn = function() {
+    return isLoggedIn;
+  }
+
+  this.logOut = function() {
+    var dfd = $q.defer();
+    var url = '/api/user/logout';
+     $http({
+      method: 'GET',
+      url: url
+    }).then(function(res) {
+      isLoggedIn = {
+        subscriber: {
+          loggedIn: false,
+          id: undefined
+        },
+        user: {
+          loggedIn: false,
+          id: undefined,
+          favorites: undefined
+        },
+        admin: {
+          loggedIn: false,
+          id: undefined
+        }
+      };
+      dfd.resolve(res);
+    })
+    return dfd.promise;
+  };
 //*** REGISTRATION & LOGIN ***//
   this.registerUser = function(user) {
     var deferred = $q.defer();
@@ -23,6 +68,8 @@ app.service('AuthService', function($http, $q, $location) {
           password: user.password
         }
       }).then(function(res) {
+        isLoggedIn.user.loggedIn = true;
+        isLoggedIn.user.id = res.data._id
         deferred.resolve(res.data);
       }).catch(function(err) {
         deferred.reject(err);
@@ -45,6 +92,10 @@ app.service('AuthService', function($http, $q, $location) {
         password: user.password
       }
     }).then(function(res) {
+      console.log('USER', res.data);
+      isLoggedIn.user.loggedIn = true;
+      isLoggedIn.user.id = res.data._id;
+      isLoggedIn.user.favorites = res.data.favorites
       deferred.resolve(res.data);
     }).catch(function(res) {
       deferred.reject(res.data);
@@ -100,6 +151,8 @@ app.service('AuthService', function($http, $q, $location) {
           password: user.password
         }
       }).then(function(res) {
+        isLoggedIn.subscriber.loggedIn = true;
+        isLoggedIn.subscriber.id = res.data._id
         deferred.resolve(res.data);
       }).catch(function(err) {
         deferred.reject(err);
@@ -123,6 +176,8 @@ app.service('AuthService', function($http, $q, $location) {
       }
     }).then(function(res) {
       console.log('loginSubscriber:', res)
+      isLoggedIn.subscriber.loggedIn = true;
+      isLoggedIn.subscriber.id = res.data._id
       deferred.resolve(res.data);
     }).catch(function(res) {
       console.log('loginSubscriber catch', res)
@@ -171,6 +226,8 @@ app.service('AuthService', function($http, $q, $location) {
           password: user.password
         }
       }).then(function(res) {
+        isLoggedIn.admin.loggedIn = true;
+        isLoggedIn.admin.id = res.data._id
         deferred.resolve(res.data);
       }).catch(function(err) {
         deferred.reject(err);
@@ -194,6 +251,8 @@ app.service('AuthService', function($http, $q, $location) {
       }
     }).then(function(res) {
       console.log('loginAdmin:', res)
+      isLoggedIn.admin.loggedIn = true;
+      isLoggedIn.admin.id = res.data._id
       deferred.resolve(res.data);
     }).catch(function(res) {
       deferred.reject(res.data);

@@ -35,8 +35,6 @@
     </div>
     <div class="navbar-collapse collapse navbar-warning-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#/myfavorites">My Favorites </a></li>
-
 <!--    <li class="dropdown">
           <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -50,33 +48,32 @@
           </ul>
         </li> -->
       </ul>
-        <form class="navbar-form navbar-left">
-          <input type="text" class="form-control col-lg-8" placeholder="Search">
-        </form>
       <ul class="nav navbar-nav navbar-right">
-
+        <li>
+          <a href='#/'>Listings</a>
+        </li>
+        <li>
+          <a href="#/myfavorites" ng-show='isLoggedIn.user.loggedIn' ng-cloak>My Favorites </a>
+        </li>
         <li class="dropdown">
           <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#/register/general_user">Register GenUser</a></li>
+            <li><a href="#/register/general_user">Register</a></li>
             <li><a href="#/register/subscriber">Register to List An Apartment</a></li>
-            <li><a href="#/register/admin">RegisterAdmin</a></li> <!-- temoprary -->
           </ul>
         </li>
         <li class="dropdown">
-          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn'>Login<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#/map">Map</a></li>
-            <li class="divider"></li>
-            <li><a href="#/login">General User Login</a></li>
+            <li><a href="#/login">User Login</a></li>
             <li><a href="#/login/subscriber">Subscriber Login</a></li>
-            <li><a href="#/login/admin">Login Admin</a></li> <!-- temoprary -->
-            <li><a href="#/subscriber/verify-address">Add A Listing</a></li> <!-- temporary -->
-            <li><a href="#/subscriber/new-listing/1">Add A Listing2</a></li> <!-- temporary hardcoded -->
           </ul>
         </li>
-        <li>
-          <a href='/api/user/logout'>Logout</a>
+        <li ng-show='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
+          <a href='' ng-click='logOut()'>Logout</a>
+        </li>
+        <li ng-show='isLoggedIn.subscriber.loggedIn' ng-cloak>
+          <a href='#/subscriber/dashboard/{{isLoggedIn.subscriber.id}}'>Dashboard</a>
         </li>
       </ul>
     </div>
@@ -85,7 +82,7 @@
 <!-- End Nav Bar -->
 
     <div class="jumbotron"></div>
-      <ng-view></ng-view>
+      <ng-view autoscroll='true'></ng-view>
     </div>
 
 

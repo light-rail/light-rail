@@ -22,8 +22,9 @@ var findRentRange = function(arr, cb) {
   });
   priceRange = {
     min: Math.min.apply(null, numbersArr),
-    max: Math.min.apply(null, numbersArr)
+    max: Math.max.apply(null, numbersArr)
   };
+  console.log('From findRentRange', arr, numbersArr, priceRange);
   return cb(priceRange);
 };
 
@@ -90,7 +91,7 @@ module.exports = {
       var options = {new: true};
 
       Apartment.findByIdAndUpdate(req.body._id, update, options, function(err, apartment) {
-        if(err) res.status(500).json(err);
+        if(err) return res.status(500).json(err);
         console.log(apartment);
         res.status(200).json(apartment);
       })
@@ -127,7 +128,7 @@ module.exports = {
           var update = {
             $push: {'pictures_array': {
               name: s3_filename,
-              src: s3_bucket_name +'/'+ s3_filename
+              src: 'https://s3.amazonaws.com/'+ s3_bucket_name +'/'+ s3_filename
             }}
           };
           var options = {
@@ -214,18 +215,20 @@ module.exports = {
   },
 
   editListing: function(req, res) {
-    console.log(req.body);
-    var update = req.body.listing;
-    var options = {
-      new: true
-    };
+    console.log(req.body._id);
+    findRentRange(req.body.units, function(rentRange) {
+      req.body.price_range = rentRange;
+      var update = req.body;
+      var options = {
+        new: true
+      };
 
-    Apartment.findByIdAndUpdate(req.body._id, update, options, function(err, listing) {
-      if(err) res.status(500).json(err);
-
-      res.status(200).json(listing);
+      Apartment.findByIdAndUpdate(req.body._id, update, options, function(err, listing) {
+        if(err) res.status(500).json(err);
+        console.log(listing);
+        res.status(200).json(listing);
+      })
     })
-
   }
 
 };
