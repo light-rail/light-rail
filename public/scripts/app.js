@@ -14,7 +14,6 @@ app.config(function($routeProvider){
       controller: 'MainPageCtrl',
       resolve: {
         isLoggedIn: function(AuthService) {
-          
           return AuthService.isLoggedIn();
         }
       }
