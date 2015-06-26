@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var apartmentSchema = new Schema({
-  subscriber_id: {type: Schema.Types.ObjectId, ref:'Subscriber', index: true},
+  subscriber_id: {type: Schema.Types.ObjectId, ref:'Subscriber', index: true, select: false},
   apartment_name: {type:String, required: true},
   address: {
     street_address: {type:String, required: true},
