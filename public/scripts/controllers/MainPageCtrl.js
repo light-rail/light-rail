@@ -25,6 +25,8 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
     var modal_apartment = '';
 
     $scope.modal_apartment = apartment;
+    //Generate function to check if in favorite list
+    //$scope.checkIfFavorite(apartment.)
 
   }
 
@@ -357,8 +359,11 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
     GeneralUserService.addToFavorites(apt._id).then(function(data) {
       console.log("Made it!", data);
       toaster.pop('success', 'Added to your favorites');
-    })
-  }
+    }, function(err) {
+      console.log('Fav add fail', err);
+      toaster.pop('error', 'This is already in your favorites!');
+    });
+  };
 
 
 
