@@ -34,7 +34,7 @@
               
               <div class="col-md-6 title">
                 <div class="panel panel-default rent-range-box">
-                  <span> ${{modal_apartment.rent_range.min}} to ${{modal_apartment.rent_range.max}} </span>
+                  <span> ${{modal_apartment.price_range.min}} to ${{modal_apartment.price_range.max}} </span>
                 </div>      
               </div>
             </div><br><!-- End of Row -->
@@ -42,7 +42,7 @@
              <!-- PICTURE AREA -->
             <div class="show-scroll">
               <div class=" panel panel-default picture-scroll">
-                <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in modal_apartment.picturesArray" src="{{pic.src}}"/>
+                <img class="img-thumbnail img-responsive img-size" ng-repeat="pic in modal_apartment.pictures_array" src="{{pic.src}}"/>
 
               </div> <!-- End of picture area -->
             </div>

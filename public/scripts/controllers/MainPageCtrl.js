@@ -91,6 +91,7 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
     console.log($scope.aptArray);
     for (var i = 0; i < $scope.aptArray.length; i++) {
       var apt = $scope.aptArray[i];
+      console.log(apt);
       var nearest_stops = apt.nearest_stops;
       for (var k = 0; k < nearest_stops.length; k++) {
         if (nearest_stops[k] === marker.model.mongoId) {
@@ -107,10 +108,11 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
                 state: apt.address.state,
                 zip_code: apt.address.zip_code
               },
-              rent_range: {
-                min: 900,
-                max: 1800
-              },
+              pictures_array: apt.pictures_array,
+              phone: apt.phone_number,
+              webpage: apt.webpage,
+              description: apt.description,
+              price_range: apt.price_range,
               station: marker.model.title,
               func: {
                 func: function() {

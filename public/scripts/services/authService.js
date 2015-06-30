@@ -19,6 +19,7 @@ app.service('AuthService', function($http, $q, $location) {
   };
 
   this.isLoggedIn = function() {
+    console.log(isLoggedIn);
     return isLoggedIn;
   }
 
@@ -44,7 +45,7 @@ app.service('AuthService', function($http, $q, $location) {
           id: undefined
         }
       };
-      dfd.resolve(res);
+      dfd.resolve(isLoggedIn);
     })
     return dfd.promise;
   };
