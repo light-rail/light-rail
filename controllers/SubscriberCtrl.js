@@ -91,7 +91,7 @@ module.exports = {
       var options = {new: true};
 
       Apartment.findByIdAndUpdate(req.body._id, update, options, function(err, apartment) {
-        if(err) res.status(500).json(err);
+        if(err) return res.status(500).json(err);
         console.log(apartment);
         res.status(200).json(apartment);
       })

@@ -5,21 +5,8 @@ app.controller('NavCtrl', function($scope, $location, AuthService) {
 
 	$scope.logOut = function() {
 		AuthService.logOut().then(function(res) {
-			$scope.isLoggedIn = {
-				subscriber: {
-					loggedIn: false,
-					id: undefined
-				},
-				user: {
-					loggedIn: false,
-					id: undefined
-				},
-				admin: {
-					loggedIn: false,
-					id: undefined
-				}
-			};
+			$scope.isLoggedIn = res; 
 			$location.path('/');
 		})
-	}
+	};
 })
