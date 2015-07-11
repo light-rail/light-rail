@@ -1,6 +1,6 @@
 
  <div class="center-content animated fadeInRight">
-  <form ng-submit="addApartmentListing(apartment)" class="col-xs-12 col-md-10 col-lg-8">
+  <form flow-init="{target: '/api/subscriber/addApartmentPictures/' + apartment._id}" class="col-xs-12 col-md-10 col-lg-8">
     <div class="col-md-12">
       <h2 class="titles-styling top-spacing bottom-border listing-bottom-spacing">Add Listing Details</h2>
     </div>
@@ -48,8 +48,7 @@
       </div>
 
 
-      <!-- APARTMENT DESCRIPTION //missing label-->
-      <div class="col-md-7">
+      <!-- APARTMENT DESCRIPTION //missing label--> <div class="col-md-7">
         <div class="panel panel-default panel-spacing">
           <div class="panel-heading" id="panel-heading-color">
             <h3 class="panel-title">Apartment Description <i>(600 Character Limit)</i></h3>  
@@ -61,14 +60,14 @@
       </div>
 
       <!-- PICTURE UPLOAD BUTTON -->
-      <div flow-init="{target: '/api/subscriber/addApartmentPictures/' + apartment._id}" flow-files-added="processFiles($files)" flow-files-submitted="$flow.upload()" flow-file-success="$file.msg = $message">
+      <div flow-files-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()] processFiles($files)" flow-file-success="$file.msg = $message">
         <div class="col-md-7">
           <div class="panel panel-default">
             <div class="panel-body">
 
               <div class="form-group col-xs-12 col-md-12 char-left-alignment">
-                <label class='control-label btn btn-primary btn-sm' ng-model="apartment.flow.files" for="pictures_array" flow-btn>Add Photo</label>
-                <span class="btn btn-primary btn-sm" flow-btn>Upload File</span>
+                <label class='control-label btn btn-primary btn-sm' ng-model="apartment.flow.files" for="pictures_array" flow-btn flow-attrs="{accept:'image/*'}">Add Photo</label>
+                <span class="btn btn-primary btn-sm" flow-btn flow-attrs="{accept:'image/*'}">Upload File</span>
                 <div class="col-lg-12 char-left-alignment">
                   <div class="quiet"><i>Only PNG, GIF, JPG, JEPG files allowed.<i></div>
                 </div>
@@ -170,7 +169,7 @@
       </div><!-- End of Amenity Details -->
 
       <div class="col-md-12 center-content">
-        <button type="submit" value="Add Listing" class="btn btn-primary">Add Listing</button>
+        <a type="submit" value="Add Listing" ng-click="addApartmentListing(apartment, $flow)" class="btn btn-primary">Add Listing</a>
       </div>
       
       <div class="col-md-12">
@@ -242,7 +241,7 @@
           </div><!-- End of Panel -->
 
           <div class="center-content">
-            <button ng-click="addUnit(unit)" type="button" class="btn btn-primary" data-dismiss="modal">Add Unit</button>
+            <button ng-click="addUnit(unit)" type="button" ng-click="uploadFiles($flow)" class="btn btn-primary" data-dismiss="modal">Add Unit</button>
           </div>
           
           <div class="bottom-border border-top-spacing"></div>         

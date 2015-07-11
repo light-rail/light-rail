@@ -9,6 +9,7 @@ app.controller('SubAddCtrl', function($scope,$location, $routeParams, Subscriber
   $scope.unit = {};
   $scope.picture = {};
 
+
   // $scope.processFiles = function(files) {
   //   angular.forEach(files, function(flowFile, i) {
   //     var fileReader = new FileRead();
@@ -37,8 +38,9 @@ app.controller('SubAddCtrl', function($scope,$location, $routeParams, Subscriber
   //   console.log('apartment', $scope.apartment)
   // };
 
-    //** Submits Listing to Service **/
-  $scope.addApartmentListing = function(apartment) {
+  //** Submits Listing to Service **/
+  $scope.addApartmentListing = function(apartment, files) {
+    files.upload();//sends pics to server and AWS - problem w/ redirect before upload complete (FIX)
     console.log("addApartmentListing-apartment", apartment)
     SubscriberService.addApartmentListing(apartment).then(function(res) {
       toaster.pop('success', 'You successfully added the Listing!');

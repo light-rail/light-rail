@@ -17,7 +17,7 @@
         
         <ui-gmap-circle ng-repeat="c in circles" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius" clickable="c.clickable" visible="c.visible"></ui-gmap-circle>
 
-       <ui-gmap-markers models="favoriteMarkers" coords="'self'" events="favoriteMarkers.events" icon='{url: "pin1.png"}'>
+       <ui-gmap-markers models="favoriteMarkers" coords="'self'" events="favoriteMarkers.events" icon='{url: "images/pin1.png"}'>
                  <ui-gmap-windows show="show">
                    <a data-target=".apartment-modal-lg" data-toggle="modal"><div ng-non-bindable >{{apartment_name}}</br>${{rent_range.min}} - ${{rent_range.max}}</div></a>
                  </ui-gmap-windows>

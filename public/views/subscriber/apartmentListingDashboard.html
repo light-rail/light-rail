@@ -36,7 +36,7 @@
               </div>
               <div class="panel-body">
                 <div ng-hide='subscriber.subscribed'>
-                  <button class='btn btn-success pull-right'>Setup</button>
+                  <button class='btn btn-primary pull-right'>Setup</button>
                   <h4> Setup Subscription: </h4>
                 </div>
               </div> 
@@ -167,9 +167,12 @@
    
 
     <!-- RIGHT PANEL APARTMENTS -->
-    <div class="col-md-4">
+    <div class="col-xs-12 col-md-4">
       <div class="well animated slideInRight" id="scrollArea"><!--Scroll-->
-      <a class="'col-md-12 btn btn-primary btn-raised" href="/#/subscriber/verify-address"><span>ADD A LISTING</span><i class="fa fa-plus edit-text-color"></i></a>
+      
+      <div class="col-md-12">  
+        <a class="col-md-12 btn btn-primary btn-raised" href="/#/subscriber/verify-address"><i class="fa fa-plus edit-text-color"></i> <span>ADD A LISTING</span></a>
+      </div>
       <!-- <div ng-show='!showListings'>
           <div class="col-md-12 list-group-border list-styling">
             <h4 class="titles-styling">Add A Listing To Have It Displayed Here</h4>
