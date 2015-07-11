@@ -41,10 +41,9 @@ app.controller('SubAddCtrl', function($scope,$location, $routeParams, Subscriber
   //** Submits Listing to Service **/
   $scope.addApartmentListing = function(apartment, files) {
     files.upload();//sends pics to server and AWS - problem w/ redirect before upload complete (FIX)
-    console.log("addApartmentListing-apartment", apartment)
     SubscriberService.addApartmentListing(apartment).then(function(res) {
       toaster.pop('success', 'You successfully added the Listing!');
-      $location.path('/subscriber/dashboard/' + res.subscriber_id);//Change to :subscriberId?
+      $location.path('/subscriber/dashboard/' + res.subscriber_id);
     }, function(err) {
       console.log('AddApartment err', err)
       //Need to add an error.status for address not being within range of lightrail
