@@ -1,7 +1,7 @@
 var app = angular.module('lightRail');
 
 app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService, isLoggedIn, toaster) {
-  console.log(isLoggedIn);
+  console.log('isLoggedIn', isLoggedIn);
   $scope.isLoggedIn = isLoggedIn;
   // this is for the seeded data --- change the ng-repeat if you want to use it! 
   // var allApartmentsData = GeneralUserService.apartmentData;
@@ -13,20 +13,62 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
     GeneralUserService.getAptData().then(function(data) {
       $scope.aptArray = data;
       $scope.selectApt = data;
-      console.log($scope.aptArray);
+      console.log('aptArray', $scope.aptArray);
     })
   }
 
   $scope.getAptArr();
 
-  //** Modal Initiation **//
-  $scope.getApartment = function(apartment) {
-    console.log(apartment);
+  //** Apartment Detail Modal Initiation **//
+  $scope.getApartment = function(apartment, isLoggedIn) {
+    console.log('getApartment apartment', apartment);
     var modal_apartment = '';
+    var favoritesArr = isLoggedIn.user.favorites
+    var inFavs = false;
+    console.log('getApt isLoggedIn', isLoggedIn)
+    console.log('getApt favorites', favoritesArr)
+    console.log('getApt apartmentId', apartment._id)
+
+
+    //Generate function to check if in favorite list
+    if (favoritesArr) {
+      for (var i = 0; i < favoritesArr.length; i++) {
+        if (favoritesArr[i] === apartment._id) {
+          inFavs = true;
+          console.log("infavs1", inFavs)
+        } else {
+          inFavs = false;
+          console.log('infavs2', inFavs)
+        }
+      }
+    }
 
     $scope.modal_apartment = apartment;
-
+    console.log('modal_apartment', $scope.modal_apartment)
   }
+
+
+  //Adds to favorites
+  $scope.addToFavorites = function(apt) {
+    console.log(apt._id);
+    GeneralUserService.addToFavorites(apt._id).then(function(data) {
+      GeneralUserService.getFavorites();
+      console.log("Made it!", data);
+      toaster.pop('success', 'Added to your favorites');
+    }, function(err) {
+      console.log('Fav add fail', err);
+      toaster.pop('error', 'This is already in your favorites!');
+    });
+  };
+
+  //Sends Message to register or login to access favorite feature
+  $scope.askToLogin = function() {
+    toaster.pop('info', 'Register/login to add favorite.')
+  };
+
+
+
+
 
   $scope.hello = function() {
     console.log("HELLO");
@@ -345,25 +387,6 @@ app.controller('MainPageCtrl', function($scope, $routeParams, GeneralUserService
       })
     }
   }
-
-
-
-
-
-
-
-  // We need to send to login - if havent loggedin! 
-
-  $scope.addToFavorites = function(apt) {
-    console.log(apt._id);
-    GeneralUserService.addToFavorites(apt._id).then(function(data) {
-      console.log("Made it!", data);
-      toaster.pop('success', 'Added to your favorites');
-    })
-  }
-
-
-
 
 
 

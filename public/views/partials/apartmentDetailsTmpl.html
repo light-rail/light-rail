@@ -8,8 +8,19 @@
         <div class="modal-body center-content">
 
           <!-- APARTMENT DETAILS -->
-          <div  class="col-xs-12 col-md-10">
-            <div class="titles-styling bottom-border">{{modal_apartment.apartment_name}}<a class="like-heart" ng-click="addToFavorites(modal_apartment)"><i class="fa fa-heart fa-2x" style="color: red;"></i></a></div>
+        <div  class="col-xs-12 col-md-10">
+         
+        <!-- LIKE BUTTON -->
+        <span class="fa-stack fa-lg like-heart-position">
+          <!--Note: Attach the favorite variable to object for ng-hide/show Need to add remove-->
+          <a ng-show="isLoggedIn.user.loggedIn === true && inFavs === true" class="like-heart" ng-click="removeFavorites(modal_apartment)"><i class="fa fa-heart fa-2x" style="color: red;"></i>Full Heart</a><!-- Logged In and Fav -->
+          <a ng-show="!isLoggedIn.user.loggedIn" class="like-heart" ng-click="askToLogin()"><i class="fa fa-heart-o fa-2x"></i>Ask login</a><!-- Not Logged In -->
+          <a ng-show="isLoggedIn.user.loggedIn === true && inFavs === false" class="like-heart" ng-click="addToFavorites(modal_apartment)"><i class="fa fa-heart-o fa-2x"></i>Partial H add</a><!-- Logged In Not Fav -->
+<!--           <a ng-show="isLoggedIn.user.loggedIn === true" class="like-heart" ng-click="addToFavorites(modal_apartment)"><i class="fa fa-heart-o fa-2x"></i>Partial H add</a> -->
+        </span>
+       
+           
+           <h3 class="titles-styling bottom-border">{{modal_apartment.apartment_name}}</h3>
 
             <div class="row">
               <div class="col-md-6">
@@ -61,23 +72,11 @@
                       <span class="col-xs-3 col-md-3">Monthly</span>
                     </div>
 
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">1</span>
-                      <span class="col-xs-3 col-md-3 ">1</span>
-                      <span class="col-xs-3 col-md-3 ">800</span>
-                      <span class="col-xs-3 col-md-3 ">$600</span>
-                    </div>
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">2</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1000</span>
-                      <span class="col-xs-3 col-md-3 ">$1,200</span>
-                    </div>
-                    <div class="col-xs-12 col-md-12 char-left-alignment">
-                      <span class="col-xs-3 col-md-3 char-left-alignment">3</span>
-                      <span class="col-xs-3 col-md-3 ">2</span>
-                      <span class="col-xs-3 col-md-3 ">1,800</span>
-                      <span class="col-xs-3 col-md-3 ">$1,600</span>
+                    <div class="col-xs-12 col-md-12 char-left-alignment" ng-repeat="unit in apartment.units">
+                      <span class="col-xs-3 col-md-3 char-left-alignment">{{unit.bedrooms}}</span>
+                      <span class="col-xs-3 col-md-3">{{unit.bathrooms}}</span>
+                      <span class="col-xs-3 col-md-3">{{unit.square_feet}}</span>
+                      <span class="col-xs-3 col-md-3">{{unit.monthly_rent}}</span>
                     </div>
 
                   </div>

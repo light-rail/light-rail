@@ -1,5 +1,5 @@
-
-/* * {
+/*
+ * {
   border: 1px dashed blue;
 }
 */
@@ -50,6 +50,15 @@ html, body {
 
 .navbar.navbar {
   background-color: #FF4019;
+}
+
+.logo-img-size {
+  height: 40px;
+/*  padding-bottom: 0px;*/
+}
+
+#logo-container {
+  padding-top: 5px;
 }
 
 /*** MAIN PAGE ***/
@@ -167,11 +176,24 @@ html, body {
 .like-heart {
   position: absolute;
   right: 0px;
-/*  background-color: white;
-  border: white;*/
 }
 
 .like-heart:hover {
+  color: pink;
+  border: 2px solid white;
+}
+
+.like-heart-position {
+  position: absolute;
+  right:0;
+}
+
+.not-like-heart {
+  color: red;
+
+}
+
+.not-like-heart:hover {
   color: pink;
   border: 2px solid white;
 }

@@ -2,12 +2,13 @@ var app = angular.module('lightRail');
 
 app.controller('SubAddCtrl', function($scope,$location, $routeParams, SubscriberService, GeneralUserService, toaster, getAddedApt) {
 
-  console.log(getAddedApt);
+  console.log('getAddedApt', getAddedApt);
   $scope.apartment = getAddedApt[0];
-  console.log($scope.apartment);
+  console.log('getAddedApt apartment', $scope.apartment);
   
   $scope.unit = {};
   $scope.picture = {};
+
 
   // $scope.processFiles = function(files) {
   //   angular.forEach(files, function(flowFile, i) {
@@ -24,25 +25,25 @@ app.controller('SubAddCtrl', function($scope,$location, $routeParams, Subscriber
   $scope.addUnit = function(unit) {
     $scope.apartment.units.push(unit);
     $scope.unit = {};
-    console.log('apartment', $scope.apartment)
+    console.log('addUnit apartment', $scope.apartment)
     console.log('unit', $scope.unit)
   };
 
   //** Add Pictures Container Content **/
-  $scope.addPicture = function(picture) {
-    $scope.apartment.pictures_array.push(picture);
+  // $scope.addPicture = function(picture) {
+  //   $scope.apartment.pictures_array.push(picture);
 
-    $scope.picture = {};
-    console.log('picture', $scope.picture)
-    console.log('apartment', $scope.apartment)
-  };
+  //   $scope.picture = {};
+  //   console.log('picture', $scope.picture)
+  //   console.log('apartment', $scope.apartment)
+  // };
 
-    //** Submits Listing to Service **/
-  $scope.addApartmentListing = function(apartment) {
-    console.log("addApartmentListing-apartment", apartment)
+  //** Submits Listing to Service **/
+  $scope.addApartmentListing = function(apartment, files) {
+    files.upload();//sends pics to server and AWS - problem w/ redirect before upload complete (FIX)
     SubscriberService.addApartmentListing(apartment).then(function(res) {
       toaster.pop('success', 'You successfully added the Listing!');
-      $location.path('/subscriber/dashboard/' + res.subscriber_id);//Change to :subscriberId?
+      $location.path('/subscriber/dashboard/' + res.subscriber_id);
     }, function(err) {
       console.log('AddApartment err', err)
       //Need to add an error.status for address not being within range of lightrail

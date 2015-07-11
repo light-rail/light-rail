@@ -23,71 +23,55 @@
     <toaster-container toaster-options="{'time-out': 3000, 'close-button':true}"></toaster-container>
 
     <!-- Nav Bar -->
-<div class="navbar navbar-warning navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand brand-style" href="#/">LightRail Connect</a>
+    <div class="navbar navbar-warning navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand brand-style" id="logo-container" href="#/">
+            <img class="logo-img-size" src="images/lrc-logo-black.png" alt="LightRail Connect">
+          </a>
+        </div>
+        <div class="navbar-collapse collapse navbar-warning-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href='#/'>Listings</a>
+            </li>
+            <li>
+              <a href="#/myfavorites" ng-show='isLoggedIn.user.loggedIn' ng-cloak>My Favorites </a>
+            </li>
+            <li class="dropdown" ng-hide='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
+              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/register/general_user">Register</a></li>
+                <li><a href="#/register/subscriber">Register to List An Apartment</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn'>Login<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#/login">User Login</a></li>
+                <li><a href="#/login/subscriber">Subscriber Login</a></li>
+              </ul>
+            </li>
+            <li ng-show='isLoggedIn.subscriber.loggedIn' ng-cloak>
+              <a href='#/subscriber/dashboard/{{isLoggedIn.subscriber.id}}'>Dashboard</a>
+            </li>
+            <li ng-show='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
+              <a href='' ng-click='logOut()'>Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="navbar-collapse collapse navbar-warning-collapse">
-      <ul class="nav navbar-nav">
-<!--    <li class="dropdown">
-          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="javascript:void(0)">Action</a></li>
-            <li><a href="javascript:void(0)">Another action</a></li>
-            <li><a href="javascript:void(0)">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Dropdown header</li>
-            <li><a href="javascript:void(0)">Separated link</a></li>
-            <li><a href="javascript:void(0)">One more separated link</a></li>
-          </ul>
-        </li> -->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href='#/'>Listings</a>
-        </li>
-        <li>
-          <a href="#/myfavorites" ng-show='isLoggedIn.user.loggedIn' ng-cloak>My Favorites </a>
-        </li>
-        <li class="dropdown" ng-hide='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
-          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Register<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#/register/general_user">Register</a></li>
-            <li><a href="#/register/subscriber">Register to List An Apartment</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown" ng-hide='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn'>Login<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#/login">User Login</a></li>
-            <li><a href="#/login/subscriber">Subscriber Login</a></li>
-          </ul>
-        </li>
-        <li ng-show='isLoggedIn.subscriber.loggedIn' ng-cloak>
-          <a href='#/subscriber/dashboard/{{isLoggedIn.subscriber.id}}'>Dashboard</a>
-        </li>
-        <li ng-show='isLoggedIn.subscriber.loggedIn || isLoggedIn.user.loggedIn || isLoggedIn.admin.loggedIn' ng-cloak>
-          <a href='' ng-click='logOut()'>Logout</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<!-- End Nav Bar -->
+    <!-- End Nav Bar -->
 
     <div class="jumbotron"></div>
       <ng-view autoscroll='true'></ng-view>
     </div>
-
-
-
-
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
